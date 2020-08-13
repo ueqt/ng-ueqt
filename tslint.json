@@ -19,13 +19,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "udemo",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "udemo",
       "kebab-case"
     ],
     "eofline": true,

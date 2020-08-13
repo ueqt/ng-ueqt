@@ -34,7 +34,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "udemo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -96,55 +96,50 @@
             }
           }
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "browserTarget": "site:build"
+            "tsConfig": [
+              "tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        }
+      }
+    },
+    "ng-ueqt": {
+      "projectType": "library",
+      "root": "ng-ueqt",
+      "sourceRoot": "ng-ueqt/src",
+      "prefix": "u",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "tsConfig": "ng-ueqt/tsconfig.lib.json",
+            "project": "ng-ueqt/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "ng-ueqt/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "ng-ueqt/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "site:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "site:serve:production"
-            }
-          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "site"
 }
