@@ -7,7 +7,7 @@ declare var require: any;
   styleUrls: ['./grid.scss'],
 })
 export class UdemoGridComponent {
-  basic = require('raw-loader!./basic.code').default;
+  basic = require('!!raw-loader!./basic.ts').default;
 
   constructor() {
     console.log(this.basic);
