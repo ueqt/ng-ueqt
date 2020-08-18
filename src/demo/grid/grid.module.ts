@@ -1,3 +1,4 @@
+import { UCodeboxModule } from './../../app/codebox/codebox.module';
 import { UGridModule } from './../../../ng-ueqt/src/lib/components/grid/grid.module';
 import { UdemoGridComponent } from './grid';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,6 +16,7 @@ const routes: Routes = [{ path: '', component: UdemoGridComponent }];
     RouterModule.forChild(routes),
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
+    UCodeboxModule,
     UGridModule,
   ],
   declarations: [UdemoGridComponent, UdemoGridBasicComponent],

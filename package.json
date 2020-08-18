@@ -29,7 +29,7 @@
     "@angular-devkit/build-ng-packagr": "~0.1000.5",
     "@angular/cli": "~10.0.5",
     "@angular/compiler-cli": "~10.0.6",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.12.54",
     "codelyzer": "^6.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",

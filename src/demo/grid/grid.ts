@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
+declare var require: any;
 
 @Component({
   selector: 'udemo-grid',
   templateUrl: './grid.html',
   styleUrls: ['./grid.scss'],
 })
-export class UdemoGridComponent {}
+export class UdemoGridComponent {
+  basic = require('raw-loader!./basic.code').default;
+
+  constructor() {
+    console.log(this.basic);
+  }
+}
