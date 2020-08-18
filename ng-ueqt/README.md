@@ -2,8 +2,10 @@
 
 Ueqt's Angular Library.
 
-![build](https://github.com/ueqt/ng-ueqt/workflows/deploy%20to%20pocketrose/badge.svg)
+![Build and Deploy](https://github.com/ueqt/ng-ueqt/workflows/Build%20and%20Deploy/badge.svg)
 
 ```
 npm install ng-ueqt
 ```
+
+https://ueqt.github.io/ng-ueqt
