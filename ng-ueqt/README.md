@@ -1,24 +1,9 @@
 # NgUeqt
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+Ueqt's Angular Library.
 
-## Code scaffolding
+![build](https://github.com/ueqt/ng-ueqt/workflows/deploy%20to%20pocketrose/badge.svg)
 
-Run `ng generate component component-name --project ng-ueqt` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-ueqt`.
-> Note: Don't forget to add `--project ng-ueqt` or else it will be added to the default project in your `angular.json` file. 
-
-## Build
-
-Run `ng build ng-ueqt` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build ng-ueqt`, go to the dist folder `cd dist/ng-ueqt` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ng-ueqt` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+npm install ng-ueqt
+```
