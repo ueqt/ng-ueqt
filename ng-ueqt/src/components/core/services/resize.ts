@@ -16,12 +16,6 @@ export class UResizeService {
 
   private disposeHandle = NOOP;
 
-  private handler = (): void => {
-    this.ngZone.run(() => {
-      this.resizeSource$.next();
-    });
-  };
-
   constructor(
     private ngZone: NgZone,
     private rendererFactory2: RendererFactory2
@@ -63,5 +57,11 @@ export class UResizeService {
       this.disposeHandle();
       this.disposeHandle = NOOP;
     }
+  }
+
+  private handler(): void {
+    this.ngZone.run(() => {
+      this.resizeSource$.next();
+    });
   }
 }

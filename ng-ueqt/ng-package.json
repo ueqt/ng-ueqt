@@ -3,7 +3,7 @@
   "dest": "../dist/ng-ueqt",
   "assets": [
     "src/assets",
-    "src/lib/styles"
+    "src/styles"
   ],
   "lib": {
     "entryFile": "src/public-api.ts",

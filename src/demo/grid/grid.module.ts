@@ -1,5 +1,5 @@
 import { UCodeboxModule } from './../../app/codebox/codebox.module';
-import { UGridModule } from './../../../ng-ueqt/src/lib/components/grid/grid.module';
+import { UGridModule } from './../../../ng-ueqt/src/components/grid/grid.module';
 import { UdemoGridComponent } from './grid';
 import { RouterModule, Routes } from '@angular/router';
 import { UdemoGridBasicComponent } from './basic';

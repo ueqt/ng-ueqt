@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 declare var require: any;
 
 @Component({
-  selector: 'udemo-grid',
-  templateUrl: './grid.html',
-  styleUrls: ['./grid.scss'],
+  selector: 'udemo-icon',
+  templateUrl: './icon.html',
+  styleUrls: ['./icon.scss'],
 })
-export class UdemoGridComponent {
+export class UdemoIconComponent {
   basic = require('!!raw-loader!./basic.ts').default;
 }

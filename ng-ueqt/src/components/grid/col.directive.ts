@@ -36,8 +36,8 @@ export class UColDirective
   private destroy$ = new Subject();
   hostFlexStyle: string | null = null;
 
+  @Input('uCol') uSpan: string | number | null = null;
   @Input() uFlex: string | number | null = null;
-  @Input() uSpan: string | number | null = null;
   @Input() uOrder: string | number | null = null;
   @Input() uOffset: string | number | null = null;
   @Input() uPush: string | number | null = null;
