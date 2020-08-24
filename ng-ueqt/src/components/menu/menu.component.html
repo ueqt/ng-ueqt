@@ -1,0 +1,22 @@
+<cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- This is the tree node template for expandable nodes -->
+  <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding cdkTreeNodePaddingIndent="24"
+    [style.display]="shouldRender(node) ? 'flex' : 'none'" class="u-menu-expandable">
+    <ng-container *ngTemplateOutlet="customNode || defaultNode; context: {node: node}"></ng-container>
+    <ng-template #defaultNode let-node="node">
+      {{node.name}}
+    </ng-template>
+    <i [uIcon]="node.isExpanded ? 'up': 'down'" cdkTreeNodeToggle (click)="changeExpand(node, !node.isExpanded)"
+      [style.visibility]="node.expandable ? 'visible' : 'hidden'" class="u-menu-arrow"></i>
+  </cdk-tree-node>
+  <!-- This is the tree node template for leaf nodes -->
+  <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding cdkTreeNodePaddingIndent="24"
+    [style.display]="shouldRender(node) ? 'flex' : 'none'" class="u-tree-node-leaf">
+    <!-- use a disabled button to provide padding for tree leaf -->
+    <!-- <button mat-icon-button disabled></button> -->
+    <ng-container *ngTemplateOutlet="customNode || defaultNode; context: {node: node}"></ng-container>
+    <ng-template #defaultNode let-node="node">
+      {{node.name}}
+    </ng-template>
+  </cdk-tree-node>
+</cdk-tree>

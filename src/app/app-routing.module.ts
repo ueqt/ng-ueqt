@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/icon', pathMatch: 'full' },
+  { path: '', redirectTo: '/menu', pathMatch: 'full' },
   {
     path: 'grid',
     loadChildren: () =>
@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'icon',
     loadChildren: () =>
       import('../demo/icon/icon.module').then((m) => m.UdemoIconModule),
+  },
+  {
+    path: 'menu',
+    loadChildren: () =>
+      import('../demo/menu/menu.module').then((m) => m.UdemoMenuModule),
   },
 ];
 

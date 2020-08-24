@@ -3,7 +3,8 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { USiderComponent } from './sider.component';
-import { USiderTriggerComponent } from './sider-triger.component';
+import { USiderTriggerComponent } from './sider-trigger.component';
+import { UIconModule } from '../icon';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,6 @@ import { USiderTriggerComponent } from './sider-triger.component';
     NzFooterComponent,
     USiderComponent,
   ],
-  imports: [CommonModule, NzIconModule, LayoutModule, PlatformModule],
+  imports: [CommonModule, UIconModule, LayoutModule, PlatformModule],
 })
 export class ULayoutModule {}

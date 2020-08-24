@@ -17,6 +17,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UBreakpointService } from '../core/services';
 
 @Component({
   selector: 'u-sider',
@@ -43,8 +44,6 @@ import { takeUntil } from 'rxjs/operators';
   host: {
     '[class.ant-layout-sider]': 'true',
     '[class.ant-layout-sider-zero-width]': `nzCollapsed && nzCollapsedWidth === 0`,
-    '[class.ant-layout-sider-light]': `nzTheme === 'light'`,
-    '[class.ant-layout-sider-dark]': `nzTheme === 'dark'`,
     '[class.ant-layout-sider-collapsed]': `nzCollapsed`,
     '[style.flex]': 'flexSetting',
     '[style.maxWidth]': 'widthSetting',
@@ -62,7 +61,6 @@ export class USiderComponent
   @ContentChild(UMenuDirective) nzMenuDirective: NzMenuDirective | null = null;
   @Output() readonly nzCollapsedChange = new EventEmitter();
   @Input() nzWidth: string | number = 200;
-  @Input() nzTheme: 'light' | 'dark' = 'dark';
   @Input() nzCollapsedWidth = 80;
   @Input() nzBreakpoint: NzBreakpointKey | null = null;
   @Input() nzZeroTrigger: TemplateRef<void> | null = null;
@@ -105,7 +103,7 @@ export class USiderComponent
   constructor(
     private platform: Platform,
     private cdr: ChangeDetectorRef,
-    private breakpointService: NzBreakpointService
+    private breakpointService: UBreakpointService
   ) {}
 
   ngOnInit(): void {

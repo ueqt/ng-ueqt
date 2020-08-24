@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: ` <i uIcon="left"></i>
     <i uIcon="right"></i>
     <i uIcon="up"></i>
-    <i uIcon="down"></i>`,
+    <i uIcon="down"></i>
+    <i uIcon="bars"></i>`,
 })
 export class UdemoIconBasicComponent {}

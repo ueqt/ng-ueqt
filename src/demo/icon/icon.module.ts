@@ -1,3 +1,4 @@
+import { UIconBars } from './../../../ng-ueqt/src/components/icon/primer-icons/three-bars';
 import { UIconDown } from './../../../ng-ueqt/src/components/icon/primer-icons/chevron-down';
 import { UIconUp } from './../../../ng-ueqt/src/components/icon/primer-icons/chevron-up';
 import { UIconRight } from './../../../ng-ueqt/src/components/icon/primer-icons/chevron-right';
@@ -17,7 +18,13 @@ import { MarkdownModule } from 'ngx-markdown';
 
 const routes: Routes = [{ path: '', component: UdemoIconComponent }];
 
-const icons: UIconDefinition[] = [UIconLeft, UIconRight, UIconUp, UIconDown];
+const icons: UIconDefinition[] = [
+  UIconLeft,
+  UIconRight,
+  UIconUp,
+  UIconDown,
+  UIconBars,
+];
 
 @NgModule({
   imports: [

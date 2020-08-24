@@ -6,6 +6,7 @@ import {
   Optional,
   Renderer2,
   Inject,
+  OnChanges,
 } from '@angular/core';
 import { UIconService, UIconPatchService } from './icon.service';
 import { DOCUMENT } from '@angular/common';
@@ -14,7 +15,7 @@ import { DOCUMENT } from '@angular/common';
   selector: '[uIcon]',
   exportAs: 'uIcon',
 })
-export class UIconDirective implements OnInit {
+export class UIconDirective implements OnInit, OnChanges {
   @Input('uIcon') iconName: string;
 
   constructor(
@@ -30,6 +31,15 @@ export class UIconDirective implements OnInit {
   }
 
   ngOnInit(): void {
+    const el: HTMLElement = this.elementRef.nativeElement;
+    this.renderer.setAttribute(el, 'class', `uicon ${el.className}`.trim());
+    const icon = this.iconService.icons.find((i) => i.name === this.iconName);
+    if (icon) {
+      el.innerHTML = icon.icon;
+    }
+  }
+
+  ngOnChanges(): void {
     const el: HTMLElement = this.elementRef.nativeElement;
     this.renderer.setAttribute(el, 'class', `uicon ${el.className}`.trim());
     const icon = this.iconService.icons.find((i) => i.name === this.iconName);
