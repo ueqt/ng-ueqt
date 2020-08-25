@@ -36,15 +36,22 @@ export class UIconDirective implements OnInit, OnChanges {
     const icon = this.iconService.icons.find((i) => i.name === this.iconName);
     if (icon) {
       el.innerHTML = icon.icon;
+      const elIcon: Node = el.firstChild;
+      if (el.style.color) {
+        this.renderer.setStyle(elIcon, 'fill', el.style.color);
+      }
     }
   }
 
   ngOnChanges(): void {
     const el: HTMLElement = this.elementRef.nativeElement;
-    this.renderer.setAttribute(el, 'class', `uicon ${el.className}`.trim());
     const icon = this.iconService.icons.find((i) => i.name === this.iconName);
     if (icon) {
       el.innerHTML = icon.icon;
+      const elIcon: Node = el.firstChild;
+      if (el.style.color) {
+        this.renderer.setStyle(elIcon, 'fill', el.style.color);
+      }
     }
   }
 }

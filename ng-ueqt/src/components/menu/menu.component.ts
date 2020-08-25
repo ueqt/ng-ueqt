@@ -38,6 +38,8 @@ export class UMenuComponent implements OnChanges {
 
   @HostBinding('class.u-menu') menuClass = true;
 
+  selectedNode: UMenuFlatNode = undefined;
+
   treeControl = new FlatTreeControl<UMenuFlatNode>(
     (node) => node.level,
     (node) => node.expandable
@@ -67,6 +69,10 @@ export class UMenuComponent implements OnChanges {
           this.changeExpand(n, isExpand);
         });
     }
+  }
+
+  selectNode(node: UMenuFlatNode): void {
+    this.selectedNode = node;
   }
 
   private flattenNodes(): UMenuFlatNode[] {

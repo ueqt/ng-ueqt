@@ -1,3 +1,10 @@
+:root {
+  // 主题色
+  --primary: #1890ff;
+  // 主题色选中的背景色
+  --primary-selected-bg: #e6f7ff;
+}
+
 // Media queries breakpoints
 // Extra small screen / phone
 $screen-xs: 480px;

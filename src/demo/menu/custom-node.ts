@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
   selector: 'udemo-menu-custom-node',
   template: `<u-menu [datas]="datas" [customNode]="custom"></u-menu>
     <ng-template #custom let-node="node"
-      ><i uIcon="bars"></i> {{ node.addition }} {{ node.name }}</ng-template
+      ><i uIcon="bars" style="margin-right: 10px;"></i>
+      <span>{{ node.addition }} {{ node.name }}</span></ng-template
     > `,
 })
 export class UdemoMenuCustomNodeComponent {
