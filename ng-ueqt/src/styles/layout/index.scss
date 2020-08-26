@@ -1,0 +1,39 @@
+@import "../variable.scss";
+
+.u-layout {
+  box-sizing: border-box;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg);
+}
+
+.u-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  line-height: 64px;
+  flex: 0 0 auto;
+  display: block;
+  color: var(--accent-fg);
+  background: var(--accent);
+}
+
+.u-layout-content {
+  flex: auto;
+  min-height: 0;
+  display: block;
+}
+
+.u-layout-footer {
+  padding: 24px 50px;
+  color: var(--accent-fg);
+  font-size: 14px;
+  background: var(--bg);
+  flex: 0 0 auto;
+  display: block;
+}
+
+.u-layout-has-sider {
+  flex-direction: row;
+}

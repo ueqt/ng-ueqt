@@ -25,7 +25,7 @@ const icons: UIconDefinition[] = [UIconBars];
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
-    UIconModule.forRoot([UIconBars]),
+    UIconModule.forChild(icons),
     UMenuModule,
   ],
   declarations: [

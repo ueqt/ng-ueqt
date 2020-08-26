@@ -8,7 +8,8 @@
       {{node.name}}
     </ng-template>
     <i [uIcon]="node.isExpanded ? 'up': 'down'" cdkTreeNodeToggle
-      [style.visibility]="node.expandable ? 'visible' : 'hidden'" class="u-menu-arrow"></i>
+      [style.visibility]="node.expandable ? 'visible' : 'hidden'" class="u-menu-arrow"
+      (click)="changeExpand(node, !node.isExpanded)"></i>
   </cdk-tree-node>
   <!-- This is the tree node template for leaf nodes -->
   <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding cdkTreeNodePaddingIndent="24" (click)="selectNode(node)"

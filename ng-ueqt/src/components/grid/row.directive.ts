@@ -15,12 +15,12 @@ import {
 } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UObject } from '../core/types';
 import {
   gridResponsiveMap,
   UBreakpointKey,
   UBreakpointService,
 } from '../core/services';
+import { UObject } from '../core/util';
 
 /**
  * 水平排列方式
@@ -66,17 +66,31 @@ export class URowDirective
     | null = null;
 
   @HostBinding('class.u-row') classRow = true;
-  @HostBinding('class.u-row-top') classRowTop = this.uAlign === 'top';
-  @HostBinding('class.u-row-middle') classRowMiddle = this.uAlign === 'middle';
-  @HostBinding('class.u-row-bottom') classRowBottom = this.uAlign === 'bottom';
-  @HostBinding('class.u-row-start') classRowStart = this.uJustify === 'start';
-  @HostBinding('class.u-row-end') classRowEnd = this.uJustify === 'end';
-  @HostBinding('class.u-row-center') classRowCenter =
-    this.uJustify === 'center';
-  @HostBinding('class.u-row-space-around') classRowSpaceAround =
-    this.uJustify === 'space-around';
-  @HostBinding('class.u-row-space-between') classRowSpaceBetween =
-    this.uJustify === 'space-between';
+  @HostBinding('class.u-row-top') get classRowTop(): boolean {
+    return this.uAlign === 'top';
+  }
+  @HostBinding('class.u-row-middle') get classRowMiddle(): boolean {
+    return this.uAlign === 'middle';
+  }
+  @HostBinding('class.u-row-bottom') get classRowBottom(): boolean {
+    return this.uAlign === 'bottom';
+  }
+  @HostBinding('class.u-row-start') get classRowStart(): boolean {
+    return this.uJustify === 'start';
+  }
+  @HostBinding('class.u-row-end') get classRowEnd(): boolean {
+    return this.uJustify === 'end';
+  }
+  @HostBinding('class.u-row-center') get classRowCenter(): boolean {
+    return this.uJustify === 'center';
+  }
+  @HostBinding('class.u-row-space-around') get classRowSpaceAround(): boolean {
+    return this.uJustify === 'space-around';
+  }
+  @HostBinding('class.u-row-space-between')
+  get classRowSpaceBetween(): boolean {
+    return this.uJustify === 'space-between';
+  }
 
   readonly actualGutter$ = new ReplaySubject<[number | null, number | null]>(1);
 

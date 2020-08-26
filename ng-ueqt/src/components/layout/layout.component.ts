@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   HostBinding,
 } from '@angular/core';
+import { USiderComponent } from './sider.component';
 
 @Component({
   selector: 'u-layout',
@@ -15,12 +16,15 @@ import {
   template: ` <ng-content></ng-content> `,
 })
 export class ULayoutComponent {
-  @ContentChildren(NzSiderComponent) listOfNzSiderComponent!: QueryList<
-    NzSiderComponent
+  @ContentChildren(USiderComponent) listOfNzSiderComponent!: QueryList<
+    USiderComponent
   >;
 
-  @HostBinding('class.u-layout-has-sider') hasSider =
-    this.listOfNzSiderComponent.length > 0;
+  @HostBinding('class.u-layout-has-sider') get hasSider(): boolean {
+    return (
+      this.listOfNzSiderComponent && this.listOfNzSiderComponent.length > 0
+    );
+  }
 
   @HostBinding('class.u-layout') layout = true;
 }

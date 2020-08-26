@@ -1,8 +1,14 @@
 :root {
+  // 背景色
+  --bg: #f0f2f5;
   // 主题色
   --primary: #1890ff;
   // 主题色选中的背景色
   --primary-selected-bg: #e6f7ff;
+  // 辅助色
+  --accent: #001520;
+  // 辅助色的文字色
+  --accent-fg: rgba(0, 0, 0.65);
 }
 
 // Media queries breakpoints

@@ -58,13 +58,16 @@ export class USiderTriggerComponent implements OnChanges, OnInit {
   isZeroTrigger = false;
   isNormalTrigger = false;
 
-  @HostBinding('class.u-layout-sider-trigger') siderTrigger = this
-    .isNormalTrigger;
-  @HostBinding('style.width') width = this.isNormalTrigger
-    ? this.siderWidth
-    : null;
+  @HostBinding('class.u-layout-sider-trigger') get siderTrigger(): boolean {
+    return this.isNormalTrigger;
+  }
+  @HostBinding('style.width') get width(): string {
+    return this.isNormalTrigger ? this.siderWidth : null;
+  }
   @HostBinding('class.u-layout-sider-zero-with-trigger')
-  siderZeroWithTrigger = this.isZeroTrigger;
+  get siderZeroWithTrigger(): boolean {
+    return this.isZeroTrigger;
+  }
 
   ngOnInit(): void {
     this.updateTriggerType();

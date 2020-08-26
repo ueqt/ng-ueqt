@@ -5,21 +5,25 @@ import { NgModule } from '@angular/core';
 import { USiderComponent } from './sider.component';
 import { USiderTriggerComponent } from './sider-trigger.component';
 import { UIconModule } from '../icon';
+import { UFooterComponent } from './footer.component';
+import { UContentComponent } from './content.component';
+import { UHeaderComponent } from './header.component';
+import { ULayoutComponent } from './layout.component';
 
 @NgModule({
   declarations: [
-    NzLayoutComponent,
-    NzHeaderComponent,
-    NzContentComponent,
-    NzFooterComponent,
+    ULayoutComponent,
+    UHeaderComponent,
+    UContentComponent,
+    UFooterComponent,
     USiderComponent,
     USiderTriggerComponent,
   ],
   exports: [
-    NzLayoutComponent,
-    NzHeaderComponent,
-    NzContentComponent,
-    NzFooterComponent,
+    ULayoutComponent,
+    UHeaderComponent,
+    UContentComponent,
+    UFooterComponent,
     USiderComponent,
   ],
   imports: [CommonModule, UIconModule, LayoutModule, PlatformModule],

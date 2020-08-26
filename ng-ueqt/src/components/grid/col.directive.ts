@@ -1,4 +1,3 @@
-import { UObject } from './../core/types/object';
 import {
   AfterViewInit,
   Directive,
@@ -16,7 +15,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { URowDirective } from './row.directive';
-import { isNotNil } from '../core/util';
+import { isNotNil, UObject } from '../core/util';
 
 export interface EmbeddedProperty {
   span?: number;
@@ -49,7 +48,9 @@ export class UColDirective
   @Input() uXl: string | number | EmbeddedProperty | null = null;
   @Input() uXXl: string | number | EmbeddedProperty | null = null;
 
-  @HostBinding('style.flex') styleFlex = this.hostFlexStyle;
+  @HostBinding('style.flex') get styleFlex(): string {
+    return this.hostFlexStyle;
+  }
 
   setHostClassMap(): void {
     const hostClassMap = {

@@ -1,4 +1,3 @@
-import { UAny } from './../core/types/any';
 import {
   Component,
   ViewEncapsulation,
@@ -7,9 +6,12 @@ import {
   OnChanges,
   HostBinding,
   TemplateRef,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { ArrayDataSource } from '@angular/cdk/collections';
+import { UAny } from '../core/util';
 
 export interface UMenuNode {
   name: string;
@@ -35,6 +37,8 @@ export interface UMenuFlatNode {
 export class UMenuComponent implements OnChanges {
   @Input() datas: UMenuNode[] = [];
   @Input() customNode: TemplateRef<UMenuNode> | null = null;
+
+  @Output() nodeClick = new EventEmitter<UMenuFlatNode>();
 
   @HostBinding('class.u-menu') menuClass = true;
 
@@ -73,6 +77,9 @@ export class UMenuComponent implements OnChanges {
 
   selectNode(node: UMenuFlatNode): void {
     this.selectedNode = node;
+    if (this.nodeClick) {
+      this.nodeClick.emit(node);
+    }
   }
 
   private flattenNodes(): UMenuFlatNode[] {
