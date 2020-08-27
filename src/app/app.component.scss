@@ -1,6 +1,17 @@
 .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   color: var(--primary);
 }
+
+.app-sider {
+  position: sticky;
+  top: 66px;
+  height: calc(100vh - 66px);
+  overflow: auto;
+}
+
 .app-menu {
   margin-left: 20px;
 }

@@ -23,6 +23,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../demo/menu/menu.module').then((m) => m.UdemoMenuModule),
   },
+  {
+    path: 'tabs',
+    loadChildren: () =>
+      import('../demo/tabs/tabs.module').then((m) => m.UdemoTabsModule),
+  },
 ];
 
 @NgModule({

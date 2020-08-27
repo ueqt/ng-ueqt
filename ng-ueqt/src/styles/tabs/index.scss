@@ -1,0 +1,129 @@
+.u-tabs-nav-container {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5715;
+  white-space: nowrap;
+  margin-bottom: -1px;
+}
+
+.u-tabs-tab-prev,
+.u-tabs-tab-next {
+  position: absolute;
+  z-index: 2;
+  width: 32px;
+  height: 100%;
+  text-align: center;
+  border: 0;
+  cursor: pointer;
+}
+
+.u-tabs-tab-prev {
+  left: 0;
+}
+
+.u-tabs-tab-next {
+  right: 2px;
+}
+
+.u-tabs-tab-prev-icon,
+.u-tabs-tab-next-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+}
+
+.u-tabs-tab-btn-disabled {
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, 0.25);
+  &:hover {
+    color: rgba(0, 0, 0, 0.25);
+  }
+}
+
+.u-tabs-nav-wrap {
+  margin-bottom: -1px;
+  overflow: hidden;
+
+  .u-tabs-nav-scroll {
+    overflow: hidden;
+    white-space: nowrap;
+
+    .u-tabs-nav {
+      position: relative;
+      display: inline-block;
+      box-sizing: border-box;
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+  }
+}
+
+.u-tabs-ink-bar {
+  display: block;
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.u-tabs-nav:before .u-tabs-nav:after {
+  display: table;
+  content: " ";
+}
+
+.u-tabs-tab-active {
+  color: var(--primary);
+  font-weight: 500;
+  outline: none;
+}
+
+.u-tabs-tab {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0 32px 0 0;
+  padding: 12px 0;
+  text-decoration: none;
+  cursor: pointer;
+
+  // &:before {
+  //   position: absolute;
+  //   top: -1px;
+  //   left: 0;
+  //   width: 100%;
+  //   border-top: 2px solid transparent;
+  //   border-radius: 2px 2px 0 0;
+  //   transition: all 0.3s;
+  //   content: "";
+  //   pointer-events: none;
+  // }
+}
+
+.u-tabs-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  opacity: 1;
+  .u-tabs-tabpane {
+    flex-shrink: 0;
+    width: 100%;
+    outline: none;
+  }
+  .u-tabs-tabpane-inactive {
+    height: 0;
+    padding: 0 !important;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
