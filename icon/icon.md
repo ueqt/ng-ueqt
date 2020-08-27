@@ -16,7 +16,7 @@ import { UIconModule } from "ng-ueqt";
 所有的图标都会以 `<svg>` 标签渲染，但是你还是可以用之前对 i 标签设置的样式和类来控制 svg 的样式，例如：
 
 ```html
-<i iIcon="left" style="font-size: 16px; color: #08c;"></i>
+<i uIcon="left" style="font-size: 16px; color: #08c;"></i>
 ```
 
 ### 静态加载
