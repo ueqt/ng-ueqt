@@ -2,36 +2,22 @@
 
 ### u-tabs
 
-| 参数 | 说明 | 类型 | 默认值 | 全局配置 |
-| --- | --- | --- | --- | --- |
-| `[nzSelectedIndex]` | 当前激活 tab 面板的 序列号，可双向绑定 | `number` | - |
-| `[nzAnimated]` | 是否使用动画切换 Tabs，在 nzTabPosition=top \| bottom 时有效 | `boolean \| {inkBar:boolean, tabPane:boolean}` | `true`, 当 `type="card"` 时为 `false` | ✅ |
-| `[nzSize]` | 大小，提供 `large` `default` 和 `small` 三种大小 | `'large' \| 'small' \| 'default'` | `'default'` | ✅ |
-| `[nzTabBarExtraContent]` | tab bar 上额外的元素 | `TemplateRef<void>` | - |
-| `[nzTabBarStyle]` | tab bar 的样式对象 | `object` | - |
-| `[nzTabPosition]` | 页签位置，可选值有 `top` `right` `bottom` `left` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | |
-| `[nzType]` | 页签的基本样式，可选 `line`、`card` 类型 | `'line' \| 'card'` | `'line'` | ✅ |
-| `[nzTabBarGutter]` | tabs 之间的间隙 | `number` | - | ✅ |
-| `[nzHideAll]` | 是否隐藏所有tab内容 | `boolean` | `false` |
-| `[nzShowPagination]` | 是否超出范围时显示pre和next按钮 | `boolean` | `true` | ✅ |
-| `[nzLinkRouter]` | 与 Angular 路由联动 | `boolean` | `false` ||
-| `[nzLinkExact]` | 以严格匹配模式确定联动的路由 | `boolean` | `true` |
-| `[nzCanDeactivate]` | 决定一个 tab 是否可以被切换 | `NzTabsCanDeactivateFn` | - |
-| `(nzSelectedIndexChange)` | 当前激活 tab 面板的 序列号变更回调函数 | `EventEmitter<number>` | - |
-| `(nzSelectChange)` | 当前激活 tab 面板变更回调函数 | `EventEmitter<{index: number,tab: NzTabComponent}>` | - |
-| `(nzOnNextClick)` | next 按钮被点击的回调 | `EventEmitter<void>` | - |
-| `(nzOnPrevClick)` | prev 按钮被点击的回调 | `EventEmitter<void>` | - |
+| 参数                     | 说明                                   | 类型                                               | 默认值 |
+| ------------------------ | -------------------------------------- | -------------------------------------------------- | ------ |
+| `[uSelectedIndex]`       | 当前激活 tab 面板的 序列号，可双向绑定 | `number`                                           | -      |
+| `(uSelectedIndexChange)` | 当前激活 tab 面板的 序列号变更回调函数 | `EventEmitter<number>`                             | -      |
+| `(uSelectChange)`        | 当前激活 tab 面板变更回调函数          | `EventEmitter<{index: number,tab: UTabComponent}>` | -      |
 
 ### u-tab
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| `[nzTitle]` | 选项卡头显示文字 | `string \| TemplateRef<void>` | - |
-| `[nzForceRender]` | 被隐藏时是否渲染 DOM 结构 | `boolean` | `false` |
-| `[nzDisabled]` | 是否禁用 | `boolean` | - |
-| `(nzClick)` | title被点击的回调函数 | `EventEmitter<void>` | - |
-| `(nzSelect)` | tab被选中的回调函数 | `EventEmitter<void>` | - |
-| `(nzDeselect)` | tab被取消选中的回调函数 | `EventEmitter<void>` | - |
+| 参数             | 说明                     | 类型                 | 默认值 |
+| ---------------- | ------------------------ | -------------------- | ------ |
+| `[uTitle]`       | 选项卡头显示文字         | `string`             |        |
+| `[uCustomTitle]` | 自定义标题               | `TemplateRef<void>`  |        |
+| `[uDisabled]`    | 是否禁用                 | `boolean`            | -      |
+| `(uClick)`       | title 被点击的回调函数   | `EventEmitter<void>` | -      |
+| `(uSelect)`      | tab 被选中的回调函数     | `EventEmitter<void>` | -      |
+| `(uDeselect)`    | tab 被取消选中的回调函数 | `EventEmitter<void>` | -      |
 
 ### [u-tab]
 

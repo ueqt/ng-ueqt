@@ -8,32 +8,22 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
-  Optional,
   Output,
   QueryList,
   Renderer2,
-  SimpleChanges,
-  TemplateRef,
   ViewChild,
   ViewEncapsulation,
   HostBinding,
+  SimpleChanges,
+  AfterViewInit,
 } from '@angular/core';
-import {
-  NavigationEnd,
-  Router,
-  RouterLink,
-  RouterLinkWithHref,
-} from '@angular/router';
 
 import { merge, Subject, Subscription } from 'rxjs';
-import { filter, first, startWith, takeUntil } from 'rxjs/operators';
 import { UTabComponent } from './tab.component';
 import { UTabsNavComponent } from './tabs-nav.component';
-import { toNumber, UAny } from '../core/util';
+import { UAny } from '../core/util';
 
-const NZ_CONFIG_COMPONENT_NAME = 'tabs';
 export class UTabChangeEvent {
   index?: number;
   tab: UAny;
@@ -46,24 +36,20 @@ export class UTabChangeEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container *ngIf="listOfUTabComponent">
-      <u-tabs-nav
-        role="tablist"
-        tabindex="0"
-        [ngStyle]="uTabNavStyle"
-        [selectedIndex]="uSelectedIndex!"
-      >
+      <u-tabs-nav tabIndex="0" [selectedIndex]="uSelectedIndex">
         <div
           uTabLabel
-          role="tab"
           [class.u-tabs-tab-active]="uSelectedIndex == i"
           [disabled]="tab.uDisabled"
           (click)="clickLabel(i, tab.nzDisabled)"
           *ngFor="let tab of listOfUTabComponent; let i = index"
         >
-          {{ tab.uTitle }}
-          <!-- <ng-container *uStringTemplateOutlet="tab.uTitle || tab.title">{{
-            tab.uTitle
-          }}</ng-container> -->
+          <ng-container
+            [ngTemplateOutlet]="tab.uCustomTitle || defaultTitle"
+          ></ng-container>
+          <ng-template #defaultTitle>
+            {{ tab.uTitle }}
+          </ng-template>
         </div>
       </u-tabs-nav>
       <div
@@ -75,7 +61,6 @@ export class UTabChangeEvent {
           class="u-tabs-tabpane"
           *ngFor="let tab of listOfUTabComponent; let i = index"
           [active]="uSelectedIndex == i"
-          [forceRender]="tab.nzForceRender"
           [content]="tab.template || tab.content"
         ></u-tab-body>
       </div>
@@ -84,28 +69,22 @@ export class UTabChangeEvent {
 })
 export class UTabsComponent
   implements AfterContentChecked, AfterContentInit, OnDestroy {
-  @Input() uTabNavStyle: { [key: string]: string } | null = null;
+  @ContentChildren(UTabComponent) listOfUTabComponent: QueryList<UTabComponent>;
+  @ViewChild(UTabsNavComponent) uTabsNavComponent: UTabsNavComponent;
+  @ViewChild('tabContent') tabContent: ElementRef;
 
-  @ContentChildren(UTabComponent) listOfUTabComponent!: QueryList<
-    UTabComponent
-  >;
-  @ViewChild(UTabsNavComponent) uTabsNavComponent?: UTabsNavComponent;
-  @ViewChild('tabContent') tabContent?: ElementRef;
-
-  private indexToSelect: number | null = 0;
-
-  private localSelectedIndex: number | null = null;
+  private indexToSelect = 0;
+  private selectedIndex = -1;
   @Input()
-  set uSelectedIndex(value: number | null) {
-    this.indexToSelect = value ? toNumber(value, null) : null;
+  set uSelectedIndex(value: number) {
+    this.indexToSelect = value;
   }
-  get uSelectedIndex(): number | null {
-    return this.localSelectedIndex;
+  get uSelectedIndex(): number {
+    return this.selectedIndex;
   }
 
   @HostBinding('class.u-tabs') classTabs = true;
 
-  private el: HTMLElement = this.elementRef.nativeElement;
   /** Subscription to tabs being added/removed. */
   private tabsSubscription = Subscription.EMPTY;
   /** Subscription to changes in the tab labels. */
@@ -128,8 +107,13 @@ export class UTabsComponent
   private emitClickEvent(index: number): void {
     const tabs = this.listOfUTabComponent.toArray();
     this.uSelectedIndex = index;
-    tabs[index].nzClick.emit();
+    tabs[index].uClick.emit();
     this.cdr.markForCheck();
+  }
+
+  private clampTabIndex(index: number): number {
+    // 将输入的值限定在合理的范围内
+    return Math.min(this.listOfUTabComponent.length - 1, Math.max(index, 0));
   }
 
   createChangeEvent(index: number): UTabChangeEvent {
@@ -139,23 +123,12 @@ export class UTabsComponent
       event.tab = this.listOfUTabComponent.toArray()[index];
       this.listOfUTabComponent.forEach((item, i) => {
         if (i !== index) {
-          item.nzDeselect.emit();
+          item.uDeselect.emit();
         }
       });
-      event.tab.nzSelect.emit();
+      event.tab.uSelect.emit();
     }
     return event;
-  }
-
-  /** Clamps the given index to the bounds of 0 and the tabs length. */
-  private clampTabIndex(index: number | null): number {
-    // Note the `|| 0`, which ensures that values like NaN can't get through
-    // and which would otherwise throw the component into an infinite loop
-    // (since Math.max(NaN, 0) === NaN).
-    return Math.min(
-      this.listOfUTabComponent.length - 1,
-      Math.max(index || 0, 0)
-    );
   }
 
   private subscribeToTabLabels(): void {
@@ -182,8 +155,8 @@ export class UTabsComponent
       ));
       // If there is a change in selected index, emit a change event. Should not trigger if
       // the selected index has not yet been initialized.
-      if (this.localSelectedIndex !== indexToSelect) {
-        const isFirstRun = this.localSelectedIndex == null;
+      if (this.selectedIndex !== indexToSelect) {
+        const isFirstRun = this.selectedIndex === -1;
         if (!isFirstRun) {
           this.uSelectChange.emit(this.createChangeEvent(indexToSelect));
         }
@@ -197,6 +170,8 @@ export class UTabsComponent
 
           if (!isFirstRun) {
             this.uSelectedIndexChange.emit(indexToSelect);
+          } else {
+            this.clickLabel(0, false);
           }
         });
       }
@@ -207,17 +182,13 @@ export class UTabsComponent
 
         // If there is already a selected tab, then set up an origin for the next selected tab
         // if it doesn't have one already.
-        if (
-          this.localSelectedIndex != null &&
-          tab.position === 0 &&
-          !tab.origin
-        ) {
-          tab.origin = indexToSelect - this.localSelectedIndex;
+        if (tab.position === 0 && !tab.origin) {
+          tab.origin = indexToSelect - this.selectedIndex;
         }
       });
 
-      if (this.localSelectedIndex !== indexToSelect) {
-        this.localSelectedIndex = indexToSelect;
+      if (this.selectedIndex !== indexToSelect) {
+        this.selectedIndex = indexToSelect;
         this.cdr.markForCheck();
       }
     }
@@ -232,15 +203,15 @@ export class UTabsComponent
 
       // Maintain the previously-selected tab if a new tab is added or removed and there is no
       // explicit change that selects a different tab.
-      if (indexToSelect === this.localSelectedIndex) {
+      if (indexToSelect === this.selectedIndex) {
         const tabs = this.listOfUTabComponent.toArray();
 
         for (let i = 0; i < tabs.length; i++) {
           if (tabs[i].isActive) {
-            // Assign both to the `_indexToSelect` and `localSelectedIndex` so we don't fire a changed
+            // Assign both to the `_indexToSelect` and `selectedIndex` so we don't fire a changed
             // event, otherwise the consumer may end up in an infinite loop in some edge cases like
             // adding a tab within the `selectedIndexChange` event.
-            this.indexToSelect = this.localSelectedIndex = i;
+            this.indexToSelect = this.selectedIndex = i;
             break;
           }
         }

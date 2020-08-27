@@ -24,40 +24,45 @@ import { InputBoolean } from '../core/util';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-template #titleTpl>
-      <ng-content select="[u-tab-link]"></ng-content>
-    </ng-template>
     <ng-template #bodyTpl>
       <ng-content></ng-content>
     </ng-template>
   `,
 })
 export class UTabComponent implements OnChanges, OnDestroy {
-  position: number | null = null;
-  origin: number | null = null;
+  /**
+   * 是否活动页
+   */
   isActive = false;
+  /**
+   * 与选中标签页的距离
+   */
+  position = 0;
+  /**
+   * 与上一个选择的标签页的距离
+   */
+  origin = 0;
   readonly stateChanges = new Subject<void>();
 
   @ContentChild(UTabDirective, { read: TemplateRef }) template!: TemplateRef<
     void
   >;
 
-  @ViewChild('bodyTpl') content!: TemplateRef<void>;
-  @ViewChild('titleTpl') title!: TemplateRef<void>;
+  @ViewChild('bodyTpl') content: TemplateRef<void>;
 
-  @Input() uTitle?: string | TemplateRef<void>;
-  @Input() @InputBoolean() uForceRender = false;
+  @Input() uTitle: string;
+  @Input() uCustomTitle: TemplateRef<void>;
   @Input() @InputBoolean() uDisabled = false;
-  @Output() readonly nzClick = new EventEmitter<void>();
-  @Output() readonly nzSelect = new EventEmitter<void>();
-  @Output() readonly nzDeselect = new EventEmitter<void>();
+  @Output() readonly uClick = new EventEmitter<void>();
+  @Output() readonly uSelect = new EventEmitter<void>();
+  @Output() readonly uDeselect = new EventEmitter<void>();
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(elementRef.nativeElement, 'u-tab');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.uTitle || changes.uForceRender || changes.uDisabled) {
+    if (changes.uTitle || changes.uDisabled) {
       this.stateChanges.next();
     }
   }

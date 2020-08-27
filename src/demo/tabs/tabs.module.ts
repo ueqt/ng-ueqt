@@ -1,8 +1,11 @@
-import { UTabsModule } from './../../../ng-ueqt/src/components/tabs/tabs.module';
-import { ULayoutModule } from '../../../ng-ueqt/src/components/layout/layout.module';
+import { UTabsModule } from '../../../ng-ueqt/src/components/tabs/tabs.module';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { RouterModule, Routes } from '@angular/router';
-import { UdemoTabsBasicComponent } from './basic';
+import {
+  UdemoTabsBasicComponent,
+  UDemoTabContentEagerlyComponent,
+  UDemoTabContentLazyComponent,
+} from './basic';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -20,6 +23,11 @@ const routes: Routes = [{ path: '', component: UdemoTabsComponent }];
     UCodeboxModule,
     UTabsModule,
   ],
-  declarations: [UdemoTabsComponent, UdemoTabsBasicComponent],
+  declarations: [
+    UdemoTabsComponent,
+    UdemoTabsBasicComponent,
+    UDemoTabContentEagerlyComponent,
+    UDemoTabContentLazyComponent,
+  ],
 })
 export class UdemoTabsModule {}

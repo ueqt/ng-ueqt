@@ -20,6 +20,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   HostBinding,
+  AfterViewInit,
 } from '@angular/core';
 import { merge, of as observableOf, Subject, Subscription } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
@@ -68,9 +69,7 @@ export type ScrollDirection = 'after' | 'before';
             #navListElement
             (cdkObserveContent)="onContentChanges()"
           >
-            <div>
-              <ng-content></ng-content>
-            </div>
+            <ng-content></ng-content>
             <div uTabsInkBar></div>
           </div>
         </div>
@@ -79,7 +78,7 @@ export type ScrollDirection = 'after' | 'before';
   `,
 })
 export class UTabsNavComponent
-  implements AfterContentChecked, AfterContentInit, OnDestroy {
+  implements AfterContentChecked, AfterContentInit, AfterViewInit, OnDestroy {
   showPaginationControls = false;
   disableScrollAfter = true;
   disableScrollBefore = true;
@@ -90,7 +89,7 @@ export class UTabsNavComponent
     UTabLabelDirective
   >;
 
-  @ViewChild(UTabsInkBarDirective) uTabsInkBarDirective!: UTabsInkBarDirective;
+  @ViewChild(UTabsInkBarDirective) uTabsInkBarDirective: UTabsInkBarDirective;
   @ViewChild('navContainerElement') navContainerElement!: ElementRef<
     HTMLDivElement
   >;
@@ -198,6 +197,10 @@ export class UTabsNavComponent
           this.alignInkBarToSelectedTab();
         });
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.alignInkBarToSelectedTab();
   }
 
   ngOnDestroy(): void {

@@ -50,7 +50,7 @@ export class UMenuComponent implements OnChanges {
   );
 
   dataSource = new ArrayDataSource([]);
-  private flatNodes: UMenuFlatNode[] = [];
+  flatNodes: UMenuFlatNode[] = [];
 
   hasChild = (_: number, node: UMenuFlatNode) => node.expandable;
 

@@ -1,3 +1,4 @@
+import { UTabsModule } from './../../../ng-ueqt/src/components/tabs/tabs.module';
 import { ULayoutModule } from './../../../ng-ueqt/src/components/layout/layout.module';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { UdemoLayoutComponent } from './layout';
@@ -17,6 +18,7 @@ const routes: Routes = [{ path: '', component: UdemoLayoutComponent }];
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
+    UTabsModule,
     ULayoutModule,
   ],
   declarations: [UdemoLayoutComponent, UdemoLayoutBasicComponent],

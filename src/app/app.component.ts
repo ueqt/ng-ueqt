@@ -1,7 +1,10 @@
-import { UMenuFlatNode } from './../../ng-ueqt/src/components/menu/menu.component';
-import { Component, OnInit } from '@angular/core';
+import {
+  UMenuFlatNode,
+  UMenuComponent,
+} from './../../ng-ueqt/src/components/menu/menu.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UMenuNode } from 'ng-ueqt/src/components/menu/menu.component';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'udemo-root',
@@ -9,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild(UMenuComponent) menu: UMenuComponent;
+
   datas: UMenuNode[] = [
     {
       name: 'Grid 栅格',
@@ -32,7 +37,19 @@ export class AppComponent {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (this.menu) {
+          this.menu.selectNode(
+            this.menu.flatNodes.find(
+              (n) => '/' + n.url === event.urlAfterRedirects
+            )
+          );
+        }
+      }
+    });
+  }
 
   menuClick(node: UMenuFlatNode): void {
     this.router.navigateByUrl('/' + node.url);

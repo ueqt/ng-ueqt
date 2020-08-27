@@ -1,3 +1,4 @@
+import { UTabsModule } from './../../../ng-ueqt/src/components/tabs/tabs.module';
 import { UIconBars } from './../../../ng-ueqt/src/components/icon/primer-icons/three-bars';
 import { UIconDown } from './../../../ng-ueqt/src/components/icon/primer-icons/chevron-down';
 import { UIconUp } from './../../../ng-ueqt/src/components/icon/primer-icons/chevron-up';
@@ -33,6 +34,7 @@ const icons: UIconDefinition[] = [
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
+    UTabsModule,
     UIconModule.forRoot(icons),
   ],
   declarations: [UdemoIconComponent, UdemoIconBasicComponent],

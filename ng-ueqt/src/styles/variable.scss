@@ -45,3 +45,8 @@ $screen-xl-max: ($screen-xxl-min - 1px);
 
 // Grid system
 $grid-columns: 24;
+
+// tabIndex会有边框
+[tabindex] {
+  outline: none !important;
+}

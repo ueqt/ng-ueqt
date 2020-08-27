@@ -13,7 +13,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *ngIf="active || forceRender">
+    <ng-container *ngIf="active">
       <ng-template [ngTemplateOutlet]="content"></ng-template>
     </ng-container>
   `,
@@ -21,7 +21,6 @@ import {
 export class UTabBodyComponent {
   @Input() content: TemplateRef<void> | null = null;
   @Input() active = false;
-  @Input() forceRender = false;
 
   @HostBinding('class.u-tabs-tabpane-active')
   get classTabsTabpaneActive(): boolean {

@@ -3,6 +3,7 @@ import {
   UIconModule,
   UIconDefinition,
   UIconBars,
+  UTabsModule,
 } from './../../../ng-ueqt/src/public-api';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { UdemoMenuComponent } from './menu';
@@ -26,6 +27,7 @@ const icons: UIconDefinition[] = [UIconBars];
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
     UIconModule.forChild(icons),
+    UTabsModule,
     UMenuModule,
   ],
   declarations: [
