@@ -14,17 +14,11 @@
 
   &:hover {
     color: var(--primary);
-    path {
-      fill: var(--primary);
-    }
   }
 }
 
 .u-menu-node-selected {
   color: var(--primary);
-  path {
-    fill: var(--primary);
-  }
   background-color: var(--primary-selected-bg);
   &:after {
     position: absolute;

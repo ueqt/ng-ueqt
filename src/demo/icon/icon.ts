@@ -4,13 +4,7 @@ declare var require: any;
 @Component({
   selector: 'udemo-icon',
   template: ` <u-tabs>
-    <u-tab uTitle="Icon 图标">
-      <markdown src="icon/icon.md"></markdown>
-    </u-tab>
-    <u-tab uTitle="API">
-      <markdown src="icon/icon-api.md"></markdown>
-    </u-tab>
-    <u-tab uTitle="基本使用">
+    <u-tab uTitle="演示">
       <udemo-code-box
         uTitle="基本使用"
         [uCode]="basic"
@@ -23,6 +17,12 @@ declare var require: any;
           <markdown src="icon/basic.md"></markdown>
         </div>
       </udemo-code-box>
+    </u-tab>
+    <u-tab uTitle="Icon 图标">
+      <markdown src="icon/icon.md"></markdown>
+    </u-tab>
+    <u-tab uTitle="API">
+      <markdown src="icon/icon-api.md"></markdown>
     </u-tab>
   </u-tabs>`,
 })

@@ -23,11 +23,7 @@ import { merge, Subject, Subscription } from 'rxjs';
 import { UTabComponent } from './tab.component';
 import { UTabsNavComponent } from './tabs-nav.component';
 import { UAny } from '../core/util';
-
-export class UTabChangeEvent {
-  index?: number;
-  tab: UAny;
-}
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'u-tabs',
@@ -36,12 +32,12 @@ export class UTabChangeEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container *ngIf="listOfUTabComponent">
-      <u-tabs-nav tabIndex="0" [selectedIndex]="uSelectedIndex">
+      <u-tabs-nav [selectedIndex]="uSelectedIndex">
         <div
           uTabLabel
           [class.u-tabs-tab-active]="uSelectedIndex == i"
           [disabled]="tab.uDisabled"
-          (click)="clickLabel(i, tab.nzDisabled)"
+          (click)="clickLabel(i, tab.uDisabled)"
           *ngFor="let tab of listOfUTabComponent; let i = index"
         >
           <ng-container
@@ -87,13 +83,8 @@ export class UTabsComponent
 
   /** Subscription to tabs being added/removed. */
   private tabsSubscription = Subscription.EMPTY;
-  /** Subscription to changes in the tab labels. */
-  private tabLabelSubscription = Subscription.EMPTY;
   private destroy$ = new Subject<void>();
 
-  @Output() readonly uSelectChange: EventEmitter<
-    UTabChangeEvent
-  > = new EventEmitter<UTabChangeEvent>(true);
   @Output() readonly uSelectedIndexChange: EventEmitter<
     number
   > = new EventEmitter<number>();
@@ -116,30 +107,6 @@ export class UTabsComponent
     return Math.min(this.listOfUTabComponent.length - 1, Math.max(index, 0));
   }
 
-  createChangeEvent(index: number): UTabChangeEvent {
-    const event = new UTabChangeEvent();
-    event.index = index;
-    if (this.listOfUTabComponent && this.listOfUTabComponent.length) {
-      event.tab = this.listOfUTabComponent.toArray()[index];
-      this.listOfUTabComponent.forEach((item, i) => {
-        if (i !== index) {
-          item.uDeselect.emit();
-        }
-      });
-      event.tab.uSelect.emit();
-    }
-    return event;
-  }
-
-  private subscribeToTabLabels(): void {
-    if (this.tabLabelSubscription) {
-      this.tabLabelSubscription.unsubscribe();
-    }
-    this.tabLabelSubscription = merge(
-      ...this.listOfUTabComponent.map((tab) => tab.stateChanges)
-    ).subscribe(() => this.cdr.markForCheck());
-  }
-
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
@@ -157,9 +124,6 @@ export class UTabsComponent
       // the selected index has not yet been initialized.
       if (this.selectedIndex !== indexToSelect) {
         const isFirstRun = this.selectedIndex === -1;
-        if (!isFirstRun) {
-          this.uSelectChange.emit(this.createChangeEvent(indexToSelect));
-        }
 
         // Changing these values after change detection has run
         // since the checked content may contain references to them.
@@ -195,7 +159,6 @@ export class UTabsComponent
   }
 
   ngAfterContentInit(): void {
-    this.subscribeToTabLabels();
     // Subscribe to changes in the amount of tabs, in order to be
     // able to re-render the content as new tabs are added or removed.
     this.tabsSubscription = this.listOfUTabComponent.changes.subscribe(() => {
@@ -216,15 +179,12 @@ export class UTabsComponent
           }
         }
       }
-
-      this.subscribeToTabLabels();
       this.cdr.markForCheck();
     });
   }
 
   ngOnDestroy(): void {
     this.tabsSubscription.unsubscribe();
-    this.tabLabelSubscription.unsubscribe();
     this.destroy$.next();
     this.destroy$.complete();
   }

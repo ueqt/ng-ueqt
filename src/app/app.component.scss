@@ -15,6 +15,12 @@
 .app-menu {
   margin-left: 20px;
 }
+
+.u-layout-content {
+  max-width: calc(100% - 200px);
+  width: calc(100% - 2000px);
+}
+
 .app-content {
   margin-left: 40px;
   margin-right: 40px;

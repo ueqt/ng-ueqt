@@ -29,7 +29,7 @@ import { InputBoolean } from '../core/util';
     </ng-template>
   `,
 })
-export class UTabComponent implements OnChanges, OnDestroy {
+export class UTabComponent {
   /**
    * 是否活动页
    */
@@ -42,7 +42,6 @@ export class UTabComponent implements OnChanges, OnDestroy {
    * 与上一个选择的标签页的距离
    */
   origin = 0;
-  readonly stateChanges = new Subject<void>();
 
   @ContentChild(UTabDirective, { read: TemplateRef }) template!: TemplateRef<
     void
@@ -54,20 +53,8 @@ export class UTabComponent implements OnChanges, OnDestroy {
   @Input() uCustomTitle: TemplateRef<void>;
   @Input() @InputBoolean() uDisabled = false;
   @Output() readonly uClick = new EventEmitter<void>();
-  @Output() readonly uSelect = new EventEmitter<void>();
-  @Output() readonly uDeselect = new EventEmitter<void>();
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(elementRef.nativeElement, 'u-tab');
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.uTitle || changes.uDisabled) {
-      this.stateChanges.next();
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.stateChanges.complete();
   }
 }

@@ -5,13 +5,7 @@ declare var require: any;
   selector: 'udemo-grid',
   template: `
     <u-tabs>
-      <u-tab uTitle="Grid 栅格">
-        <markdown src="grid/grid.md"></markdown>
-      </u-tab>
-      <u-tab uTitle="API">
-        <markdown src="grid/grid-api.md"></markdown>
-      </u-tab>
-      <u-tab uTitle="基础栅格">
+      <u-tab uTitle="演示">
         <udemo-code-box
           uTitle="基础栅格(Basic Grid)"
           [uCode]="basic"
@@ -24,6 +18,12 @@ declare var require: any;
             <markdown src="grid/basic.md"></markdown>
           </div>
         </udemo-code-box>
+      </u-tab>
+      <u-tab uTitle="Grid 栅格">
+        <markdown src="grid/grid.md"></markdown>
+      </u-tab>
+      <u-tab uTitle="API">
+        <markdown src="grid/grid-api.md"></markdown>
       </u-tab>
     </u-tabs>
   `,

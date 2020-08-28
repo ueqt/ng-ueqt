@@ -14,6 +14,21 @@ import { InputBoolean } from '../core/util';
 export class UTabLabelDirective {
   @Input() @InputBoolean() disabled = false;
 
+  /** Whether the tab link is active or not. */
+  protected mIsActive = false;
+
+  /** Whether the link is active. */
+  @Input()
+  get active(): boolean {
+    return this.mIsActive;
+  }
+  set active(value: boolean) {
+    if (value !== this.mIsActive) {
+      this.mIsActive = value;
+      // this.tabNavBar.updateActiveLink(this.elementRef);
+    }
+  }
+
   @HostBinding('class.u-tabs-tab-disabled')
   get classTabsTabDisabled(): boolean {
     return this.disabled;
@@ -37,5 +52,10 @@ export class UTabLabelDirective {
 
   getOffsetHeight(): number {
     return this.elementRef.nativeElement.offsetHeight;
+  }
+
+  /** Sets focus on the wrapper element */
+  focus(): void {
+    this.elementRef.nativeElement.focus();
   }
 }
