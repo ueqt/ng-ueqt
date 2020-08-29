@@ -40,7 +40,6 @@ jobs:
         with: # All of theses inputs are optional
           token: ${{ secrets.NPMTOKEN }}
           package: "./dist/ng-ueqt/package.json"
-
       - if: steps.publish.type != 'none'
         run: |
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
