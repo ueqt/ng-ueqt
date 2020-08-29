@@ -35,7 +35,8 @@ jobs:
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist/site # The folder the action should deploy.
 
-      - name: Publish to npm
+      - id: publish
+        name: Publish to npm
         uses: JS-DevTools/npm-publish@v1
         with: # All of theses inputs are optional
           token: ${{ secrets.NPMTOKEN }}
