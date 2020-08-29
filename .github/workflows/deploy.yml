@@ -10,7 +10,7 @@ jobs:
           persist-credentials: false
 
       - name: Automated Version Bump
-        uses: phips28/gh-action-bump-version@master
+        uses: phips28/gh-action-bump-version@v7.1.0
         env:
           PACKAGEJSON_DIR: "ng-ueqt"
 
