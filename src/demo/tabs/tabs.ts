@@ -24,15 +24,6 @@ declare var require: any;
     <u-tab uTitle="API">
       <markdown src="tabs/tabs-api.md"></markdown>
     </u-tab>
-    <u-tab uTitle="long tab name 1"> </u-tab>
-    <u-tab uTitle="long tab name 2"> </u-tab>
-    <u-tab uTitle="long tab name 3"> </u-tab>
-    <u-tab uTitle="long tab name 4"> </u-tab>
-    <u-tab uTitle="long tab name 5"> </u-tab>
-    <u-tab uTitle="long tab name 6"> </u-tab>
-    <u-tab uTitle="long tab name 7"> </u-tab>
-    <u-tab uTitle="long tab name 8"> </u-tab>
-    <u-tab uTitle="long tab name 9"> </u-tab>
   </u-tabs>`,
 })
 export class UdemoTabsComponent {

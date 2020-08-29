@@ -276,30 +276,33 @@ export class UTabsNavComponent
   }
 
   ngAfterContentChecked(): void {
-    // If the number of tab labels have changed, check if scrolling should be enabled
-    if (this.tabLabelCount !== this.items.length) {
-      this.updatePagination();
-      this.tabLabelCount = this.items.length;
-      this.cdr.markForCheck();
-    }
+    setTimeout(() => {
+      // 否则界面不知道为啥没有显示
+      // If the number of tab labels have changed, check if scrolling should be enabled
+      if (this.tabLabelCount !== this.items.length) {
+        this.updatePagination();
+        this.tabLabelCount = this.items.length;
+        this.cdr.markForCheck();
+      }
 
-    // If the selected index has changed, scroll to the label and check if the scrolling controls
-    // should be disabled.
-    if (this.selectedIndexChanged) {
-      this.scrollToLabel(this.selectedIndex);
-      this.checkScrollingControls();
-      this.alignInkBarToSelectedTab();
-      this.selectedIndexChanged = false;
-      this.cdr.markForCheck();
-    }
+      // If the selected index has changed, scroll to the label and check if the scrolling controls
+      // should be disabled.
+      if (this.selectedIndexChanged) {
+        this.scrollToLabel(this.selectedIndex);
+        this.checkScrollingControls();
+        this.alignInkBarToSelectedTab();
+        this.selectedIndexChanged = false;
+        this.cdr.markForCheck();
+      }
 
-    // If the scroll distance has been changed (tab selected, focused, scroll controls activated),
-    // then translate the header to reflect this.
-    if (this.scrollDistanceChanged) {
-      this.updateTabScrollPosition();
-      this.scrollDistanceChanged = false;
-      this.cdr.markForCheck();
-    }
+      // If the scroll distance has been changed (tab selected, focused, scroll controls activated),
+      // then translate the header to reflect this.
+      if (this.scrollDistanceChanged) {
+        this.updateTabScrollPosition();
+        this.scrollDistanceChanged = false;
+        this.cdr.markForCheck();
+      }
+    }, 0);
   }
 
   ngOnDestroy(): void {
