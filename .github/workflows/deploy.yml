@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
           persist-credentials: false
-          ref: ${{ github.ref }}
+          ref: ${{ github.ref }} # Use new version for build after bump version
 
       - name: Automated Version Bump
         uses: phips28/gh-action-bump-version@master
@@ -23,10 +23,17 @@ jobs:
           npm install
           npx ng build ng-ueqt --prod
           npx ng build --prod --base-href="/ng-ueqt/"
-          cd dist/ng-ueqt
-          npm publish
-        env:
-          NPM_TOKEN: ${{secrets.NPMTOKEN}}
+
+      - name: Publish to npm
+        uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
+        with: # All of theses inputs are optional
+          # tag_name: "v%s"
+          # tag_message: "v%s"
+          # commit_pattern: "^Release (\\S+)"
+          workspace: "./dist/ng-ueqt"
+        env: # More info about the environment variables in the README
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }} # Leave this as is, it's automatically generated
+          NPM_AUTH_TOKEN: ${{ secrets.NPMTOKEN }} # You need to set this in your repo settings
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@master
