@@ -60,8 +60,10 @@ export class UResizeService {
   }
 
   private handler(): void {
-    this.ngZone.run(() => {
-      this.resizeSource$.next();
-    });
+    if (this.ngZone) {
+      this.ngZone.run(() => {
+        this.resizeSource$.next();
+      });
+    }
   }
 }
