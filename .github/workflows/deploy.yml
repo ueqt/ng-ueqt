@@ -6,6 +6,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci: version bump to')"
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
@@ -27,20 +28,19 @@ jobs:
           npx ng build ng-ueqt --prod
           npx ng build --prod --base-href="/ng-ueqt/"
 
-      - name: Publish to npm
-        uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
-        with: # All of theses inputs are optional
-          # tag_name: "v%s"
-          # tag_message: "v%s"
-          # commit_pattern: "^Release (\\S+)"
-          workspace: "./dist/ng-ueqt"
-        env: # More info about the environment variables in the README
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }} # Leave this as is, it's automatically generated
-          NPM_AUTH_TOKEN: ${{ secrets.NPMTOKEN }} # You need to set this in your repo settings
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist/site # The folder the action should deploy.
+
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v1
+        with: # All of theses inputs are optional
+          token: ${{ secrets.NPMTOKEN }}
+          package: "./dist/ng-ueqt/package.json"
+
+      - if: steps.publish.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
