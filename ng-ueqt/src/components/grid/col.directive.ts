@@ -103,7 +103,7 @@ export class UColDirective
       const sizeName = name.replace('u', '').toLowerCase();
       if (isNotNil(this[name])) {
         if (typeof this[name] === 'number' || typeof this[name] === 'string') {
-          listClassMap[`ant-col-${sizeName}-${this[name]}`] = true;
+          listClassMap[`u-col-${sizeName}-${this[name]}`] = true;
         } else {
           const embedded = this[name] as EmbeddedProperty;
           const prefixArray: Array<keyof EmbeddedProperty> = [
@@ -115,9 +115,8 @@ export class UColDirective
           ];
           prefixArray.forEach((prefix) => {
             const prefixClass = prefix === 'span' ? '-' : `-${prefix}-`;
-            listClassMap[
-              `ant-col-${sizeName}${prefixClass}${embedded[prefix]}`
-            ] = embedded && isNotNil(embedded[prefix]);
+            listClassMap[`u-col-${sizeName}${prefixClass}${embedded[prefix]}`] =
+              embedded && isNotNil(embedded[prefix]);
           });
         }
       }
