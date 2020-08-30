@@ -18,6 +18,20 @@ declare var require: any;
             <markdown src="grid/basic.md"></markdown>
           </div>
         </udemo-code-box>
+        <udemo-code-box
+          uTitle="Flex填充"
+          [uCode]="flexStretch"
+          uOnlineUrl="s/ng-ueqt-grid-basic-299jd"
+        >
+          <div demo>
+            <udemo-grid-flex-stretch
+              class="grid-demo"
+            ></udemo-grid-flex-stretch>
+          </div>
+          <div intro>
+            <markdown src="grid/flex-stretch.md"></markdown>
+          </div>
+        </udemo-code-box>
       </u-tab>
       <u-tab uTitle="Grid 栅格">
         <markdown src="grid/grid.md"></markdown>
@@ -52,4 +66,5 @@ declare var require: any;
 })
 export class UdemoGridComponent {
   basic = require('!!raw-loader!./basic.ts').default;
+  flexStretch = require('!!raw-loader!./flex-stretch.ts').default;
 }

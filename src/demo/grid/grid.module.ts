@@ -1,3 +1,4 @@
+import { UdemoGridFlexStretchComponent } from './flex-stretch';
 import { UTabsModule } from './../../../ng-ueqt/src/components/tabs/tabs.module';
 import { UCodeboxModule } from './../../app/codebox/codebox.module';
 import { UGridModule } from './../../../ng-ueqt/src/components/grid/grid.module';
@@ -21,6 +22,10 @@ const routes: Routes = [{ path: '', component: UdemoGridComponent }];
     UGridModule,
     UTabsModule,
   ],
-  declarations: [UdemoGridComponent, UdemoGridBasicComponent],
+  declarations: [
+    UdemoGridComponent,
+    UdemoGridBasicComponent,
+    UdemoGridFlexStretchComponent,
+  ],
 })
 export class UdemoGridModule {}

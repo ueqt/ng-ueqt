@@ -36,7 +36,6 @@ export class UColDirective
   hostFlexStyle: string | null = null;
 
   @Input('uCol') uSpan: string | number | null = null;
-  @Input() uFlex: string | number | null = null;
   @Input() uOrder: string | number | null = null;
   @Input() uOffset: string | number | null = null;
   @Input() uPush: string | number | null = null;
@@ -76,7 +75,7 @@ export class UColDirective
   }
 
   setHostFlexStyle(): void {
-    this.hostFlexStyle = this.parseFlex(this.uFlex);
+    this.hostFlexStyle = this.parseFlex(this.uSpan);
   }
 
   parseFlex(flex: number | string | null): string | null {
@@ -139,8 +138,8 @@ export class UColDirective
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setHostClassMap();
-    const { nzFlex } = changes;
-    if (nzFlex) {
+    const { uSpan } = changes;
+    if (uSpan) {
       this.setHostFlexStyle();
     }
   }
