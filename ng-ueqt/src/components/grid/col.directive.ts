@@ -36,10 +36,6 @@ export class UColDirective
   hostFlexStyle: string | null = null;
 
   @Input('uCol') uSpan: string | number | null = null;
-  @Input() uOrder: string | number | null = null;
-  @Input() uOffset: string | number | null = null;
-  @Input() uPush: string | number | null = null;
-  @Input() uPull: string | number | null = null;
   @Input() uXs: string | number | EmbeddedProperty | null = null;
   @Input() uSm: string | number | EmbeddedProperty | null = null;
   @Input() uMd: string | number | EmbeddedProperty | null = null;
@@ -55,10 +51,6 @@ export class UColDirective
     const hostClassMap = {
       ['u-col']: true,
       [`u-col-${this.uSpan}`]: isNotNil(this.uSpan),
-      [`u-col-order-${this.uOrder}`]: isNotNil(this.uOrder),
-      [`u-col-offset-${this.uOffset}`]: isNotNil(this.uOffset),
-      [`u-col-pull-${this.uPull}`]: isNotNil(this.uPull),
-      [`u-col-push-${this.uPush}`]: isNotNil(this.uPush),
       ...this.generateClass(),
     };
     for (const i in this.classMap) {
@@ -106,13 +98,7 @@ export class UColDirective
           listClassMap[`u-col-${sizeName}-${this[name]}`] = true;
         } else {
           const embedded = this[name] as EmbeddedProperty;
-          const prefixArray: Array<keyof EmbeddedProperty> = [
-            'span',
-            'pull',
-            'push',
-            'offset',
-            'order',
-          ];
+          const prefixArray: Array<keyof EmbeddedProperty> = ['span'];
           prefixArray.forEach((prefix) => {
             const prefixClass = prefix === 'span' ? '-' : `-${prefix}-`;
             listClassMap[`u-col-${sizeName}${prefixClass}${embedded[prefix]}`] =

@@ -60,43 +60,13 @@
   @if $index > 0 {
     .u-col#{$class}-#{$index} {
       display: block;
-      flex: 0 0 percentage(($index / $grid-columns));
+      flex: 0 0 percentage(($index / $grid-columns)) !important;
       max-width: percentage(($index / $grid-columns));
-    }
-    .u-col#{$class}-push-#{$index} {
-      left: percentage(($index / $grid-columns));
-    }
-    .u-col#{$class}-pull-#{$index} {
-      right: percentage(($index / $grid-columns));
-    }
-    .u-col#{$class}-offset-#{$index} {
-      margin-left: percentage(($index / $grid-columns));
-    }
-    .u-col#{$class}-order-#{$index} {
-      order: $index;
     }
     @include loop-grid-columns(($index - 1), $class);
   } @else if $index == 0 {
     .u-col#{$class}-#{$index} {
       display: none;
-    }
-    .u-col-push-#{$index} {
-      left: auto;
-    }
-    .u-col-pull-#{$index} {
-      right: auto;
-    }
-    .u-col#{$class}-push-#{$index} {
-      left: auto;
-    }
-    .u-col#{$class}-pull-#{$index} {
-      right: auto;
-    }
-    .u-col#{$class}-offset-#{$index} {
-      margin-left: 0;
-    }
-    .u-col#{$class}-order-#{$index} {
-      order: 0;
     }
   }
 }
