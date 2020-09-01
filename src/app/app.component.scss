@@ -1,3 +1,5 @@
+@import "../../ng-ueqt/src/styles/variable.scss";
+
 .app-header {
   position: sticky;
   top: 0;
@@ -9,7 +11,6 @@
   position: sticky;
   top: 66px;
   height: calc(100vh - 66px);
-  overflow: auto;
 }
 
 .app-menu {
@@ -19,6 +20,13 @@
 .u-layout-content {
   max-width: calc(100% - 200px);
   width: calc(100% - 2000px);
+}
+
+@media (max-width: $screen-xs-max) {
+  .u-layout-content {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .app-content {

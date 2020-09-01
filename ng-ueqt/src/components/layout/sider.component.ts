@@ -118,8 +118,8 @@ export class USiderComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { nzCollapsed, nzCollapsedWidth, nzWidth } = changes;
-    if (nzCollapsed || nzCollapsedWidth || nzWidth) {
+    const { uCollapsed, uCollapsedWidth, uWidth } = changes;
+    if (uCollapsed || uCollapsedWidth || uWidth) {
       this.updateStyleMap();
     }
   }

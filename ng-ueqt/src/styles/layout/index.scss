@@ -35,3 +35,26 @@
 .u-layout-has-sider {
   flex-direction: row;
 }
+
+.u-layout-sider {
+  z-index: 2;
+}
+
+.u-layout-sider-zero-with-trigger {
+  position: absolute;
+  top: -53px;
+  left: 10px;
+  z-index: 1;
+  width: 36px;
+  height: 42px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 42px;
+  text-align: center;
+  background: #001529;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+  .uicon {
+    vertical-align: -0.125em;
+  }
+}

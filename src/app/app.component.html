@@ -1,7 +1,7 @@
 <u-layout>
   <u-header class="app-header">NG-UEQT</u-header>
   <u-layout>
-    <u-sider class="app-sider">
+    <u-sider class="app-sider" uCollapsible uBreakpoint="lg" [uCollapsedWidth]="0">
       <div class="app-menu">
         <u-menu [datas]="datas" (nodeClick)="menuClick($event)"></u-menu>
       </div>

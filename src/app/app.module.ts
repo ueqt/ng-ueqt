@@ -1,3 +1,4 @@
+import { UIconBars } from './../../ng-ueqt/src/components/icon/primer-icons/three-bars';
 import { UIconRight } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-right';
 import { UIconLeft } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-left';
 import { UMenuModule } from './../../ng-ueqt/src/components/menu/menu.module';
@@ -9,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UIconDefinition, UIconModule } from 'ng-ueqt/src/public-api';
 
-const icons: UIconDefinition[] = [UIconLeft, UIconRight];
+const icons: UIconDefinition[] = [UIconLeft, UIconRight, UIconBars];
 
 @NgModule({
   declarations: [AppComponent],

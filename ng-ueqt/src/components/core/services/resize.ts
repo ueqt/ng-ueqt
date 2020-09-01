@@ -2,7 +2,7 @@ import { Injectable, NgZone, Renderer2, RendererFactory2 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { auditTime, finalize } from 'rxjs/operators';
 
-const NOOP = (): void => {};
+const NOOP = (): void => { };
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,12 @@ export class UResizeService {
   private renderer: Renderer2;
 
   private disposeHandle = NOOP;
+
+  private handler = (): void => {
+    this.ngZone.run(() => {
+      this.resizeSource$.next();
+    });
+  }
 
   constructor(
     private ngZone: NgZone,
@@ -56,14 +62,6 @@ export class UResizeService {
     if (this.listeners === 0) {
       this.disposeHandle();
       this.disposeHandle = NOOP;
-    }
-  }
-
-  private handler(): void {
-    if (this && this.ngZone) {
-      this.ngZone.run(() => {
-        this.resizeSource$.next();
-      });
     }
   }
 }

@@ -16,10 +16,6 @@ export class AppComponent {
 
   datas: UMenuNode[] = [
     {
-      name: 'Grid 栅格',
-      url: 'grid',
-    },
-    {
       name: 'Icon 图标',
       url: 'icon',
     },
