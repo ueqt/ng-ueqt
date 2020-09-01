@@ -18,7 +18,7 @@ import { URowDirective } from './row.directive';
 import { isNotNil, UObject } from '../core/util';
 
 export interface EmbeddedProperty {
-  span?: number;
+  col?: number;
   pull?: number;
   push?: number;
   offset?: number;
@@ -36,6 +36,11 @@ export class UColDirective
   hostFlexStyle: string | null = null;
 
   @Input('uCol') uSpan: string | number | null = null;
+  @Input() uFlex: string | number | null = null;
+  @Input() uOrder: string | number | null = null;
+  @Input() uOffset: string | number | null = null;
+  @Input() uPush: string | number | null = null;
+  @Input() uPull: string | number | null = null;
   @Input() uXs: string | number | EmbeddedProperty | null = null;
   @Input() uSm: string | number | EmbeddedProperty | null = null;
   @Input() uMd: string | number | EmbeddedProperty | null = null;
@@ -51,6 +56,10 @@ export class UColDirective
     const hostClassMap = {
       ['u-col']: true,
       [`u-col-${this.uSpan}`]: isNotNil(this.uSpan),
+      [`u-col-order-${this.uOrder}`]: isNotNil(this.uOrder),
+      [`u-col-offset-${this.uOffset}`]: isNotNil(this.uOffset),
+      [`u-col-pull-${this.uPull}`]: isNotNil(this.uPull),
+      [`u-col-push-${this.uPush}`]: isNotNil(this.uPush),
       ...this.generateClass(),
     };
     for (const i in this.classMap) {
@@ -67,7 +76,7 @@ export class UColDirective
   }
 
   setHostFlexStyle(): void {
-    this.hostFlexStyle = this.parseFlex(this.uSpan);
+    this.hostFlexStyle = this.parseFlex(this.uFlex);
   }
 
   parseFlex(flex: number | string | null): string | null {
@@ -98,9 +107,15 @@ export class UColDirective
           listClassMap[`u-col-${sizeName}-${this[name]}`] = true;
         } else {
           const embedded = this[name] as EmbeddedProperty;
-          const prefixArray: Array<keyof EmbeddedProperty> = ['span'];
+          const prefixArray: Array<keyof EmbeddedProperty> = [
+            'col',
+            'pull',
+            'push',
+            'offset',
+            'order',
+          ];
           prefixArray.forEach((prefix) => {
-            const prefixClass = prefix === 'span' ? '-' : `-${prefix}-`;
+            const prefixClass = prefix === 'col' ? '-' : `-${prefix}-`;
             listClassMap[`u-col-${sizeName}${prefixClass}${embedded[prefix]}`] =
               embedded && isNotNil(embedded[prefix]);
           });
@@ -123,8 +138,8 @@ export class UColDirective
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setHostClassMap();
-    const { uSpan } = changes;
-    if (uSpan) {
+    const { uFlex } = changes;
+    if (uFlex) {
       this.setHostFlexStyle();
     }
   }

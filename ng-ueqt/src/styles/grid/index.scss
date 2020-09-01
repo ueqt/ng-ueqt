@@ -58,15 +58,95 @@
 
 @mixin loop-grid-columns($index, $class) {
   @if $index > 0 {
-    .u-col#{$class}-#{$index} {
-      display: block;
-      flex: 0 0 percentage(($index / $grid-columns)) !important;
-      max-width: percentage(($index / $grid-columns));
+    @if $class== "" or $class== "-xxl" {
+      .u-col#{$class}-#{$index} {
+        display: block;
+        flex: 0 0 percentage(($index / $grid-columns));
+        max-width: percentage(($index / $grid-columns));
+      }
+      .u-col#{$class}-push-#{$index} {
+        left: percentage(($index / $grid-columns));
+      }
+      .u-col#{$class}-pull-#{$index} {
+        right: percentage(($index / $grid-columns));
+      }
+      .u-col#{$class}-offset-#{$index} {
+        margin-left: percentage(($index / $grid-columns));
+      }
+      .u-col#{$class}-order-#{$index} {
+        order: $index;
+      }
+    } @else {
+      $media: map-get($screen-max, $class);
+      @debug "media: #{$media}";
+      @media (max-width: $media) {
+        .u-col#{$class}-#{$index} {
+          display: block;
+          flex: 0 0 percentage(($index / $grid-columns));
+          max-width: percentage(($index / $grid-columns));
+        }
+        .u-col#{$class}-push-#{$index} {
+          left: percentage(($index / $grid-columns));
+        }
+        .u-col#{$class}-pull-#{$index} {
+          right: percentage(($index / $grid-columns));
+        }
+        .u-col#{$class}-offset-#{$index} {
+          margin-left: percentage(($index / $grid-columns));
+        }
+        .u-col#{$class}-order-#{$index} {
+          order: $index;
+        }
+      }
     }
     @include loop-grid-columns(($index - 1), $class);
   } @else if $index == 0 {
-    .u-col#{$class}-#{$index} {
-      display: none;
+    @if $class== "" or $class== "-xxl" {
+      .u-col#{$class}-#{$index} {
+        display: none;
+      }
+      .u-col-push-#{$index} {
+        left: auto;
+      }
+      .u-col-pull-#{$index} {
+        right: auto;
+      }
+      .u-col#{$class}-push-#{$index} {
+        left: auto;
+      }
+      .u-col#{$class}-pull-#{$index} {
+        right: auto;
+      }
+      .u-col#{$class}-offset-#{$index} {
+        margin-left: 0;
+      }
+      .u-col#{$class}-order-#{$index} {
+        order: 0;
+      }
+    } @else {
+      @media (max-width: map-get($screen-max, $class)) {
+        .u-col#{$class}-#{$index} {
+          display: none;
+        }
+        .u-col-push-#{$index} {
+          left: auto;
+        }
+        .u-col-pull-#{$index} {
+          right: auto;
+        }
+        .u-col#{$class}-push-#{$index} {
+          left: auto;
+        }
+        .u-col#{$class}-pull-#{$index} {
+          right: auto;
+        }
+        .u-col#{$class}-offset-#{$index} {
+          margin-left: 0;
+        }
+        .u-col#{$class}-order-#{$index} {
+          order: 0;
+        }
+      }
     }
   }
 }
@@ -89,38 +169,38 @@
 // Columns, offsets, pushes, and pulls for the small device range, from phones
 // to tablets.
 
-@media (min-width: $screen-sm-min) {
-  @include make-grid(-sm);
-}
+// @media (min-width: $screen-sm-min) {
+@include make-grid(-sm);
+// }
 
 // Medium grid
 //
 // Columns, offsets, pushes, and pulls for the desktop device range.
 
-@media (min-width: $screen-md-min) {
-  @include make-grid(-md);
-}
+// @media (min-width: $screen-md-min) {
+@include make-grid(-md);
+// }
 
 // Large grid
 //
 // Columns, offsets, pushes, and pulls for the large desktop device range.
 
-@media (min-width: $screen-lg-min) {
-  @include make-grid(-lg);
-}
+// @media (min-width: $screen-lg-min) {
+@include make-grid(-lg);
+// }
 
 // Extra Large grid
 //
 // Columns, offsets, pushes, and pulls for the full hd device range.
 
-@media (min-width: $screen-xl-min) {
-  @include make-grid(-xl);
-}
+// @media (min-width: $screen-xl-min) {
+@include make-grid(-xl);
+// }
 
 // Extra Extra Large grid
 //
 // Columns, offsets, pushes, and pulls for the full hd device range.
 
-@media (min-width: $screen-xxl-min) {
-  @include make-grid(-xxl);
-}
+// @media (min-width: $screen-xxl-min) {
+@include make-grid(-xxl);
+// }
