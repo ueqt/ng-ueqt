@@ -78,7 +78,7 @@
       }
     } @else {
       $media: map-get($screen-max, $class);
-      @debug "media: #{$media}";
+      // @debug "media: #{$media}";
       @media (max-width: $media) {
         .u-col#{$class}-#{$index} {
           display: block;
