@@ -22,8 +22,8 @@ const directives = [
 ];
 
 @NgModule({
-  declarations: [directives],
-  exports: [directives],
+  declarations: [...directives],
+  exports: [...directives],
   imports: [CommonModule, UIconModule, PlatformModule, ObserversModule],
 })
-export class UTabsModule {}
+export class UTabsModule { }

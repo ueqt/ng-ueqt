@@ -10,22 +10,18 @@ import { UContentComponent } from './content.component';
 import { UHeaderComponent } from './header.component';
 import { ULayoutComponent } from './layout.component';
 
+const components = [
+  ULayoutComponent,
+  UHeaderComponent,
+  UContentComponent,
+  UFooterComponent,
+  USiderComponent,
+  USiderTriggerComponent,
+];
+
 @NgModule({
-  declarations: [
-    ULayoutComponent,
-    UHeaderComponent,
-    UContentComponent,
-    UFooterComponent,
-    USiderComponent,
-    USiderTriggerComponent,
-  ],
-  exports: [
-    ULayoutComponent,
-    UHeaderComponent,
-    UContentComponent,
-    UFooterComponent,
-    USiderComponent,
-  ],
+  declarations: [...components],
+  exports: [...components],
   imports: [CommonModule, UIconModule, LayoutModule, PlatformModule],
 })
-export class ULayoutModule {}
+export class ULayoutModule { }
