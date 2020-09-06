@@ -1,7 +1,6 @@
 import { POSITION_MAP, getPlacementName, DEFAULT_TOOLTIP_POSITIONS } from './../core/overlay/overlay-position';
-import { UObject } from './../../../../dist/ng-ueqt/lib/components/core/types/object.d';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, OnDestroy, Input, ChangeDetectorRef, ViewChild, TemplateRef } from '@angular/core';
-import { UTSType, toBoolean, isNotNil } from '../core/util';
+import { UTSType, toBoolean, isNotNil, UObject } from '../core/util';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import { Subject } from 'rxjs';
 
