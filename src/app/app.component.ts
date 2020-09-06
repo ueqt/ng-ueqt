@@ -31,6 +31,10 @@ export class AppComponent {
       name: 'Tabs 标签页',
       url: 'tabs',
     },
+    {
+      name: 'Tooltip 文本提示',
+      url: 'tooltip',
+    },
   ];
 
   constructor(private router: Router) {

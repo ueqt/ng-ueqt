@@ -23,6 +23,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../demo/tabs/tabs.module').then((m) => m.UdemoTabsModule),
   },
+  {
+    path: 'tooltip',
+    loadChildren: () =>
+      import('../demo/tooltip/tooltip.module').then((m) => m.UdemoTooltipModule),
+  },
 ];
 
 @NgModule({
@@ -34,4 +39,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
