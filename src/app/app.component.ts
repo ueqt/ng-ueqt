@@ -28,6 +28,10 @@ export class AppComponent {
       url: 'menu',
     },
     {
+      name: 'Radar 雷达图',
+      url: 'radar',
+    },
+    {
       name: 'Tabs 标签页',
       url: 'tabs',
     },

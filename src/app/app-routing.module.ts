@@ -19,6 +19,11 @@ const routes: Routes = [
       import('../demo/menu/menu.module').then((m) => m.UdemoMenuModule),
   },
   {
+    path: 'radar',
+    loadChildren: () =>
+      import('../demo/radar/radar.module').then((m) => m.UdemoRadarModule),
+  },
+  {
     path: 'tabs',
     loadChildren: () =>
       import('../demo/tabs/tabs.module').then((m) => m.UdemoTabsModule),
