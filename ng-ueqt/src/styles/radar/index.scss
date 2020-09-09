@@ -1,10 +1,37 @@
 .u-radar-shape {
   fill-opacity: .3;
+
+  &:hover {
+    fill-opacity: .65;
+    z-index: 100;
+  }
+}
+
+.u-radar-scale {
+  fill: #FAFAFA;
+  stroke: #999;
+  stroke-width: .2;
 }
 
 .u-radar-dot {
   fill: #fff;
   stroke: #e7e8e7;
-  r: 5;
+  r: 3;
   transition: r .2s;
+
+  &:hover {
+    stroke: #bbb;
+    r: 5;
+  }
+}
+
+.u-radar-axis {
+  stroke: #555;
+  stroke-width: .2;
+}
+
+.u-radar-caption {
+  fill: #444;
+  font-weight: 400;
+  text-shadow: 1px 1px 0 #fff;
 }

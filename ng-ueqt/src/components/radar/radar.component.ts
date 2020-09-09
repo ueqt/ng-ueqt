@@ -1,6 +1,36 @@
 import { UAny } from './../core/util/types';
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
 
+export class URadarModel {
+  /**
+   * 列名
+   */
+  captions: string[] = [];
+
+  /**
+   * 所有的数据集
+   */
+  datas: number[][] = [];
+
+  /**
+   * 所有颜色
+   */
+  colors: string[] = [];
+  /**
+   * 圆有几层
+   */
+  numberOfScales = 4;
+  /**
+   * 字体大小
+   */
+  fontSize = 10;
+
+  /**
+   * 图表大小
+   */
+  size = 450;
+}
+
 @Component({
   selector: 'u-radar',
   exportAs: 'uRadar',
@@ -14,30 +44,37 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@a
       <!-- 底层同心圆 -->
       <g key="scales">
         <g *ngFor="let scale of scales" >
-          <circle [attr.key]="'scale-' + (scale + 1)"
+          <circle class="u-radar-scale" [attr.key]="'scale-' + (scale + 1)"
             [attr.cx]="scale + 1"
             [attr.cy]="scale + 1"
-            [attr.r]="(scale + 1) / numberOfScales * size / 2"
+            [attr.r]="(scale + 1) / options.numberOfScales * size / 2"
             fill="#FAFAFA" stroke="#999" strokeWidth="0.2" />
         </g>
       </g>
+      <!-- 三根轴 -->
+      <g key="group-axes">
+        <polyline class="u-radar-axis" *ngFor="let col of columns;index as i;"
+          [attr.key]="'axis-' + (i + 1)"
+          [attr.points]="getAxis(col)"
+          />
+      </g>
       <!-- 实际图形 -->
       <g key="groups">
-        <path class="u-radar-shape" *ngFor="let data of datas;index as i;"
+        <path class="u-radar-shape" *ngFor="let data of options.datas;index as i;"
           [attr.key]="'shape-' + (i + 1)"
           [attr.d]="getDataPath(data)"
-          stroke="#edc951"
-          fill="#edc951"
+          [attr.stroke]="getColor(i)"
+          [attr.fill]="getColor(i)"
           fillOpacity=".5"
           />
       </g>
       <!-- 类别字 -->
       <g key="group-cations">
-        <text *ngFor="let col of columns"
+        <text class="u-radar-caption" *ngFor="let col of columns"
           [attr.key]="'caption-of-' + col.key"
           [attr.x]="polarToX(col.angle, (size / 2)*0.95).toFixed(4)"
           [attr.y]="polarToY(col.angle, (size / 2)*0.95).toFixed(4)"
-          [attr.dy]="fontSize / 2"
+          [attr.dy]="options.fontSize / 2"
           fill="#444"
           fontWeight="400"
           textShadow="1px 1px 0 #fff">
@@ -46,7 +83,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@a
       </g>
       <!-- 圆点 -->
       <g key="dots">
-        <ng-container *ngFor="let data of datas">
+        <ng-container *ngFor="let data of options.datas">
           <circle class="u-radar-dot" *ngFor="let col of columns"
             [attr.key]="'dot-' + col.key + '-' + data[col.index]"
             [attr.cx]="polarToX(col.angle, (data[col.index] * size) / 2)"
@@ -65,28 +102,18 @@ export class URadarComponent {
 
   // https://itnext.io/react-svg-radar-chart-a89d15760e8
 
-  @Input() captions: string[] = [];
+  @Input() options: URadarModel = new URadarModel();
 
-  @Input() datas: number[][] = [];
-
-  @Input() fontSize = 10;
-
-  /**
-   * 图表大小
-   */
-  @Input() size = 450;
-
-  /**
-   * 圆有几层
-   */
-  @Input() numberOfScales = 4;
+  get size(): number {
+    return this.options.size;
+  }
 
   /**
    * 圆的key，倒排序，否则最大的圆会覆盖其他圆
    * [3,2,1,0]
    */
   get scales(): number[] {
-    return [...Array(this.numberOfScales).keys()].reverse();
+    return [...Array(this.options.numberOfScales).keys()].reverse();
   }
 
   get middleOfChart(): string {
@@ -94,7 +121,7 @@ export class URadarComponent {
   }
 
   get columns(): { key: string, index: number, angle: number }[] {
-    return this.captions.map((value: string, index: number, array: string[]) => {
+    return this.options.captions.map((value: string, index: number, array: string[]) => {
       return {
         key: value,
         index,
@@ -129,8 +156,25 @@ export class URadarComponent {
     return d + 'z';
   }
 
+  getAxis(col: { key: string, index: number, angle: number }): string {
+    return this.points([
+      [0, 0],
+      [
+        this.polarToX(col.angle, this.size / 2),
+        this.polarToY(col.angle, this.size / 2)
+      ]
+    ]);
+  }
+
   private points(points: number[][]): string {
     return points.map(point => point[0].toFixed(4) + ',' + point[1].toFixed(4))
       .join(' ');
+  }
+
+  getColor(index: number): string {
+    if (this.options.colors.length <= index) {
+      return '#edc951';
+    }
+    return this.options.colors[index];
   }
 }
