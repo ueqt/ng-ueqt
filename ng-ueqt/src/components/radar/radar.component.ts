@@ -8,6 +8,11 @@ export class URadarModel {
   captions: string[] = [];
 
   /**
+   * 最大值
+   */
+  max: number[] = [];
+
+  /**
    * 所有的数据集
    */
   datas: number[][] = [];
@@ -39,7 +44,8 @@ export class URadarModel {
   template: `
   <svg version="1" xmlns="http://www.w3.org/2000/svg"
     [attr.width]="size" [attr.height]="size"
-    [attr.viewBox]="'0 0 ' + (size + 20) + ' ' + (size + 20)">
+    [attr.viewBox]="'-40 -40 ' + (size + 80) + ' ' + (size + 80)"
+    (mouseleave)="setSelected(-1, -1)">
     <g [attr.transform]="'translate(' + middleOfChart + ',' + middleOfChart + ')'">
       <!-- 底层同心圆 -->
       <g key="scales">
@@ -48,7 +54,7 @@ export class URadarModel {
             [attr.cx]="scale + 1"
             [attr.cy]="scale + 1"
             [attr.r]="(scale + 1) / options.numberOfScales * size / 2"
-            fill="#FAFAFA" stroke="#999" strokeWidth="0.2" />
+            [style.fill-opacity]="(scale + 1)/options.numberOfScales" stroke="#999" strokeWidth="0.2" />
         </g>
       </g>
       <!-- 三根轴 -->
@@ -72,9 +78,9 @@ export class URadarModel {
       <g key="group-cations">
         <text class="u-radar-caption" *ngFor="let col of columns"
           [attr.key]="'caption-of-' + col.key"
-          [attr.x]="polarToX(col.angle, (size / 2)*0.95).toFixed(4)"
-          [attr.y]="polarToY(col.angle, (size / 2)*0.95).toFixed(4)"
-          [attr.dy]="options.fontSize / 2"
+          [attr.x]="polarToX(col.angle, (size / 2)*1.05).toFixed(4)"
+          [attr.y]="polarToY(col.angle, (size / 2)*1.05).toFixed(4)"
+          [attr.dy]="10"
           fill="#444"
           fontWeight="400"
           textShadow="1px 1px 0 #fff">
@@ -83,12 +89,33 @@ export class URadarModel {
       </g>
       <!-- 圆点 -->
       <g key="dots">
-        <ng-container *ngFor="let data of options.datas">
-          <circle class="u-radar-dot" *ngFor="let col of columns"
-            [attr.key]="'dot-' + col.key + '-' + data[col.index]"
-            [attr.cx]="polarToX(col.angle, (data[col.index] * size) / 2)"
-            [attr.cy]="polarToY(col.angle, (data[col.index] * size) / 2)"
-            />
+        <ng-container *ngFor="let data of options.datas;index as i;">
+          <ng-container  *ngFor="let col of columns;index as j;">
+            <circle class="u-radar-dot"
+              [attr.key]="'dot-' + col.key + '-' + data[col.index]"
+              [attr.cx]="polarToX(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
+              [attr.cy]="polarToY(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
+              (mouseenter)="setSelected(i, j)"
+              (mouseleave)="setSelected(-1, -1)"
+              />
+          </ng-container>
+        </ng-container>
+      </g>
+      <!-- 圆点字 -->
+      <g key="group-cations">
+        <ng-container *ngFor="let data of options.datas;index as i;">
+          <text class="u-radar-value"
+            *ngFor="let col of columns;index as j;"
+            [ngClass]="{'u-radar-value-selected': selected.dataIndex === i && selected.colIndex === j}"
+            [attr.key]="'value-' + col.key + '-' + data[col.index]"
+            [attr.x]="polarToX(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
+            [attr.y]="polarToY(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
+            [attr.fill]="getColor(i)"
+            dx="5"
+            fontWeight="400"
+            textShadow="1px 1px 0 #fff">
+              {{ data[col.index] }}
+          </text>
         </ng-container>
       </g>
     </g>
@@ -103,6 +130,11 @@ export class URadarComponent {
   // https://itnext.io/react-svg-radar-chart-a89d15760e8
 
   @Input() options: URadarModel = new URadarModel();
+
+  selected: { dataIndex: number, colIndex: number } = {
+    dataIndex: -1,
+    colIndex: -1
+  };
 
   get size(): number {
     return this.options.size;
@@ -130,9 +162,14 @@ export class URadarComponent {
     });
   }
 
+  setSelected(dataIndex: number, colIndex: number): void {
+    this.selected.dataIndex = dataIndex;
+    this.selected.colIndex = colIndex;
+  }
+
   getDataPath(data: number[]): string {
     return this.pathDefinition(this.columns.map(col => {
-      const value = data[col.index];
+      const value = data[col.index] / this.options.max[col.index];
       return [
         this.polarToX(col.angle, (value * this.size) / 2),
         this.polarToY(col.angle, (value * this.size) / 2)

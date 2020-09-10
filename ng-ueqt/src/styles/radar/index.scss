@@ -27,11 +27,17 @@
 
 .u-radar-axis {
   stroke: #555;
-  stroke-width: .2;
+  stroke-width: .3;
 }
 
 .u-radar-caption {
   fill: #444;
+  fill-opacity: .4;
   font-weight: 400;
   text-shadow: 1px 1px 0 #fff;
+}
+
+.u-radar-value-selected {
+  font-size: 24px;
+  z-index: 100;
 }
