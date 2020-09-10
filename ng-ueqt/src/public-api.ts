@@ -10,3 +10,4 @@ export * from './components/icon';
 export * from './components/menu';
 export * from './components/tabs';
 export * from './components/tooltip';
+export * from './components/radar';
