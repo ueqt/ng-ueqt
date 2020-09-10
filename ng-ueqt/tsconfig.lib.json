@@ -15,8 +15,7 @@
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "enableResourceInlining": true,
-    "enableIvy": false // https://github.com/angular/vscode-ng-language-service/issues/645  ivy发布没有vscode用的时候没有智能感知
+    "enableResourceInlining": true
   },
   "exclude": []
 }
