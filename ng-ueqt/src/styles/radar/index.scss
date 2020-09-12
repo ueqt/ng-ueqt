@@ -33,8 +33,13 @@
 .u-radar-caption {
   fill: #444;
   fill-opacity: .4;
-  font-weight: 400;
-  text-shadow: 1px 1px 0 #fff;
+  font-size: 12px;
+  // font-weight: 400;
+  // text-shadow: 1px 1px 0 #fff;
+}
+
+.u-radar-value {
+  font-size: 12px;
 }
 
 .u-radar-value-selected {

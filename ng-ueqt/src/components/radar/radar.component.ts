@@ -44,7 +44,7 @@ export class URadarModel {
   template: `
   <svg version="1" xmlns="http://www.w3.org/2000/svg"
     [attr.width]="size" [attr.height]="size"
-    [attr.viewBox]="'-40 -40 ' + (size + 80) + ' ' + (size + 80)"
+    [attr.viewBox]="'-50 -50 ' + (size + 100) + ' ' + (size + 100)"
     (mouseleave)="setSelected(-1, -1)">
     <g [attr.transform]="'translate(' + middleOfChart + ',' + middleOfChart + ')'">
       <!-- 底层同心圆 -->
@@ -75,12 +75,12 @@ export class URadarModel {
           />
       </g>
       <!-- 类别字 -->
+      <!-- [attr.dy]="10" -->
       <g key="group-cations">
         <text class="u-radar-caption" *ngFor="let col of columns"
           [attr.key]="'caption-of-' + col.key"
-          [attr.x]="polarToX(col.angle, (size / 2)*1.05).toFixed(4)"
-          [attr.y]="polarToY(col.angle, (size / 2)*1.05).toFixed(4)"
-          [attr.dy]="10"
+          [attr.x]="polarToX(col.angle, (size / 2)*1).toFixed(4)"
+          [attr.y]="polarToY(col.angle, (size / 2)*1).toFixed(4)"
           fill="#444"
           fontWeight="400"
           textShadow="1px 1px 0 #fff">
@@ -103,15 +103,16 @@ export class URadarModel {
       </g>
       <!-- 圆点字 -->
       <g key="group-cations">
+      <!--            dx="5" [attr.x]="polarToX(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
+            [attr.y]="polarToY(col.angle, (data[col.index] / options.max[col.index] * size) / 2)" -->
         <ng-container *ngFor="let data of options.datas;index as i;">
           <text class="u-radar-value"
             *ngFor="let col of columns;index as j;"
             [ngClass]="{'u-radar-value-selected': selected.dataIndex === i && selected.colIndex === j}"
             [attr.key]="'value-' + col.key + '-' + data[col.index]"
-            [attr.x]="polarToX(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
-            [attr.y]="polarToY(col.angle, (data[col.index] / options.max[col.index] * size) / 2)"
+            [attr.x]="polarToX(col.angle, (size / 2)*(1+0.08*(i+1))).toFixed(4)"
+            [attr.y]="polarToY(col.angle, (size / 2)*(1+0.08*(i+1))).toFixed(4)"
             [attr.fill]="getColor(i)"
-            dx="5"
             fontWeight="400"
             textShadow="1px 1px 0 #fff">
               {{ data[col.index] }}
