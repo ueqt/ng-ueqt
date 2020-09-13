@@ -4,6 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: '/icon', pathMatch: 'full' },
   {
+    path: 'contributions',
+    loadChildren: () =>
+      import('../demo/contributions/contributions.module').then((m) => m.UdemoContributionsModule),
+  },
+  {
     path: 'icon',
     loadChildren: () =>
       import('../demo/icon/icon.module').then((m) => m.UdemoIconModule),
