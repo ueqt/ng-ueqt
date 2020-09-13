@@ -24,7 +24,7 @@ export class UContributionsModel {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-  <input type="checkbox" id="Embiggen"> <label for="Embiggen">Make bigger</label><br>
+  <!-- <input type="checkbox" id="Embiggen"> <label for="Embiggen">Make bigger</label><br> -->
   <div role="region">
     <table>
       <tr>
