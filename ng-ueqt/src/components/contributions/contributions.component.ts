@@ -25,7 +25,7 @@ export class UContributionsModel {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
   <!-- <input type="checkbox" id="Embiggen"> <label for="Embiggen">Make bigger</label><br> -->
-  <div role="region">
+  <div role="region" class="u-contributions">
     <table>
       <tr>
         <th></th>
