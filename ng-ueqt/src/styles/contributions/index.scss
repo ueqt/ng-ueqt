@@ -67,23 +67,23 @@ div.u-contributions[role="region"] {
   //   border: .01em solid #949494; /* 3:1 */
   // }
 
-  div[role="region"] td.left::after,
-  div[role="region"] td.left a {
+  td.left::after,
+  td.left a {
     border-left: .01em solid #949494; 
   }
 
-  div[role="region"] td.top::after,
-  div[role="region"] td.top a {
+  td.top::after,
+  td.top a {
     border-top: .01em solid #949494; 
   }
 
-  div[role="region"] td.bottom::after,
-  div[role="region"] td.bottom a {
+  td.bottom::after,
+  td.bottom a {
     border-bottom: .01em solid #949494; 
   }
 
-  div[role="region"] td.right::after,
-  div[role="region"] td.right a {
+  td.right::after,
+  td.right a {
     border-right: .01em solid #949494; 
   }
 
