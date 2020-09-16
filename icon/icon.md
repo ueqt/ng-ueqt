@@ -20,13 +20,21 @@ import { UIconModule } from "ng-ueqt";
 静态加载，在 `AppModule` 里加入你需要的图标，例如：
 
 ```ts
-import { IconDefinition } from 'ng-ueqt';
+import { UIconDefinition } from 'ng-ueqt';
 import { UIconModule } from 'ng-ueqt';
 
 // 引入你需要的图标，比如你需要 Left，推荐 ✔️
 import { UIconLeft } from 'ng-ueqt/icons';
 
-const icons: IconDefinition[] = [ UIconLeft ];
+const icons: UIconDefinition[] = [ UIconLeft ];
+
+// 引入全部的图标，不推荐 ❌
+// import * as AllIcons from 'ng-ueqt/components/icon/primer-icons';
+
+// const primerIcons = AllIcons as {
+//   [key: string]: UIconDefinition;
+// };
+// const icons: UIconDefinition[] = Object.keys(primerIcons).map(key => primerIcons[key])
 
 @NgModule({
   declarations: [
