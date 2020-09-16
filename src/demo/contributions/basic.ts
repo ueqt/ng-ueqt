@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UContributionsModel } from 'ng-ueqt/src/components/contributions';
+import { UContributionsModel } from 'ng-ueqt/public-api';
 
 @Component({
   selector: 'udemo-contributions-basic',

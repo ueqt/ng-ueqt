@@ -16,9 +16,8 @@
       "dom"
     ],
     "paths": {
-      "ng-ueqt": [
-        "dist/ng-ueqt/ng-ueqt",
-        "dist/ng-ueqt"
+      "ng-ueqt/*": [
+        "ng-ueqt/src/*"
       ]
     }
   }

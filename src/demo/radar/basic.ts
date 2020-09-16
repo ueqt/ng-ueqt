@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { URadarModel } from 'ng-ueqt/src/components/radar/radar.component';
+import { URadarModel } from 'ng-ueqt/public-api';
 
 @Component({
   selector: 'udemo-radar-basic',

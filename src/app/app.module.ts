@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UIconDefinition, UIconModule } from 'ng-ueqt/src/public-api';
+import { UIconDefinition, UIconModule } from 'ng-ueqt/public-api';
 
 const icons: UIconDefinition[] = [UIconLeft, UIconRight, UIconBars];
 

@@ -1,10 +1,3 @@
-import {
-  UMenuModule,
-  UIconModule,
-  UIconDefinition,
-  UIconBars,
-  UTabsModule,
-} from './../../../ng-ueqt/src/public-api';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { UdemoMenuComponent } from './menu';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,10 +7,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { UdemoMenuBasicComponent } from './basic';
 import { UdemoMenuCustomNodeComponent } from './custom-node';
+import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UMenuModule } from 'ng-ueqt/public-api';
 
 const routes: Routes = [{ path: '', component: UdemoMenuComponent }];
 
-const icons: UIconDefinition[] = [UIconBars];
+const icons: UIconDefinition[] = [AllIcons.UIconBars];
 
 @NgModule({
   imports: [

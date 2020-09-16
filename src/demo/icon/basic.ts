@@ -1,10 +1,9 @@
-import { UIconDefinition } from './../../../ng-ueqt/src/components/icon/icon.model';
 import { Component } from '@angular/core';
-import * as AllIcons from '../../../ng-ueqt/src/components/icon/primer-icons';
+import { AllIcons, UIconDefinition } from 'ng-ueqt/public-api';
 
 @Component({
   selector: 'udemo-icon-basic',
-  template: ` 
+  template: `
   <i *ngFor="let icon of icons" [uIcon]="icon.name" style="color:red;"></i>
   <!-- <i uIcon="bars" style="color: red;"></i>
     <i uIcon="left"></i>
