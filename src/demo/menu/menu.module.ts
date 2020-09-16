@@ -7,7 +7,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { UdemoMenuBasicComponent } from './basic';
 import { UdemoMenuCustomNodeComponent } from './custom-node';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UMenuModule } from 'ng-ueqt/public-api';
+import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UMenuModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoMenuComponent }];
 

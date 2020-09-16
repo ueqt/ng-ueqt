@@ -16,6 +16,9 @@
       "dom"
     ],
     "paths": {
+      "ng-ueqt": [
+        "ng-ueqt/src"
+      ],
       "ng-ueqt/*": [
         "ng-ueqt/src/*"
       ]

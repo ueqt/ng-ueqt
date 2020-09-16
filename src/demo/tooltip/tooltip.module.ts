@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { UdemoTooltipPlacementComponent } from './placement';
-import { UIconDefinition, AllIcons, UIconModule } from 'ng-ueqt/public-api';
+import { UIconDefinition, AllIcons, UIconModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoTooltipComponent }];
 

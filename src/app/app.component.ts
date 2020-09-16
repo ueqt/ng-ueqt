@@ -3,7 +3,7 @@ import {
   UMenuComponent,
 } from './../../ng-ueqt/src/components/menu/menu.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UMenuNode } from 'ng-ueqt/public-api';
+import { UMenuNode } from 'ng-ueqt';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({

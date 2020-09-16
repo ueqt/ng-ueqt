@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AllIcons, UIconDefinition } from 'ng-ueqt/public-api';
+import { AllIcons, UIconDefinition } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-icon-basic',

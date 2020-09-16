@@ -1,4 +1,4 @@
-import { UMenuNode } from '../../../ng-ueqt/src/components/menu/menu.component';
+import { UMenuNode } from 'ng-ueqt';
 import { Component } from '@angular/core';
 
 @Component({

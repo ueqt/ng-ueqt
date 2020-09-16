@@ -29,7 +29,7 @@ import { UIconLeft } from 'ng-ueqt/icons';
 const icons: UIconDefinition[] = [ UIconLeft ];
 
 // 引入全部的图标，不推荐 ❌
-// import * as AllIcons from 'ng-ueqt/components/icon/primer-icons';
+// import { AllIcons } from 'ng-ueqt';
 
 // const primerIcons = AllIcons as {
 //   [key: string]: UIconDefinition;

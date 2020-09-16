@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { AllIcons, UIconDefinition, UIconModule } from 'ng-ueqt/public-api';
+import { AllIcons, UIconDefinition, UIconModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoIconComponent }];
 
