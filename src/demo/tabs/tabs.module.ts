@@ -1,4 +1,3 @@
-import { UTabsModule } from '../../../ng-ueqt/src/components/tabs/tabs.module';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { RouterModule, Routes } from '@angular/router';
 import {
@@ -11,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { UdemoTabsComponent } from './tabs';
+import { UTabsModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoTabsComponent }];
 

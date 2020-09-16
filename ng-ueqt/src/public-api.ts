@@ -11,6 +11,7 @@ export * from './components/core/overlay';
 export * from './components/dynamic';
 export * from './components/icon';
 export const AllIcons = PrimerIcons;
+export * from './components/layout';
 export * from './components/menu';
 export * from './components/radar';
 export * from './components/tabs';
