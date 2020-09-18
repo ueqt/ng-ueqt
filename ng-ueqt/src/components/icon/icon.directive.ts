@@ -18,6 +18,10 @@ import { DOCUMENT } from '@angular/common';
 export class UIconDirective implements OnInit, OnChanges {
   @Input('uIcon') iconName: string;
 
+  @Input() uIconSize = 16;
+
+  @Input() uIconClass = '';
+
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
@@ -36,7 +40,14 @@ export class UIconDirective implements OnInit, OnChanges {
     const icon = this.iconService.icons.find((i) => i.name === this.iconName);
     if (icon) {
       el.innerHTML = icon.icon;
-      // const elIcon: Node = el.firstChild;
+      const elIcon: SVGElement = el.firstChild as SVGElement;
+      this.renderer.setStyle(elIcon, 'width', this.uIconSize.toString() + 'px');
+      this.renderer.setStyle(elIcon, 'height', this.uIconSize.toString() + 'px');
+      this.uIconClass.split(' ').forEach(c => {
+        if (c && !elIcon.classList.contains(c)) {
+          this.renderer.addClass(elIcon, c);
+        }
+      });
       // const color = window.getComputedStyle(el).color;
       // if (color) {
       //   this.renderer.setStyle(elIcon, 'fill', color);
@@ -49,6 +60,14 @@ export class UIconDirective implements OnInit, OnChanges {
     const icon = this.iconService.icons.find((i) => i.name === this.iconName);
     if (icon) {
       el.innerHTML = icon.icon;
+      const elIcon: SVGElement = el.firstChild as SVGElement;
+      this.renderer.setStyle(elIcon, 'width', this.uIconSize.toString() + 'px');
+      this.renderer.setStyle(elIcon, 'height', this.uIconSize.toString() + 'px');
+      this.uIconClass.split(' ').forEach(c => {
+        if (c && !elIcon.classList.contains(c)) {
+          this.renderer.addClass(elIcon, c);
+        }
+      });
       // const elIcon: Node = el.firstChild;
       // const color = window.getComputedStyle(el).color;
       // if (color) {

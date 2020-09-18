@@ -6,7 +6,7 @@ import { AllIcons, UIconDefinition } from 'ng-ueqt';
   template: `
   <ul>
     <li *ngFor="let icon of icons">
-        <i [uIcon]="icon.name" style="color:red;"></i>
+        <i [uIcon]="icon.name" style="color:red;" uIconSize="24" uIconClass="icon-test"></i>
         <span>{{icon.name}}</span>
     </li>
 </ul>
