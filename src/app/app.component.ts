@@ -16,6 +16,10 @@ export class AppComponent {
 
   datas: UMenuNode[] = [
     {
+      name: 'Button 按钮',
+      url: 'button'
+    },
+    {
       name: 'Contributions 贡献图',
       url: 'contributions'
     },
