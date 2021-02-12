@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "lint-staged": "lint-staged",
     "start": "ng serve --hmr",
     "deploy": "ng build ng-ueqt --prod && cd dist/ng-ueqt && npm publish",
     "build": "ng build ng-ueqt --prod && ng build --prod --base-href=/ng-ueqt/",
@@ -23,7 +24,7 @@
     "ngx-markdown": "^11.0.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.1.0",
-    "zone.js": "~0.11.3"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.0",
@@ -31,7 +32,7 @@
     "@angular/compiler-cli": "~11.2.0",
     "@types/node": "^14.14.26",
     "codelyzer": "^6.0.1",
-    "husky": "^5.0.9",
+    "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "ng-packagr": "^11.2.0",
     "ts-node": "~9.1.1",
