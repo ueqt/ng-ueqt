@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
   <u-button (click)="test()">Primary</u-button>
   <u-button uColor="red" (click)="test()">红色</u-button>
-  <u-button uColor="var(--accent)" (click)="test()">Accent</u-button>
+  <u-button uColor="var(--u-accent)" (click)="test()">Accent</u-button>
   <u-button [uDisabled]="true" (click)="test()">禁用</u-button>
 `,
 })

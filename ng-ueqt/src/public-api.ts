@@ -17,3 +17,5 @@ export * from './components/radar';
 export * from './components/tabs';
 export * from './components/tooltip';
 export * from './components/button';
+export * from './components/card';
+export * from './components/theme';

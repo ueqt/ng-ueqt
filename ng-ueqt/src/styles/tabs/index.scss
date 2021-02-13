@@ -111,7 +111,7 @@
   z-index: 1;
   box-sizing: border-box;
   height: 2px;
-  background-color: var(--primary);
+  background-color: var(--u-primary);
 }
 
 .u-tabs-nav:before .u-tabs-nav:after {
@@ -120,7 +120,7 @@
 }
 
 .u-tabs-tab-active {
-  color: var(--primary);
+  color: var(--u-primary);
   font-weight: 500;
   outline: none;
 }

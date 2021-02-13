@@ -1,3 +1,4 @@
+import { UThemeService } from './../../ng-ueqt/src/components/theme/theme.service';
 import {
   UMenuFlatNode,
   UMenuComponent,
@@ -18,6 +19,10 @@ export class AppComponent {
     {
       name: 'Button 按钮',
       url: 'button'
+    },
+    {
+      name: 'Card 卡片',
+      url: 'card'
     },
     {
       name: 'Contributions 贡献图',
@@ -44,12 +49,19 @@ export class AppComponent {
       url: 'tabs',
     },
     {
+      name: 'Theme 皮肤',
+      url: 'theme',
+    },
+    {
       name: 'Tooltip 文本提示',
       url: 'tooltip',
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private theme: UThemeService) {
+    this.theme.change('default');
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.menu) {

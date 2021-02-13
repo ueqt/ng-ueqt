@@ -17,7 +17,7 @@ export class UButtonComponent {
 
     @Input() uLoading = false;
 
-    @Input() uColor = 'var(--primary)';
+    @Input() uColor = 'var(--u-primary)';
 
     @Input() uDisabled = false;
 

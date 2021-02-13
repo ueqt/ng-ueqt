@@ -1,3 +1,4 @@
+import { UdemoThemeModule } from './../demo/theme/theme.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,6 +8,11 @@ const routes: Routes = [
     path: 'button',
     loadChildren: () =>
       import('../demo/button/button.module').then((m) => m.UdemoButtonModule),
+  },
+  {
+    path: 'card',
+    loadChildren: () =>
+      import('../demo/card/card.module').then((m) => m.UdemoCardModule),
   },
   {
     path: 'contributions',
@@ -37,6 +43,11 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () =>
       import('../demo/tabs/tabs.module').then((m) => m.UdemoTabsModule),
+  },
+  {
+    path: 'theme',
+    loadChildren: () =>
+      import('../demo/theme/theme.module').then((m) => m.UdemoThemeModule),
   },
   {
     path: 'tooltip',

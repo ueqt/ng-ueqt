@@ -1,3 +1,4 @@
+import { UThemeModule } from './../../ng-ueqt/src/components/theme/theme.module';
 import { UIconBars } from './../../ng-ueqt/src/components/icon/primer-icons/three-bars';
 import { UIconRight } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-right';
 import { UIconLeft } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-left';
@@ -20,6 +21,7 @@ const icons: UIconDefinition[] = [UIconLeft, UIconRight, UIconBars];
     DynamicModule,
     ULayoutModule,
     UMenuModule,
+    UThemeModule,
     UIconModule.forRoot(icons),
   ],
   providers: [],

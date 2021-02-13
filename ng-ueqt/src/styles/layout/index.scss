@@ -4,7 +4,7 @@
   flex: auto;
   flex-direction: column;
   min-height: 0;
-  background: var(--bg);
+  background: var(--u-bg);
 }
 
 .u-layout-header {
@@ -13,8 +13,8 @@
   line-height: 64px;
   flex: 0 0 auto;
   display: block;
-  color: var(--accent-fg);
-  background: var(--accent);
+  color: var(--u-accent-c);
+  background: var(--u-accent);
 }
 
 .u-layout-content {
@@ -25,9 +25,9 @@
 
 .u-layout-footer {
   padding: 24px 50px;
-  color: var(--accent-fg);
+  color: var(--u-accent-c);
   font-size: 14px;
-  background: var(--bg);
+  background: var(--u-bg);
   flex: 0 0 auto;
   display: block;
 }

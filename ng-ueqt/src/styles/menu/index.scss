@@ -13,19 +13,19 @@
   }
 
   &:hover {
-    color: var(--primary);
+    color: var(--u-primary);
   }
 }
 
 .u-menu-node-selected {
-  color: var(--primary);
-  background-color: var(--primary-selected-bg);
+  color: var(--u-primary);
+  background-color: var(--u-primary-18);
   &:after {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    border-right: 3px solid var(--primary);
+    border-right: 3px solid var(--u-primary);
     content: "";
   }
 }

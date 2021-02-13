@@ -1,19 +1,5 @@
-:root {
-  // 背景色
-  --bg: #f0f2f5;
-  // 主题色
-  --primary: #1890ff;
-  // 主题色选中的背景色
-  --primary-selected-bg: #e6f7ff;
-  // 辅助色
-  --accent: #001520;
-  // 辅助色的文字色
-  --accent-fg: rgba(0, 0, 0.65);
-  // 警告色
-  --warn: red;
-  // 控件背景色
-  --component-bg: rgba(0,0,0,.75);
-}
+// :root {
+// }
 
 @import '~@angular/cdk/overlay-prebuilt.css';
 
