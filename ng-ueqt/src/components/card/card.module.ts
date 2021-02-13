@@ -1,3 +1,4 @@
+import { UCardAvatarComponent } from './card-avatar.component';
 import { UCardActionsComponent } from './card-actions.component';
 import { UCardTitleComponent } from './card-title.component';
 import { UCardHeaderComponent } from './card-header.component';
@@ -17,7 +18,8 @@ const components = [
   UCardContentComponent,
   UCardImageComponent,
   UCardFooterComponent,
-  UCardActionsComponent
+  UCardActionsComponent,
+  UCardAvatarComponent
 ];
 
 @NgModule({

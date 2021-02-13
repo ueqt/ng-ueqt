@@ -7,3 +7,4 @@ export * from './card-subtitle.component';
 export * from './card-image.component';
 export * from './card-footer.component';
 export * from './card-actions.component';
+export * from './card-avatar.component';

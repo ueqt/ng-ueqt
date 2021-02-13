@@ -19,6 +19,14 @@
   .u-card-header {
     display: flex;
     flex-direction: row;
+
+    .u-card-avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
     
     .u-card-header-text {
       margin: 0 16px;

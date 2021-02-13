@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <u-card class="example-card">
       <u-card-header>
+        <u-card-avatar class="example-header-image"></u-card-avatar>
         <u-card-title>标题</u-card-title>
         <u-card-subtitle>副标题</u-card-subtitle>
       </u-card-header>
@@ -28,6 +29,10 @@ import { Component, OnInit } from '@angular/core';
     `
 .example-card {
   max-width: 400px;
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }`
   ]
 })

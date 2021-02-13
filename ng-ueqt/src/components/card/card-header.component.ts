@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
 @Component({
   selector: 'u-card-header',
   exportAs: 'uCardHeader',
-  template: `<ng-content select="[u-card-avatar], [uCardAvatar]"></ng-content>
+  template: `
+  <ng-content select="u-card-avatar, [u-card-avatar], [uCardAvatar]"></ng-content>
   <div class="u-card-header-text">
     <ng-content
         select="u-card-title, u-card-subtitle,
