@@ -6,6 +6,6 @@
   },
   "angularCompilerOptions": {
     "strictTemplates": "true",
-    "enableIvy": true
+    "enableIvy": false
   }
 }
