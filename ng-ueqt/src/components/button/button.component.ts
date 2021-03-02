@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import {
-    Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, HostListener
+    Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, HostListener, Output, EventEmitter
 } from '@angular/core';
 
 @Component({
@@ -13,13 +14,13 @@ import {
 })
 export class UButtonComponent {
 
-    private animating = false;
-
-    @Input() uLoading = false;
+    isLoading = false;
 
     @Input() uColor = 'var(--u-primary)';
 
     @Input() uDisabled = false;
+
+    @Input() uClick: () => Promise<void>;
 
     @HostBinding('class.u-button') classButton = true;
 
@@ -29,7 +30,7 @@ export class UButtonComponent {
 
     @HostBinding('class.u-button-loading')
     get classButtonLoading(): boolean {
-        return this.uLoading;
+        return this.isLoading;
     }
 
     @HostBinding('style.color')
@@ -42,21 +43,26 @@ export class UButtonComponent {
         return this.uColor;
     }
 
-    @HostBinding('class.u-button-animate')
-    get classButtonAnimate(): boolean {
-        return this.animating;
-    }
+    @HostListener('click', ['$event']) async onClick(event: Event): Promise<void> {
+        event.preventDefault();
+        event.stopPropagation();
 
-    @HostListener('click', ['$event']) onClick(event: Event): void {
-        if (this.uDisabled) {
-            console.log(event);
-            event.preventDefault();
-            event.stopPropagation();
+        if (this.uDisabled || this.isLoading) {
+            // console.log(event);
             return;
         }
-        this.animating = true;
-        setTimeout(() => {
-            this.animating = false;
-        }, 700);
+
+        this.isLoading = true;
+
+        if (this.uClick) {
+            try {
+                await this.uClick();
+            } catch (e) {
+                throw e;
+            } finally {
+                this.isLoading = false;
+            }
+        }
+        this.isLoading = false;
     }
 }

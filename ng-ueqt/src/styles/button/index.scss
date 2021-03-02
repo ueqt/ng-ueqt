@@ -35,24 +35,88 @@
     border-width: 0 2px 2px 0;
   }
 
-  &:hover:before, &:hover:after {
+  &:not(&.u-button-loading):hover:before, &:not(&.u-button-loading):hover:after{
     width: calc(100% + 12px);
     height: calc(100% + 12px);
-    border-color:#fff;
+    border-color: transparent;
   }
   
-  &:hover {
-    // color: #353535;
-    background-color: #fff;
-    border-color: #fff;
+  &:not(&.u-button-loading):hover {
+    color: #353535;
+    background-color: transparent;
+    border-color: transparent;
     cursor: pointer;
   }
 
-  &.u-button-animate {
-    border-left: none;
-    border-right: none;
-    transition: all 0.3s;
-    transform: scale(0, 1);
+  &.u-button-loading {
+    // border-left: none;
+    // border-right: none;
+    // transition: all 0.3s;
+    // transform: scale(0, 1);
+    // transition: 1s ease-in-out;
+    // background: #4F95DA;
+    cursor: not-allowed;
+
+    &::before, &::after {
+      // content: '';
+      // box-sizing: border-box;
+      // position: absolute;
+      // border-width: 2px 0 0 2px;
+      width: 0;
+      height: 0;
+    }
+
+    &::before {
+      top: -6px;
+      left: -6px;
+      // border-top-color: #60daaa;
+      // border-right-color: #60daaa;
+      animation: border 2s infinite;
+    }
+
+    &::after {
+      bottom: -6px;
+      right: -6px;
+      animation: border 2s 1s infinite; //, borderColor 2s 1s infinite;
+    }
+
+    @keyframes border {
+      0% {
+        width: 0;
+        height: 0;
+      }
+      25% {
+        width: calc(100% + 12px);
+        height: 0;
+      }
+      50% {
+        width: calc(100% + 12px);
+        height: calc(100% + 12px);
+      }
+      100% {
+        width: calc(100% + 12px);
+        height: calc(100% + 12px);
+      }
+    }
+
+    // @keyframes borderColor {
+    //   0% {
+    //     border-bottom-color: #60daaa;
+    //     border-left-color: #60daaa;
+    //   }
+    //   50% {
+    //     border-bottom-color: #60daaa;
+    //     border-left-color: #60daaa;
+    //   }
+    //   51% {
+    //     border-bottom-color: transparent;
+    //     border-left-color: transparent;
+    //   }
+    //   100% {
+    //     border-bottom-color: transparent;
+    //     border-left-color: transparent;
+    //   }
+    // }
   }
 
   &[disabled] {
