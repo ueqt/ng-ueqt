@@ -42,10 +42,15 @@
   }
   
   &:not(&.u-button-loading):hover {
-    color: #353535;
-    background-color: transparent;
-    border-color: transparent;
+    // box-shadow: 0 0 5px currentColor 0 0 25px currentColor;
+    // background-color: linear-gradient(white, red) !important;
+    // border-color: linear-gradient
     cursor: pointer;
+    // filter: invert(100%);
+    &::after, &::before {
+      transition: .3s;
+      background: linear-gradient(to bottom, currentColor, transparent, transparent, transparent, transparent, transparent, currentColor);
+    }
   }
 
   &.u-button-loading {
@@ -125,7 +130,7 @@
     border-color: #d9d9d9 !important;
     text-shadow: none;
     box-shadow: none;
-    cursor: not-allowed;
+    cursor: not-allowed !important;
   }
   
 }
