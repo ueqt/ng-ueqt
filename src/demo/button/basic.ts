@@ -12,7 +12,8 @@ import { sleep } from 'ng-ueqt/components/core/util';
 })
 export class UdemoButtonBasicComponent {
 
-  async test(): Promise<void> {
+  test = async () => {
+    console.log(this);
     await sleep(5000);
     console.log('test');
   }

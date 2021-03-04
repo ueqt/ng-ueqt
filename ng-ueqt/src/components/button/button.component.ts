@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import {
     Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, HostListener, Output, EventEmitter
 } from '@angular/core';
+import { getContrastHex, getHexColor, hexToRgb, rgbContrast, rgbToHex } from '../core/util';
 
 @Component({
     selector: 'u-button',
@@ -33,14 +34,19 @@ export class UButtonComponent {
         return this.isLoading;
     }
 
+    @HostBinding('style.background-color')
+    get styleButtonBackgroundColor(): string {
+        return this.uColor;
+    }
+
     @HostBinding('style.color')
     get styleButtonColor(): string {
-        return this.uColor;
+        return getContrastHex(this.uColor);
     }
 
     @HostBinding('style.border-color')
     get styleButtonBorderColor(): string {
-        return this.uColor;
+        return getContrastHex(this.uColor);
     }
 
     @HostListener('click', ['$event']) async onClick(event: Event): Promise<void> {
