@@ -46,7 +46,7 @@ export class UThemeService {
   private use(themeColors: string[]): void {
     // 提供10种颜色
     this.colorNames = [];
-    const typeKey = ['bg', 'text', 'primary', 'warn', 'accent'];
+    const typeKey = ['bg', 'primary', 'accent', 'warn', 'text'];
     for (let i = 0; i < themeColors.length; i++) {
       const themeColor = themeColors[i];
       const rgb = hexToRgb(themeColor);
