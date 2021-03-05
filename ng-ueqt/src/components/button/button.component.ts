@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import {
     Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, HostListener, Output, EventEmitter
 } from '@angular/core';
@@ -21,7 +20,9 @@ export class UButtonComponent {
 
     @Input() uDisabled = false;
 
-    @Input() uClick: () => Promise<void>;
+    @Input() uClick: (button: UButtonComponent, args: any) => Promise<void>;
+
+    @Input() uClickArgs: any;
 
     @HostBinding('class.u-button') classButton = true;
 
@@ -62,7 +63,7 @@ export class UButtonComponent {
 
         if (this.uClick) {
             try {
-                await this.uClick();
+                await this.uClick(this, this.uClickArgs);
             } catch (e) {
                 throw e;
             } finally {
