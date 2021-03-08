@@ -24,7 +24,13 @@ export class UButtonComponent {
 
     @Input() uClickArgs: any;
 
+    @Input() uShape: 'rectangle' | 'circle';
+
     @HostBinding('class.u-button') classButton = true;
+
+    @HostBinding('class.u-button-circle') get classButtonCircle(): boolean {
+        return this.uShape === 'circle';
+    }
 
     @HostBinding('attr.disabled') get isDisabled(): boolean {
         return this.uDisabled || null;

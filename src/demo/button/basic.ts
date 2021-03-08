@@ -6,7 +6,9 @@ import { sleep } from 'ng-ueqt/components/core/util';
   selector: 'udemo-button-basic',
   template: `
   <u-button [uClick]="test">Primary</u-button>
-  <u-button uColor="red" [uClick]="test">红色</u-button>
+  <u-button uColor="red" uShape="circle" [uClick]="test">
+    <i uIcon="down"></i>
+  </u-button>
   <u-button uColor="var(--u-accent)" [uClick]="testArgs" [uClickArgs]="['abc', 1]">Accent</u-button>
   <u-button [uDisabled]="true" [uClick]="test">禁用</u-button>
 `,
