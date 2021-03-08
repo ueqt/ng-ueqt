@@ -39,9 +39,9 @@ jobs:
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           token: ${{ secrets.GITHUBTOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: dist/site # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist/site # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch
