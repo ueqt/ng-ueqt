@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { hexToRgb, rgbContrast, rgbShade, rgbTint, rgbToHex } from '../core/util';
+import { getContrastHex, hexToRgb, rgbContrast, rgbShade, rgbTint, rgbToHex } from '../core/util';
 
 /**
  * 皮肤服务
@@ -54,20 +54,20 @@ export class UThemeService {
       this.colorNames.push(keyPrefix);
       document.documentElement.style.setProperty(keyPrefix, themeColor);
       this.colorNames.push(keyPrefix + '-c');
-      document.documentElement.style.setProperty(keyPrefix + '-c', rgbToHex(rgbContrast(rgb)));
+      document.documentElement.style.setProperty(keyPrefix + '-c', getContrastHex(themeColor));
       for (let j = 1; j <= 9; j++) {
         let key = keyPrefix + '-' + j.toString();
         this.colorNames.push(key);
         const shade = rgbToHex(rgbShade(rgb, j));
         document.documentElement.style.setProperty(key, shade);
         this.colorNames.push(key + '-c');
-        document.documentElement.style.setProperty(key + '-c', rgbToHex(rgbContrast(hexToRgb(shade))));
+        document.documentElement.style.setProperty(key + '-c', getContrastHex(shade));
         key = keyPrefix + '-' + (j + 9).toString();
         this.colorNames.push(key);
         const tint = rgbToHex(rgbTint(rgb, j));
         document.documentElement.style.setProperty(key, tint);
         this.colorNames.push(key + '-c');
-        document.documentElement.style.setProperty(key + '-c', rgbToHex(rgbContrast(hexToRgb(tint))));
+        document.documentElement.style.setProperty(key + '-c', getContrastHex(tint));
       }
     }
   }

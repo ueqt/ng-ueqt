@@ -5,9 +5,7 @@
 import * as PrimerIcons from './components/icon/primer-icons';
 
 export * from './components/contributions';
-export * from './components/core/services';
-export * from './components/core/outlet';
-export * from './components/core/overlay';
+export * from './components/core';
 export * from './components/dynamic';
 export * from './components/icon';
 export const AllIcons = PrimerIcons;
