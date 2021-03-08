@@ -45,10 +45,10 @@ export class UButtonComponent {
         return getContrastHex(this.uColor);
     }
 
-    @HostBinding('style.border-color')
-    get styleButtonBorderColor(): string {
-        return getContrastHex(this.uColor);
-    }
+    // @HostBinding('style.border-color')
+    // get styleButtonBorderColor(): string {
+    //     return getContrastHex(this.uColor);
+    // }
 
     @HostListener('click', ['$event']) async onClick(event: Event): Promise<void> {
         event.preventDefault();
