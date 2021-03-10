@@ -4,7 +4,6 @@ import { UIconRight } from './../../ng-ueqt/src/components/icon/primer-icons/che
 import { UIconLeft } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-left';
 import { UMenuModule } from './../../ng-ueqt/src/components/menu/menu.module';
 import { ULayoutModule } from './../../ng-ueqt/src/components/layout/layout.module';
-import { DynamicModule } from './../../ng-ueqt/src/components/dynamic/dynamic.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +17,6 @@ const icons: UIconDefinition[] = [UIconLeft, UIconRight, UIconBars];
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DynamicModule,
     ULayoutModule,
     UMenuModule,
     UThemeModule,

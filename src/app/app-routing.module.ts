@@ -5,6 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: '/icon', pathMatch: 'full' },
   {
+    path: 'alert',
+    loadChildren: () =>
+      import('../demo/alert/alert.module').then((m) => m.UdemoAlertModule),
+  },
+  {
     path: 'button',
     loadChildren: () =>
       import('../demo/button/button.module').then((m) => m.UdemoButtonModule),

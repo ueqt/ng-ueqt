@@ -6,7 +6,6 @@ import * as PrimerIcons from './components/icon/primer-icons';
 
 export * from './components/contributions';
 export * from './components/core';
-export * from './components/dynamic';
 export * from './components/icon';
 export const AllIcons = PrimerIcons;
 export * from './components/layout';
@@ -17,3 +16,4 @@ export * from './components/tooltip';
 export * from './components/button';
 export * from './components/card';
 export * from './components/theme';
+export * from './components/alert';
