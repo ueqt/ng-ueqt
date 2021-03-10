@@ -29,4 +29,9 @@ export class UInputComponent {
    * 文本
    */
   @Input() uText: string;
+
+  /**
+   * 最大长度
+   */
+  @Input() uMaxLength: number;
 }
