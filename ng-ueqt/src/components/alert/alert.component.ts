@@ -21,9 +21,9 @@ export class UAlertComponent {
     if (this.model.type === UAlertTypes.Success) {
       return 'var(--u-primary)';
     } else if (this.model.type === UAlertTypes.Error) {
-      return 'var(--u-warn-5)';
-    } else if (this.model.type === UAlertTypes.Warn) {
       return 'var(--u-warn)';
+    } else if (this.model.type === UAlertTypes.Warn) {
+      return 'var(--u-accent)';
     }
     return 'var(--u-bg)';
   }
@@ -32,9 +32,9 @@ export class UAlertComponent {
     if (this.model.type === UAlertTypes.Success) {
       return 'var(--u-primary-c)';
     } else if (this.model.type === UAlertTypes.Error) {
-      return 'var(--u-warn-5-c)';
-    } else if (this.model.type === UAlertTypes.Warn) {
       return 'var(--u-warn-c)';
+    } else if (this.model.type === UAlertTypes.Warn) {
+      return 'var(--u-accent-c)';
     }
     return 'var(--u-text)';
   }
@@ -43,9 +43,9 @@ export class UAlertComponent {
     if (this.model.type === UAlertTypes.Success) {
       return 'var(--u-primary-c)';
     } else if (this.model.type === UAlertTypes.Error) {
-      return 'var(--u-warn-5-c)';
-    } else if (this.model.type === UAlertTypes.Warn) {
       return 'var(--u-warn-c)';
+    } else if (this.model.type === UAlertTypes.Warn) {
+      return 'var(--u-accent-c)';
     }
     return 'var(--u-text)';
   }

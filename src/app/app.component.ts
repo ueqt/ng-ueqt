@@ -37,6 +37,10 @@ export class AppComponent {
       url: 'icon',
     },
     {
+      name: 'Input 输入框',
+      url: 'input',
+    },
+    {
       name: 'Layout 布局',
       url: 'layout',
     },

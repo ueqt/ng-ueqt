@@ -8,9 +8,9 @@ import { sleep } from 'ng-ueqt/components/core/util';
   template: `
   <u-button [uClick]="info" uColor="var(--u-text)">Info</u-button>
   <u-button [uClick]="success" uColor="var(--u-primary)">Success</u-button>
-  <u-button [uClick]="error" uColor="var(--u-warn-5)">Error</u-button>
-  <u-button [uClick]="warn" uColor="var(--u-warn)">Warn</u-button>
-  <u-button [uClick]="confirm" uColor="var(--u-primary-5)">Confirm</u-button>
+  <u-button [uClick]="error" uColor="var(--u-warn)">Error</u-button>
+  <u-button [uClick]="warn" uColor="var(--u-accent)">Warn</u-button>
+  <u-button [uClick]="confirm" uColor="var(--u-primary)">Confirm</u-button>
 `,
 })
 export class UdemoAlertBasicComponent {

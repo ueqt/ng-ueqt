@@ -1,0 +1,68 @@
+.u-input {
+  position: relative;
+  display: block;
+  // margin-left: 40px;
+  margin-bottom: 35px;
+
+  .u-input-content {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid var(--u-primary);
+    cursor: text;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .u-input-content:focus ~ label,
+  .u-input-content-hasvalue ~ label {
+    top: -10px;
+    font-size: 12px;
+    opacity: 1;
+  }
+
+  label {
+    color: var(--u-primary);
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    top: 15px;
+    left: 10px;
+    min-width: 200px;
+    opacity: 0.3;
+    transition: 0.2s ease all;
+  }
+
+  .u-input-bar {
+    position:relative;
+    display:block;
+    &:before {
+      left:50%;
+    }
+    &:after {
+      right:50%; 
+    }
+  }
+
+  .u-input-bar:before, .u-input-bar:after {
+    content: '';
+    height: 2px; 
+    width: 0;
+    bottom: 1px; 
+    position: absolute;
+    background: var(--u-primary); 
+    transition: 0.2s ease all; 
+  }
+  
+  /* active state */
+  .u-input-content:focus ~ .u-input-bar:before, .u-input-content:focus ~ .u-input-bar:after {
+    width: 50%;
+  }
+  
+}

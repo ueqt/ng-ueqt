@@ -1,0 +1,6 @@
+<input *ngIf="uType !== 'textarea'" class="u-input-content" [class.u-input-content-hasvalue]="!!uText"
+  [attr.type]="uType || 'text'" [(ngModel)]="uText" />
+<textarea *ngIf="uType === 'textarea'" class="u-input-content" [class.u-input-content-hasvalue]="!!uText"
+  [(ngModel)]="uText"></textarea>
+<span class="u-input-bar"></span>
+<label>{{uLabel}}</label>

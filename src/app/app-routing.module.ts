@@ -30,6 +30,11 @@ const routes: Routes = [
       import('../demo/icon/icon.module').then((m) => m.UdemoIconModule),
   },
   {
+    path: 'input',
+    loadChildren: () =>
+      import('../demo/input/input.module').then((m) => m.UdemoInputModule),
+  },
+  {
     path: 'layout',
     loadChildren: () =>
       import('../demo/layout/layout.module').then((m) => m.UdemoLayoutModule),
