@@ -23,7 +23,7 @@ export class UInputComponent {
   /**
    * 输入类型
    */
-  @Input() uType: 'text' | 'number' | 'textarea';
+  @Input() uType: 'text' | 'number' | 'textarea' | 'password' | 'date' | 'datetime-local' | 'email' | 'month' | 'search' | 'tel' | 'time' | 'url' | 'week';
 
   /**
    * 文本

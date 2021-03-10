@@ -19,6 +19,14 @@
     }
   }
 
+  .u-input-content[type='date']:not(.u-input-content-hasvalue),
+  .u-input-content[type='datetime-local']:not(.u-input-content-hasvalue),
+  .u-input-content[type='month']:not(.u-input-content-hasvalue),
+  .u-input-content[type='week']:not(.u-input-content-hasvalue),
+  .u-input-content[type='time']:not(.u-input-content-hasvalue) {
+    padding-left: 200px;
+  }
+
   .u-input-content:focus ~ label,
   .u-input-content-hasvalue ~ label {
     top: -10px;
