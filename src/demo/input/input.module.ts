@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { UdemoInputBasicComponent } from './basic';
 import { UdemoInputComponent } from './input';
 import { UInputModule } from './../../../ng-ueqt/src/components/input/input.module';
@@ -13,6 +14,7 @@ const routes: Routes = [{ path: '', component: UdemoInputComponent }];
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),

@@ -1,2 +1,2 @@
-export * from './input.module';
-export * from './input.component';
+export * from './switch.module';
+export * from './switch.component';
