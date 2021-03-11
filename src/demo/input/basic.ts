@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'udemo-input-basic',
   template: `
-  <u-input uLabel="text" uMaxLength="5"></u-input>
+  <u-input uLabel="text" [uMaxLength]="5"></u-input>
   <u-input uLabel="date" uType="date"></u-input>
   <u-input uLabel="datetime" uType="datetime-local"></u-input>
   <u-input uLabel="month" uType="month"></u-input>

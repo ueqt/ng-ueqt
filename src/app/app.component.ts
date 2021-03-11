@@ -53,6 +53,10 @@ export class AppComponent {
       url: 'radar',
     },
     {
+      name: 'Switch 开关',
+      url: 'switch',
+    },
+    {
       name: 'Tabs 标签页',
       url: 'tabs',
     },

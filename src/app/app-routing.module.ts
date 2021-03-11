@@ -50,6 +50,11 @@ const routes: Routes = [
       import('../demo/radar/radar.module').then((m) => m.UdemoRadarModule),
   },
   {
+    path: 'switch',
+    loadChildren: () =>
+      import('../demo/switch/switch.module').then((m) => m.UdemoSwitchModule),
+  },
+  {
     path: 'tabs',
     loadChildren: () =>
       import('../demo/tabs/tabs.module').then((m) => m.UdemoTabsModule),
