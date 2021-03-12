@@ -16,10 +16,7 @@ import {
       multi: true
     }
   ],
-  templateUrl: './input.component.html',
-  styleUrls: [
-    './input.component.scss'
-  ]
+  templateUrl: './input.component.html'
 })
 export class UInputComponent implements ControlValueAccessor {
   @HostBinding('class.u-input') classInput = true;

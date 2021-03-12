@@ -1,14 +1,14 @@
-import { UAlertModule } from './../../../ng-ueqt/src/components/alert/alert.module';
+import { UdemoDynamicBasicComponent } from './basic';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { RouterModule, Routes } from '@angular/router';
-import { UdemoAlertBasicComponent } from './basic';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UButtonModule } from 'ng-ueqt';
-import { UdemoAlertComponent } from './alert';
-const routes: Routes = [{ path: '', component: UdemoAlertComponent }];
+import { UTabsModule, UButtonModule } from 'ng-ueqt';
+import { UdemoDynamicComponent } from './dynamic';
+
+const routes: Routes = [{ path: '', component: UdemoDynamicComponent }];
 
 @NgModule({
   imports: [
@@ -18,9 +18,11 @@ const routes: Routes = [{ path: '', component: UdemoAlertComponent }];
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
     UTabsModule,
-    UButtonModule,
-    UAlertModule,
+    UButtonModule
   ],
-  declarations: [UdemoAlertComponent, UdemoAlertBasicComponent],
+  declarations: [
+    UdemoDynamicComponent,
+    UdemoDynamicBasicComponent
+  ],
 })
-export class UdemoAlertModule { }
+export class UdemoDynamicModule { }

@@ -19,10 +19,7 @@ import { InputBoolean } from '../core';
       multi: true
     }
   ],
-  templateUrl: './switch.component.html',
-  styleUrls: [
-    './switch.component.scss'
-  ]
+  templateUrl: './switch.component.html'
 })
 export class USwitchComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @ViewChild('switchElement') private switchElement: ElementRef;

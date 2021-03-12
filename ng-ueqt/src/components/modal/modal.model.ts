@@ -1,12 +1,12 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { InjectionToken } from '@angular/core';
 
-export const U_ALERT_MODEL = new InjectionToken<UAlertModel>('U_ALERT_MODEL');
+export const U_MODAL_MODEL_TOKEN = new InjectionToken<UModalModel>('U_MODAL_MODEL');
 
 /**
  * 消息类型
  */
-export enum UAlertTypes {
+export enum UModalTypes {
   /**
    * 信息
    */
@@ -26,21 +26,25 @@ export enum UAlertTypes {
   /**
    * 确认
    */
-  Confirm
+  Confirm,
+  /**
+   * 自定义
+   */
+  Custom
 }
 
 /**
- * 提示模型
+ * 模态模型
  */
-export class UAlertModel {
+export class UModalModel {
   /**
    * 类型
    */
-  type: UAlertTypes;
+  type: UModalTypes;
   /**
    * 消息
    */
-  message: string;
+  message?: string;
   /**
    * 确定按钮点击回调
    */
@@ -61,4 +65,12 @@ export class UAlertModel {
    * 蒙版引用
    */
   overlayRef?: OverlayRef;
+  /**
+   * 动态加载组件类型
+   */
+  customComponentType?: any;
+  /**
+   * 动态加载参数
+   */
+  customArgs?: any;
 }

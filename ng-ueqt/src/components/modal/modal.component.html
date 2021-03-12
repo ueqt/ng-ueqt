@@ -1,9 +1,11 @@
 <div class="u-modal-container">
   <div class="u-modal" [style.background-color]="styleBg" [style.color]="styleColor">
     <div class="u-modal-content">
-      <div class="u-modal-body" [innerHtml]="model.message">
+      <div *ngIf="model.message" class="u-modal-body" [innerHtml]="model.message">
       </div>
-      <div class="u-modal-footer" [style.border-top-color]="styleBorderColor">
+      <div *ngIf="model.customComponentType" #customComponent>
+      </div>
+      <div *ngIf="!model.customComponentType" class="u-modal-footer" [style.border-top-color]="styleBorderColor">
         <u-button [uClick]="doConfirm">{{ model.confirmLabel || '确定' }}</u-button>
         <u-button *ngIf="model.type === types.Confirm" [uClick]="doCancel">{{ model.cancelLabel || '取消' }}</u-button>
       </div>

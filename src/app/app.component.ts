@@ -17,10 +17,6 @@ export class AppComponent {
 
   datas: UMenuNode[] = [
     {
-      name: 'Alert 提示',
-      url: 'alert'
-    },
-    {
       name: 'Button 按钮',
       url: 'button'
     },
@@ -31,6 +27,10 @@ export class AppComponent {
     {
       name: 'Contributions 贡献图',
       url: 'contributions'
+    },
+    {
+      name: 'Dynamic 动态组件',
+      url: 'dynamic'
     },
     {
       name: 'Icon 图标',
@@ -47,6 +47,10 @@ export class AppComponent {
     {
       name: 'Menu 菜单',
       url: 'menu',
+    },
+    {
+      name: 'Modal 模态框',
+      url: 'modal'
     },
     {
       name: 'Radar 雷达图',
