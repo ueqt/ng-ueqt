@@ -1,6 +1,11 @@
-<input *ngIf="uType !== 'textarea'" class="u-input-content" [class.u-input-content-hasvalue]="!!text"
-  [attr.type]="uType || 'text'" [(ngModel)]="text" [maxlength]="uMaxLength" (blur)="onBlur()" />
-<textarea *ngIf="uType === 'textarea'" class="u-input-content" [class.u-input-content-hasvalue]="!!text"
-  [(ngModel)]="text" [maxlength]="uMaxLength"></textarea>
+<input *ngIf="uType !== 'textarea' && uType !== 'select'" class="u-input-content"
+  [class.u-input-content-hasvalue]="!!data" [attr.type]="uType || 'text'" [(ngModel)]="data" [maxlength]="uMaxLength"
+  (blur)="onBlur()" />
+<textarea *ngIf="uType === 'textarea'" class="u-input-content" [class.u-input-content-hasvalue]="!!data"
+  [(ngModel)]="data" [maxlength]="uMaxLength"></textarea>
+<select *ngIf="uType === 'select'" class="u-input-content u-select" [class.u-input-content-hasvalue]="!!data"
+  [(ngModel)]="data">
+  <option *ngFor="let o of uOptions" [ngValue]="o">{{o.label}}</option>
+</select>
 <span class="u-input-bar"></span>
 <label>{{uLabel}}</label>

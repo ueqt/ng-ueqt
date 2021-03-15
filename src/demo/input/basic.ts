@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'udemo-input-basic',
@@ -17,9 +17,28 @@ import { Component } from '@angular/core';
   <u-input uLabel="password" uType="password"></u-input>
   <u-input uLabel="search" uType="search"></u-input>
   <u-input uType="textarea" uLabel="textarea"></u-input>
+  <u-input uType="select" uLabel="select" [uOptions]="options" [(ngModel)]="selectedValue" (ngModelChange)="selected($event)"></u-input>
 `,
 })
-export class UdemoInputBasicComponent {
+export class UdemoInputBasicComponent implements OnInit {
 
   text: string;
+
+  selectedValue: any;
+
+  options = [];
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.options = [
+        { label: 'a', value: '1' },
+        { label: 'b', value: '2' },
+      ];
+    }, 1000);
+  }
+
+  selected(event): void {
+    console.log(event);
+    console.log(this.selectedValue);
+  }
 }

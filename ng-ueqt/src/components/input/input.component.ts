@@ -29,20 +29,28 @@ export class UInputComponent implements ControlValueAccessor {
   /**
    * 输入类型
    */
-  @Input() uType: 'text' | 'number' | 'textarea' | 'password' | 'date' | 'datetime-local' | 'email' | 'month' | 'search' | 'tel' | 'time' | 'url' | 'week';
+  @Input() uType: 'text' | 'number' | 'textarea' | 'password' | 'date' | 'datetime-local' | 'email' | 'month' | 'search' | 'tel' | 'time' | 'url' | 'week' | 'select';
 
   /**
    * 最大长度
    */
   @Input() uMaxLength: number;
 
-  private innerText = '';
-  get text(): string {
-    return this.innerText;
+  /**
+   * select选项
+   */
+  @Input() uOptions: {
+    label: string,
+    value: string
+  }[] = [];
+
+  private innerData = '';
+  get data(): any {
+    return this.innerData;
   }
-  set text(v: string) {
-    if (v !== this.innerText) {
-      this.innerText = v;
+  set data(v: any) {
+    if (v !== this.innerData) {
+      this.innerData = v;
       this.onChange(v);
     }
   }
@@ -58,9 +66,9 @@ export class UInputComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  writeValue(value: string): void {
-    if (value !== this.text) {
-      this.text = value;
+  writeValue(value: any): void {
+    if (value !== this.data) {
+      this.data = value;
       this.cdr.markForCheck();
     }
   }
