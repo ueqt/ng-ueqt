@@ -19,32 +19,65 @@ export class UModalService {
    * 成功
    * @param message 消息
    */
-  success(message: string): UModalComponent {
-    return this.showModalModel({ type: UModalTypes.Success, message });
+  success(
+    message: string,
+    confirmCallBack?: () => boolean | void,
+    confirmLabel = '确认'
+  ): UModalComponent {
+    return this.showModalModel({
+      type: UModalTypes.Success,
+      message,
+      confirmCallBack,
+      confirmLabel
+    });
   }
 
   /**
    * 信息
    * @param message 消息
    */
-  info(message: string): UModalComponent {
-    return this.showModalModel({ type: UModalTypes.Info, message });
+  info(
+    message: string,
+    confirmCallBack?: () => boolean | void,
+    confirmLabel = '确认'): UModalComponent {
+    return this.showModalModel({
+      type: UModalTypes.Info,
+      message,
+      confirmCallBack,
+      confirmLabel
+    });
   }
 
   /**
    * 警告
    * @param message 消息
    */
-  warn(message: string): UModalComponent {
-    return this.showModalModel({ type: UModalTypes.Warn, message });
+  warn(
+    message: string,
+    confirmCallBack?: () => boolean | void,
+    confirmLabel = '确认'): UModalComponent {
+    return this.showModalModel({
+      type: UModalTypes.Warn,
+      message,
+      confirmCallBack,
+      confirmLabel
+    });
   }
 
   /**
    * 错误
    * @param message 消息
    */
-  error(message: string): UModalComponent {
-    return this.showModalModel({ type: UModalTypes.Error, message });
+  error(
+    message: string,
+    confirmCallBack?: () => boolean | void,
+    confirmLabel = '确认'): UModalComponent {
+    return this.showModalModel({
+      type: UModalTypes.Error,
+      message,
+      confirmCallBack,
+      confirmLabel
+    });
   }
 
   /**

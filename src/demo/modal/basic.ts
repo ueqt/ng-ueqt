@@ -24,7 +24,10 @@ export class UdemoModalBasicComponent {
   }
 
   success = async () => {
-    this.modalService.success('success<br/>wow');
+    const ref = this.modalService.success('success<br/>wow');
+    setTimeout(() => {
+      ref.close();
+    }, 3000);
   }
 
   error = async () => {
@@ -32,7 +35,9 @@ export class UdemoModalBasicComponent {
   }
 
   warn = async () => {
-    this.modalService.warn('warn');
+    this.modalService.warn('warn', () => {
+      console.log('warn close');
+    }, '关闭');
   }
 
   confirm = async () => {

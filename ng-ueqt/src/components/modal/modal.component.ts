@@ -21,10 +21,12 @@ export class UModalComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
-    this.dynamicService.render(
-      this.customComponent.nativeElement,
-      this.model.customComponentType,
-      this.model.customArgs);
+    if (this.customComponent) {
+      this.dynamicService.render(
+        this.customComponent.nativeElement,
+        this.model.customComponentType,
+        this.model.customArgs);
+    }
   }
 
   get styleBg(): string {
