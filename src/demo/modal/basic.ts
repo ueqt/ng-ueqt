@@ -1,7 +1,7 @@
 import { UModalComponent } from './../../../ng-ueqt/src/components/modal/modal.component';
 import { UModalService } from './../../../ng-ueqt/src/components/modal/modal.service';
 import { UButtonComponent } from './../../../ng-ueqt/src/components/button/button.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { sleep } from 'ng-ueqt/components/core/util';
 
 @Component({
@@ -12,10 +12,19 @@ import { sleep } from 'ng-ueqt/components/core/util';
   <u-button [uClick]="error" uColor="var(--u-warn)">Error</u-button>
   <u-button [uClick]="warn" uColor="var(--u-accent)">Warn</u-button>
   <u-button [uClick]="confirm" uColor="var(--u-primary)">Confirm</u-button>
-  <u-button [uClick]="custom">Custom</u-button>
+  <u-button [uClick]="customComponent">Custom Component</u-button>
+  <u-button [uClick]="customTemplateRef">Custom TemplateRef</u-button>
+  <ng-template #tp let-data>
+    <div class="u-modal-body">Hello {{data.abc}}</div>
+    <div class="u-modal-footer" [style.border-top-color]="data.modal.styleBorderColor">
+      <u-button [uClick]="close" [uClickArgs]="data">关闭</u-button>
+    </div>
+  </ng-template>
 `,
 })
 export class UdemoModalBasicComponent {
+
+  @ViewChild('tp') tp: TemplateRef<unknown>;
 
   constructor(private modalService: UModalService) { }
 
@@ -48,10 +57,20 @@ export class UdemoModalBasicComponent {
     }, '确认');
   }
 
-  custom = async () => {
+  customComponent = async () => {
     const ref = this.modalService.custom(UdemoModalTestComponent, {
       abc: 'world'
     });
+  }
+
+  customTemplateRef = async () => {
+    const ref = this.modalService.custom(this.tp, {
+      abc: 'world'
+    });
+  }
+
+  close = async (_: UButtonComponent, data: any) => {
+    data.modal.close();
   }
 }
 

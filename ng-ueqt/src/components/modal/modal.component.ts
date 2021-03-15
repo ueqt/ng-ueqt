@@ -1,4 +1,4 @@
-import { Component, HostBinding, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, HostBinding, Inject, ViewChild, ElementRef, AfterViewInit, ViewContainerRef } from '@angular/core';
 import { UDynamicService } from '../dynamic';
 import { UModalModel, UModalTypes, U_MODAL_MODEL_TOKEN } from './modal.model';
 
@@ -17,7 +17,8 @@ export class UModalComponent implements AfterViewInit {
 
   constructor(
     @Inject(U_MODAL_MODEL_TOKEN) public model: UModalModel,
-    private dynamicService: UDynamicService
+    private dynamicService: UDynamicService,
+    private viewContainerRef: ViewContainerRef
   ) { }
 
   ngAfterViewInit(): void {
@@ -25,7 +26,9 @@ export class UModalComponent implements AfterViewInit {
       this.dynamicService.render(
         this.customComponent.nativeElement,
         this.model.customComponentType,
-        this.model.customArgs);
+        this.model.customArgs,
+        this.viewContainerRef,
+        this);
     }
   }
 

@@ -1,5 +1,5 @@
 import { UDynamicService } from './../../../ng-ueqt/src/components/dynamic/dynamic.service';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -10,7 +10,9 @@ export class UdemoDynamicBasicComponent implements AfterViewInit {
 
   @ViewChild('parent') parent: ElementRef;
 
-  constructor(public dynamicService: UDynamicService) {
+  constructor(
+    public dynamicService: UDynamicService
+  ) {
   }
 
   ngAfterViewInit(): void {
