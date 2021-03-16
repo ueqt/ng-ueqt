@@ -1,3 +1,4 @@
+import { UInputModule } from './../../../ng-ueqt/src/components/input/input.module';
 import { UCodeboxModule } from '../../app/codebox/codebox.module';
 import { RouterModule, Routes } from '@angular/router';
 import { UdemoButtonBasicComponent } from './basic';
@@ -26,6 +27,7 @@ const icons: UIconDefinition[] = [
     UCodeboxModule,
     UTabsModule,
     UButtonModule,
+    UInputModule,
     UIconModule.forRoot(icons),
   ],
   declarations: [UdemoButtonComponent, UdemoButtonBasicComponent],

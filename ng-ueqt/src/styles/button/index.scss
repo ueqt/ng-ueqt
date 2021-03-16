@@ -131,3 +131,33 @@
     }
   }
 }
+
+.u-button-group {
+  border-radius: 4px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  white-space: nowrap;
+  overflow: hidden;
+
+  .u-button {
+    margin: 0;
+    height: 36px;
+  }
+
+  .u-button:first-child {
+    border-radius: 0;
+  }
+
+  .u-button:last-child {
+    border-radius: 0;
+  }
+
+  .u-input {
+    border-radius: 0;
+
+    .u-select {
+      height: 36px;
+    }
+  }
+}

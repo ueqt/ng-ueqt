@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UButtonComponent } from './button.component';
+import { UButtonGroupComponent } from './button-group.component';
 
 const components = [
-    UButtonComponent
+    UButtonComponent,
+    UButtonGroupComponent
 ];
 
 @NgModule({
