@@ -18,6 +18,10 @@ import { Component, OnInit } from '@angular/core';
   <u-input uLabel="search" uType="search"></u-input>
   <u-input uType="textarea" uLabel="textarea"></u-input>
   <u-input uType="select" uLabel="select" [uOptions]="options" [(ngModel)]="selectedValue" (ngModelChange)="selected($event)"></u-input>
+  <u-input uType="select" uLabel="select" [(ngModel)]="selectedValue" (ngModelChange)="selected($event)">
+    <option [value]="1">a</option>
+    <option [value]="2">b</option>
+  </u-input>
 `,
 })
 export class UdemoInputBasicComponent implements OnInit {
