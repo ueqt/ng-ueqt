@@ -84,7 +84,7 @@ export class UMenuComponent implements OnChanges {
 
   private flattenNodes(): UMenuFlatNode[] {
     const results: UMenuFlatNode[] = [];
-    this.datas.forEach((node) => this.flattenNode(node, 0, results, null));
+    this.datas.forEach((node) => this.flattenNode(node, 1, results, null));
     return results;
   }
 

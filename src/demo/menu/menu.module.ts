@@ -11,7 +11,9 @@ import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UMenuModule } from
 
 const routes: Routes = [{ path: '', component: UdemoMenuComponent }];
 
-const icons: UIconDefinition[] = [AllIcons.UIconBars];
+const icons: UIconDefinition[] = [
+  AllIcons.UIconBars
+];
 
 @NgModule({
   imports: [
