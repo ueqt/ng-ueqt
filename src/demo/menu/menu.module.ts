@@ -17,12 +17,19 @@ const icons: UIconDefinition[] = [
 
 @NgModule({
   imports: [
+    UIconModule.forChild(icons)
+  ]
+})
+export class UdemoMenuIconModule { }
+
+@NgModule({
+  imports: [
     CommonModule,
     RouterModule.forChild(routes),
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
-    UIconModule.forChild(icons),
+    UdemoMenuIconModule,
     UTabsModule,
     UMenuModule,
   ],

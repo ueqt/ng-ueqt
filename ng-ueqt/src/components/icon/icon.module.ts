@@ -29,27 +29,14 @@ export class UIconModule {
     };
   }
 
-  static addIcons(icons: UIconDefinition[]): void {
-    if (!icons) {
-      return;
-    }
-    icons.forEach((icon) => {
-      const found = UIconModule.cacheIcons.find((i) => i.name === icon.name);
-      if (!found) {
-        UIconModule.cacheIcons.push(icon);
-      }
-    });
-  }
-
   static forChild(icons: UIconDefinition[]): ModuleWithProviders<UIconModule> {
-    UIconModule.addIcons(icons);
     return {
       ngModule: UIconModule,
       providers: [
         UIconPatchService,
         {
           provide: U_ICONS_PATCH,
-          useValue: UIconModule.cacheIcons,
+          useValue: icons,
         },
       ],
     };
