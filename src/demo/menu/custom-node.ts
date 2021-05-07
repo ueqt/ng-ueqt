@@ -3,16 +3,25 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'udemo-menu-custom-node',
-  template: `<u-menu [datas]="datas" [customNode]="custom"></u-menu>
+  template: `
+  Inline<br />
+  <u-menu [datas]="datas" [customNode]="custom"></u-menu>
+  <hr />
+  Horizontal<br />
+  <u-menu [datas]="datas" [customNode]="custom" mode='horizontal'></u-menu>
+  <hr />
+  Vertical<br />
+  <u-menu [datas]="datas" [customNode]="custom" mode='vertical'></u-menu>
+  <hr />
     <ng-template #custom let-node="node"
-      ><i uIcon="bars" style="margin-right: 10px;line-height: 48px;"></i>
-      <span>{{ node.addition }} {{ node.name }}</span></ng-template
+      ><i uIcon="bars" style="margin-right: 10px;line-height: 22px;"></i>
+      <span style="margin-right: 30px;">{{ node.addition }} {{ node.name }}</span></ng-template
     > `,
 })
 export class UdemoMenuCustomNodeComponent {
   datas: UMenuNode[] = [
     {
-      name: 'aaa',
+      name: 'aaaaaaa',
       addition: '1',
       children: [
         {

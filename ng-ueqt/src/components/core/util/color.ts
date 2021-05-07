@@ -173,6 +173,10 @@ export function rgbContrast(rgb: URgb): URgb {
  * @param threshold 阈值
  */
 export function getContrastHex(anyColorString: string, threshold = 128): string {
+  if (anyColorString === 'transparent') {
+    // 透明的对比色是黑色
+    return '#000000';
+  }
   const hexColor = getHexColor(anyColorString);
   const rgb = hexToRgb(hexColor);
   const result = ((rgb.red * 299) + (rgb.green * 587) + (rgb.blue * 114)) / 1000;

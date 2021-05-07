@@ -20,7 +20,7 @@ export class UButtonComponent {
 
     @Input() uDisabled = false;
 
-    @Input() uClick: (button: UButtonComponent, args: any) => Promise<void>;
+    @Input() uClick: (button: UButtonComponent, args: any, event: Event) => Promise<void>;
 
     @Input() uClickArgs: any;
 
@@ -75,7 +75,7 @@ export class UButtonComponent {
 
         if (this.uClick) {
             try {
-                await this.uClick(this, this.uClickArgs);
+                await this.uClick(this, this.uClickArgs, event);
             } catch (e) {
                 throw e;
             } finally {

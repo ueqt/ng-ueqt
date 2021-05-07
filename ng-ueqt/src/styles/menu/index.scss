@@ -36,3 +36,40 @@
   width: 10px;
   line-height: 48px;
 }
+
+.u-menu-popup {
+  position: relative;
+  background-color: var(--u-primary-c);
+  color: var(--u-primary);
+  height: 30px;
+  line-height: 30px;
+
+  &:hover {
+    background-color: var(--u-accent);
+    color: var(--u-accent-c);
+  }
+
+  .u-menu-popup-name {
+    margin-left: 10px;
+    margin-right: 30px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .u-menu-popup-right {
+    position: absolute;
+    right: 10px;
+    line-height: 34px;
+  }
+}
+
+.u-menu-vertical-node {
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  position: relative;
+  padding-left: 24px;
+}

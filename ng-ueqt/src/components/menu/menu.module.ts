@@ -1,3 +1,5 @@
+import { OverlayModule } from '@angular/cdk/overlay';
+import { UButtonModule } from './../button/button.module';
 import { UMenuComponent } from './menu.component';
 import { UIconModule } from './../icon/icon.module';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -13,13 +15,23 @@ const icons: UIconDefinition[] = [
   PrimerIcons.UIconRight
 ];
 
+export const components = [
+  UMenuComponent
+];
+
 @NgModule({
-  declarations: [UMenuComponent],
-  exports: [UMenuComponent],
+  declarations: [
+    ...components
+  ],
+  exports: [
+    ...components
+  ],
   imports: [
     CommonModule,
     CdkTreeModule,
-    UIconModule.forChild(icons)
+    OverlayModule,
+    UIconModule.forChild(icons),
+    UButtonModule
   ],
 })
 export class UMenuModule {}

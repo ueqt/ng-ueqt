@@ -1,7 +1,6 @@
 import { UThemeService } from './../../ng-ueqt/src/components/theme/theme.service';
 import {
-  UMenuFlatNode,
-  UMenuComponent,
+  UMenuComponent, UMenuFlatNode,
 } from './../../ng-ueqt/src/components/menu/menu.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UMenuNode } from 'ng-ueqt';

@@ -3,7 +3,17 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'udemo-menu-basic',
-  template: `<u-menu [datas]="datas"></u-menu>`,
+  template: `
+  Inline<br />
+  <u-menu [datas]="datas"></u-menu>
+  <hr/>
+  Horizontal<br />
+  <u-menu [datas]="datas" mode="horizontal"></u-menu>
+  <hr/>
+  Vertical<br />
+  <u-menu [datas]="datas" mode="vertical"></u-menu>
+  <hr/>
+  `,
 })
 export class UdemoMenuBasicComponent {
   datas: UMenuNode[] = [
@@ -18,10 +28,22 @@ export class UdemoMenuBasicComponent {
             },
           ],
         },
+        {
+          name: 'aaa-2'
+        },
+        {
+          name: 'aaa-3',
+          children: [
+            {
+              name: 'aaa-3-1',
+            },
+          ],
+        },
       ],
     },
     {
       name: 'bbb',
+      color: 'var(--u-primary)'
     },
   ];
 }
