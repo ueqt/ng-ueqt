@@ -55,7 +55,12 @@ export class AppModule {
 
 ```ts
 @NgModule({
-  imports: [CommonModule, UIconModule.forChild([UIconLeft])],
+  imports: [UIconModule.forChild([UIconLeft])],
+})
+class ChildIconModule {}
+
+@NgModule({
+  imports: [CommonModule, ChildIconModule],
 })
 class ChildModule {}
 ```
@@ -63,3 +68,5 @@ class ChildModule {}
 这样，当 `ChildModule` 加载之后，整个应用都能够使用 UIconLeft 图标。
 
 当然，不要忘记在 `U_ICONS` 中删除该图标。
+
+注意，一定要单独定义一个IconModule，否则会覆盖`ChildModule`里其他module定义的`icon`
