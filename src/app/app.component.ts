@@ -1,7 +1,5 @@
 import { UThemeService } from './../../ng-ueqt/src/components/theme/theme.service';
-import {
-  UMenuComponent, UMenuFlatNode,
-} from './../../ng-ueqt/src/components/menu/menu.component';
+import { UMenuComponent } from './../../ng-ueqt/src/components/menu/menu.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UMenuNode } from 'ng-ueqt';
 import { Router, NavigationEnd } from '@angular/router';
@@ -90,7 +88,7 @@ export class AppComponent {
     });
   }
 
-  menuClick(node: UMenuFlatNode): void {
+  menuClick(node: UMenuNode): void {
     this.router.navigateByUrl('/' + node.url);
   }
 }

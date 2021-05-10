@@ -16,11 +16,10 @@ import {
   EmbeddedViewRef,
   ElementRef,
 } from '@angular/core';
-import { async } from 'rxjs';
 import { UAny } from '../core/util/types';
 import { TemplatePortal } from '@angular/cdk/portal';
 
-export interface UMenuNode {
+export class UMenuNode {
   /**
    * 唯一标识符
    */
@@ -45,26 +44,10 @@ export interface UMenuNode {
    * 弹出窗体
    */
   overlayRef?: OverlayRef;
-  [key: string]: UAny;
-}
-
-export interface UMenuFlatNode {
-  /**
-   * 唯一标识符
-   */
-  id: string;
-  /**
-   * 是否可展开
-   */
-  expandable: boolean;
-  /**
-   * 显示名称
-   */
-  name: string;
   /**
    * 层次级别
    */
-  level: number;
+  level?: number;
   /**
    * 是否展开状态
    */
@@ -72,7 +55,7 @@ export interface UMenuFlatNode {
   /**
    * 父节点
    */
-  parent: UMenuFlatNode;
+  parent?: UMenuNode;
   [key: string]: UAny;
 }
 
@@ -85,6 +68,8 @@ export interface UMenuFlatNode {
 export class UMenuComponent implements OnChanges {
 
   private ids = {};
+
+  private focusCount = 0;
 
   /**
    * 所有打开的弹出框的node，每个index就是每个层级打开的内容
@@ -106,36 +91,38 @@ export class UMenuComponent implements OnChanges {
    */
   @Input() mode: 'vertical' | 'horizontal' | 'inline' = 'inline';
 
-  @Output() nodeClick = new EventEmitter<UMenuFlatNode>();
+  @Output() nodeClick = new EventEmitter<UMenuNode>();
 
   @HostBinding('class.u-menu') menuClass = true;
 
   @ViewChild('templateMenuPortalContent') templateMenuPortalContent: TemplateRef<unknown>;
 
-  selectedNode: UMenuFlatNode = undefined;
+  selectedNode: UMenuNode = undefined;
 
-  treeControl = new FlatTreeControl<UMenuFlatNode>(
+  treeControl = new FlatTreeControl<UMenuNode>(
     (node) => node.level,
     (node) => node.expandable
   );
 
   dataSource = new ArrayDataSource([]);
-  flatNodes: UMenuFlatNode[] = [];
+  flatNodes: UMenuNode[] = [];
 
-  hasChild = (_: number, node: UMenuFlatNode) => node.expandable;
+  hasChild = (_: number, node: UMenuNode) => node.expandable;
 
   constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) { }
 
   ngOnChanges(): void {
-    this.flatNodes = this.flattenNodes();
+    this.flatNodes = [];
+    this.datas.forEach((node) => this.flattenNode(node, 1, null));
+    console.log(this.flatNodes);
     this.dataSource = new ArrayDataSource(this.flatNodes);
   }
 
-  shouldRender(node: UMenuFlatNode): boolean {
+  shouldRender(node: UMenuNode): boolean {
     return !node.parent || node.parent.isExpanded;
   }
 
-  changeExpand(node: UMenuFlatNode, isExpand: boolean): void {
+  changeExpand(node: UMenuNode, isExpand: boolean): void {
     node.isExpanded = isExpand;
     if (!isExpand) {
       // 收缩时子节点全收缩
@@ -147,17 +134,11 @@ export class UMenuComponent implements OnChanges {
     }
   }
 
-  selectNode(node: UMenuFlatNode): void {
+  selectNode(node: UMenuNode): void {
     this.selectedNode = node;
     if (this.nodeClick) {
       this.nodeClick.emit(node);
     }
-  }
-
-  private flattenNodes(): UMenuFlatNode[] {
-    const results: UMenuFlatNode[] = [];
-    this.datas.forEach((node) => this.flattenNode(node, 1, results, null, 0));
-    return results;
   }
 
   /**
@@ -175,59 +156,46 @@ export class UMenuComponent implements OnChanges {
   private flattenNode(
     node: UMenuNode,
     level: number,
-    results: UMenuFlatNode[],
-    parent: UMenuFlatNode,
-    index: number
-  ): UMenuFlatNode[] {
-    const flatNode: UMenuFlatNode = {
-      id: this.generateId(node.id || node.name),
-      name: node.name,
-      level,
-      expandable: !!node.children && node.children.length > 0,
-      isExpanded: false,
-      parent,
-    };
-    node.id = flatNode.id;
-    if (parent) {
-      parent.children[index] = flatNode;
-    }
-    const keys = Object.keys(flatNode);
-    for (const key in node) {
-      if (!keys.includes(key)) {
-        flatNode[key] = node[key];
-      }
-    }
-    results.push(flatNode);
+    parent: UMenuNode
+  ): void {
+    node.id = this.generateId(node.id || node.name);
+    node.level = level;
+    node.isExpanded = false;
+    node.parent = parent;
 
-    if (flatNode.expandable) {
-      if (node.children) {
-        node.children.forEach((child, i) => {
-          this.flattenNode(child, level + 1, results, flatNode, i);
-        });
-      }
-    }
+    this.flatNodes.push(node);
 
-    return results;
+    if (this.expandable(node)) {
+      node.children.forEach((child, i) => {
+        this.flattenNode(child, level + 1, node);
+      });
+    }
   }
 
-  findFlatNode(node: UMenuNode): UMenuFlatNode {
-    return this.flatNodes.find(n => n.id === node.id);
+  /**
+   * 是否可展开
+   */
+  expandable(node: UMenuNode): boolean {
+    return !!node.children && node.children.length > 0;
   }
 
   closeNode(node: UMenuNode): void {
-    node.popup.detach();
-    node.popup.destroy();
-    if (node.overlayRef.hasAttached) {
-      node.overlayRef.detach();
+    node.isExpanded = false;
+    if (node.popup) {
+      node.popup.detach();
+      node.popup.destroy();
+      if (node.overlayRef.hasAttached) {
+        node.overlayRef.detach();
+      }
+      node.overlayRef.dispose();
+      node.popup = undefined;
     }
-    node.overlayRef.dispose();
-    node.popup = undefined;
   }
 
-  closeNodeAndSubNodes(fnode: UMenuFlatNode): void {
-    if (this.openedPopups.length >= fnode.level) {
+  closeNodeAndSubNodes(node: UMenuNode): void {
+    if (this.openedPopups.length >= node.level) {
       // 有已经打开的，先关闭
-      for (let i = this.openedPopups.length - 1; i >= fnode.level - 1; i--) {
+      for (let i = this.openedPopups.length - 1; i >= node.level - 1; i--) {
         this.closeNode(this.openedPopups[i]);
         this.openedPopups.splice(i, 1);
       }
@@ -236,20 +204,19 @@ export class UMenuComponent implements OnChanges {
 
   openPopup = async (_, node: UMenuNode, event: Event) => {
     const source: any = event.target || event;
-    const fnode = this.findFlatNode(node);
     if (node.popup) {
       // 已经开着了,直接关闭
-      this.closeNodeAndSubNodes(fnode);
+      this.closeNodeAndSubNodes(node);
     } else {
       // 没开的，也先关闭其他的，注意，这句不能提取到if外面，因为node.popup关闭后就变了
-      this.closeNodeAndSubNodes(fnode);
+      this.closeNodeAndSubNodes(node);
       if (node.children) {
         // 有子节点，弹出子菜单
         const strategy = this.overlay.position()
           .flexibleConnectedTo(source)
           .withPositions([{
-            originX: (fnode.level === 1 && this.mode === 'horizontal') ? 'start' : 'end',
-            originY: (fnode.level === 1 && this.mode === 'horizontal') ? 'bottom' : 'top',
+            originX: (node.level === 1 && this.mode === 'horizontal') ? 'start' : 'end',
+            originY: (node.level === 1 && this.mode === 'horizontal') ? 'bottom' : 'top',
             overlayX: 'start',
             overlayY: 'top',
             offsetX: 0,
@@ -265,12 +232,14 @@ export class UMenuComponent implements OnChanges {
         const portal = new TemplatePortal(
           this.templateMenuPortalContent,
           this.viewContainerRef,
-          { node: fnode }
+          { node }
         );
         node.popup = node.overlayRef.attach(portal);
-        this.openedPopups[fnode.level - 1] = node;
+        this.openedPopups[node.level - 1] = node;
+        // 设置弹出界面焦点，离开焦点后可以消失
+        (node.overlayRef.overlayElement.lastElementChild as HTMLDivElement).focus();
       } else {
-        this.selectNode(fnode);
+        this.selectNode(node);
       }
     }
   }
@@ -282,9 +251,25 @@ export class UMenuComponent implements OnChanges {
     return this.findPopupRef(target.parentNode);
   }
 
-  openMorePopup(event: Event, node: UMenuFlatNode): void {
+  openMorePopup(event: Event, node: UMenuNode): void {
     const target = this.findPopupRef(event.target);
     this.openPopup(undefined, node, target);
     this.changeExpand(node, !node.isExpanded);
+  }
+
+  focusPopup(): void {
+    this.focusCount++;
+  }
+
+  blurPopup(): void {
+    this.focusCount--;
+    setTimeout(() => {
+      if (!this.focusCount) {
+        // 弹出div全都失去焦点了
+        this.flatNodes.forEach(n => {
+          this.closeNodeAndSubNodes(n);
+        });
+      }
+    }, 50);
   }
 }

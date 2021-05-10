@@ -9,7 +9,7 @@
       {{node.name}}
     </ng-template>
     <i [uIcon]="node.isExpanded ? 'up': 'down'" cdkTreeNodeToggle
-      [style.visibility]="node.expandable ? 'visible' : 'hidden'" class="u-menu-arrow"
+      [style.visibility]="expandable(node) ? 'visible' : 'hidden'" class="u-menu-arrow"
       (click)="changeExpand(node, !node.isExpanded)"></i>
   </cdk-tree-node>
   <!-- This is the tree node template for leaf nodes -->
@@ -35,26 +35,26 @@
   </u-button>
 </u-button-group>
 <ng-template #templateMenuPortalContent let-node="node">
-  <div>
+  <div tabindex="0" outline="0" hidefocus="true" (focus)="focusPopup()" (blur)="blurPopup()">
     <div *ngFor="let subNode of node.children" class="u-menu-popup" (click)="openMorePopup($event, subNode)">
       <ng-container *ngTemplateOutlet="customNode || defaultNodeH; context: {node: subNode}"></ng-container>
       <ng-template #defaultNodeH let-node="node">
         <span class="u-menu-popup-name">{{node.name}}</span>
       </ng-template>
       <i class="u-menu-popup-right" [uIcon]="subNode.isExpanded ? 'right': 'left'"
-        [style.visibility]="subNode.expandable ? 'visible' : 'hidden'"></i>
+        [style.visibility]="expandable(subNode) ? 'visible' : 'hidden'"></i>
     </div>
   </div>
 </ng-template>
 <!-- ***** 竖向菜单 ***** -->
 <div *ngIf="mode === 'vertical'">
   <div *ngFor="let node of datas" class="u-menu-vertical-node u-menu-popup"
-    (click)="openPopup(null, node, findPopupRef($event.target)) && changeExpand(findFlatNode(node), !findFlatNode(node).isExpanded)">
+    (click)="openPopup(null, node, findPopupRef($event.target)) && changeExpand(node, !node.isExpanded)">
     <ng-container *ngTemplateOutlet="customNode || defaultNodeHTop; context: {node: node}"></ng-container>
     <ng-template #defaultNodeHTop let-node="node">
       {{node.name}}
     </ng-template>
-    <i class="u-menu-arrow" [uIcon]="findFlatNode(node).isExpanded ? 'right': 'left'"
-      [style.visibility]="findFlatNode(node).expandable ? 'visible' : 'hidden'"></i>
+    <i class="u-menu-arrow" [uIcon]="node.isExpanded ? 'right': 'left'"
+      [style.visibility]="expandable(node) ? 'visible' : 'hidden'"></i>
   </div>
 </div>
