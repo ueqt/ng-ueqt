@@ -114,7 +114,7 @@ export class UMenuComponent implements OnChanges {
   ngOnChanges(): void {
     this.flatNodes = [];
     this.datas.forEach((node) => this.flattenNode(node, 1, null));
-    console.log(this.flatNodes);
+    // console.log(this.flatNodes);
     this.dataSource = new ArrayDataSource(this.flatNodes);
   }
 
