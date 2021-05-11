@@ -1,5 +1,8 @@
 <div class="u-modal-container">
   <div class="u-modal" [style.background-color]="styleBg" [style.color]="styleColor">
+    <div class="u-modal-title">
+      <u-button style="float: right;" [uClick]="defaultClose">X</u-button>
+    </div>
     <div class="u-modal-content">
       <div *ngIf="model.message" class="u-modal-body" [innerHtml]="model.message">
       </div>

@@ -85,6 +85,10 @@ export class UModalComponent implements AfterViewInit {
     this.model.overlayRef.dispose();
   }
 
+  defaultClose = async () => {
+    this.close();
+  }
+
   /**
    * 关闭
    */

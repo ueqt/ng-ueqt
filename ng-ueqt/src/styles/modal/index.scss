@@ -33,6 +33,12 @@
     margin: 0 auto;
     padding: 0 0 24px;
 
+    .u-modal-title {
+      width: 100%;
+      height: 36px;
+      background-color: var(--u-accent);
+    }
+
     .u-modal-content {
       position: relative;
       background-clip: padding-box;
