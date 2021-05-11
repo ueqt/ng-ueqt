@@ -1,4 +1,4 @@
-import { Component, HostBinding, Inject, ViewChild, ElementRef, AfterViewInit, ViewContainerRef } from '@angular/core';
+import { Component, HostBinding, Inject, ViewChild, ElementRef, AfterViewInit, ViewContainerRef, OnInit } from '@angular/core';
 import { UDynamicService } from '../dynamic';
 import { UModalModel, UModalTypes, U_MODAL_MODEL_TOKEN } from './modal.model';
 
@@ -9,17 +9,25 @@ import { UModalModel, UModalTypes, U_MODAL_MODEL_TOKEN } from './modal.model';
   selector: 'u-modal',
   templateUrl: './modal.component.html'
 })
-export class UModalComponent implements AfterViewInit {
+export class UModalComponent implements OnInit, AfterViewInit {
 
   @ViewChild('customComponent') customComponent?: ElementRef<any>;
 
   types = UModalTypes;
+
+  ignoreTitleBar = false;
 
   constructor(
     @Inject(U_MODAL_MODEL_TOKEN) public model: UModalModel,
     private dynamicService: UDynamicService,
     private viewContainerRef: ViewContainerRef
   ) { }
+
+  ngOnInit(): void {
+    if (this.model.type !== UModalTypes.Custom) {
+      this.ignoreTitleBar = true;
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.customComponent) {
