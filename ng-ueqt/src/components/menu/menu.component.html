@@ -35,7 +35,7 @@
   </u-button>
 </u-button-group>
 <ng-template #templateMenuPortalContent let-node="node">
-  <div tabindex="0" outline="0" hidefocus="true" (focus)="focusPopup()" (blur)="blurPopup()">
+  <div tabindex="0" outline="0" hidefocus="true" (focus)="focusPopup()" (blur)="blurPopup()" style="cursor: pointer;">
     <div *ngFor="let subNode of node.children" class="u-menu-popup" (click)="openMorePopup($event, subNode)">
       <ng-container *ngTemplateOutlet="customNode || defaultNodeH; context: {node: subNode}"></ng-container>
       <ng-template #defaultNodeH let-node="node">

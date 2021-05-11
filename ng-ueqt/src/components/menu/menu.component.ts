@@ -41,6 +41,10 @@ export class UMenuNode {
    */
   popup?: EmbeddedViewRef<unknown>;
   /**
+   * 点击事件
+   */
+  click?: () => void;
+  /**
    * 弹出窗体
    */
   overlayRef?: OverlayRef;
@@ -252,9 +256,16 @@ export class UMenuComponent implements OnChanges {
   }
 
   openMorePopup(event: Event, node: UMenuNode): void {
+    if (node.click) {
+      node.click();
+    }
     const target = this.findPopupRef(event.target);
     this.openPopup(undefined, node, target);
     this.changeExpand(node, !node.isExpanded);
+    if (!this.expandable(node)) {
+      // 最终节点，关闭菜单
+      this.closeAllPopup();
+    }
   }
 
   focusPopup(): void {
@@ -266,10 +277,14 @@ export class UMenuComponent implements OnChanges {
     setTimeout(() => {
       if (!this.focusCount) {
         // 弹出div全都失去焦点了
-        this.flatNodes.forEach(n => {
-          this.closeNodeAndSubNodes(n);
-        });
+        this.closeAllPopup();
       }
     }, 50);
+  }
+
+  closeAllPopup(): void {
+    this.flatNodes.forEach(n => {
+      this.closeNodeAndSubNodes(n);
+    });
   }
 }

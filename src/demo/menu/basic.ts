@@ -29,7 +29,10 @@ export class UdemoMenuBasicComponent {
           ],
         },
         {
-          name: 'aaa-2'
+          name: 'aaa-2',
+          click: () => {
+            console.log('aaa-2');
+          }
         },
         {
           name: 'aaa-3',
