@@ -60,13 +60,13 @@ export class UdemoModalBasicComponent {
   customComponent = async () => {
     const ref = this.modalService.custom(UdemoModalTestComponent, {
       abc: 'world'
-    });
+    }, '测试自定义');
   }
 
   customTemplateRef = async () => {
     const ref = this.modalService.custom(this.tp, {
       abc: 'world'
-    });
+    }, '自定义模板');
   }
 
   close = async (_: UButtonComponent, data: any) => {

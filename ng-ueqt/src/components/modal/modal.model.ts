@@ -46,6 +46,10 @@ export class UModalModel {
    */
   message?: string;
   /**
+   * 标题
+   */
+  title?: string;
+  /**
    * 确定按钮点击回调
    */
   confirmCallBack?: () => boolean | void;

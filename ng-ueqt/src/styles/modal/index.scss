@@ -33,10 +33,17 @@
     margin: 0 auto;
     // padding: 0 0 24px;
 
-    .u-modal-title {
+    .u-modal-title-bar {
       width: 100%;
       height: 36px;
       background-color: var(--u-primary);
+
+      .u-modal-title {
+        position: relative;
+        top: 6px;
+        color: var(--u-primary-c);
+        margin-left: 20px;
+      }
     }
 
     .u-modal-content {

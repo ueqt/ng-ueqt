@@ -108,9 +108,10 @@ export class UModalService {
   /**
    * 自定义内容
    */
-  custom(componentType: any, args: any = {}): UModalComponent {
+  custom(componentType: any, args: any = {}, title: string = ''): UModalComponent {
     const ref = this.showModalModel({
       type: UModalTypes.Custom,
+      title,
       customComponentType: componentType,
       customArgs: args
     });

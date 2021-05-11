@@ -1,6 +1,7 @@
 <div class="u-modal-container">
   <div class="u-modal" [style.background-color]="styleBg" [style.color]="styleColor">
-    <div *ngIf="!ignoreTitleBar" class="u-modal-title">
+    <div *ngIf="!ignoreTitleBar" class="u-modal-title-bar">
+      <span class="u-modal-title">{{model.title}}</span>
       <u-button style="float: right;" uColor="var(--u-primary)" [uClick]="defaultClose">X</u-button>
     </div>
     <div class="u-modal-content">
