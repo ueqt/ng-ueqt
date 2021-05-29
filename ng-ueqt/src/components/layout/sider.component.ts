@@ -125,7 +125,7 @@ export class USiderComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
+    this.destroy$.next(0);
     this.destroy$.complete();
   }
 
