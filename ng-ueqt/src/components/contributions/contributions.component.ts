@@ -1,7 +1,4 @@
-import { UAny } from '../core/util/types';
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
-import { doesNotThrow } from 'assert';
-import { ThrowStmt } from '@angular/compiler';
 
 export class UContributionsModel {
   /**
