@@ -20,7 +20,7 @@ const routes: Routes = [{ path: '', component: UdemoViewerComponent }];
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
     UTabsModule,
-    UViewerModule,
+    UViewerModule
   ],
   declarations: [UdemoViewerComponent, UdemoViewerBasicComponent],
 })

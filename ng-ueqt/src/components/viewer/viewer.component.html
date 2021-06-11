@@ -13,10 +13,11 @@
   </div>
   <hr />
   <div class="u-viewer-table-container" [style.height]="tableHeight">
-    <cdk-virtual-scroll-viewport class="u-viewer-table-scroll-container" [itemSize]="itemSize">
-      <div *cdkVirtualFor="let data of showDatas">
+    <cdk-virtual-scroll-viewport class="u-viewer-table-scroll-container" [itemSize]="itemSize"
+      [minBufferPx]="itemHeight * 5" [maxBufferPx]="itemHeight * 10">
+      <ng-container *cdkVirtualFor="let data of showDatas">
         <ng-container *ngTemplateOutlet="dataTemplate; context: { $implicit: data }"></ng-container>
-      </div>
+      </ng-container>
     </cdk-virtual-scroll-viewport>
   </div>
 </div>

@@ -3,7 +3,8 @@ declare var require: any;
 
 @Component({
   selector: 'udemo-viewer',
-  template: ` <u-tabs>
+  template: `
+  <u-tabs>
     <u-tab uTitle="演示">
       <udemo-code-box
         uTitle="基本使用"
@@ -24,7 +25,8 @@ declare var require: any;
     <u-tab uTitle="API">
       <markdown src="viewer/viewer-api.md"></markdown>
     </u-tab>
-  </u-tabs>`,
+  </u-tabs>
+`,
 })
 export class UdemoViewerComponent {
   basic = require('!!raw-loader!./basic.ts').default;

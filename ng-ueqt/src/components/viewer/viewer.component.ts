@@ -193,6 +193,7 @@ export class UViewerComponent implements AfterViewInit {
     this.itemSize = this.itemHeight;
     // 为了拿到实际的offsetWidth需要timeout
     setTimeout(() => {
+      // 自适应分一行多列
       const n: HTMLDivElement = this.element.nativeElement;
       const nc: HTMLDivElement = n.getElementsByClassName('u-viewer-table-container')[0] as HTMLDivElement;
       const actWidth = nc.offsetWidth;
@@ -212,7 +213,6 @@ export class UViewerComponent implements AfterViewInit {
   }
 
   changeOrder = async (_, c: UViewerOrderColumnModel) => {
-    console.log('in');
     if (c.isAsc) {
       c.isAsc = false;
       // 从orderOptionIds里去除已经选择的项
