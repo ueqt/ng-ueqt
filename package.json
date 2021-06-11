@@ -47,10 +47,5 @@
       "tslint",
       "git add"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && node tools/version.js && git add ng-ueqt/package.json"
-    }
   }
 }

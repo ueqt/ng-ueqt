@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run lint-staged && node tools/version.js && git add ng-ueqt/package.json
