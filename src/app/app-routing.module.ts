@@ -74,6 +74,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../demo/tooltip/tooltip.module').then((m) => m.UdemoTooltipModule),
   },
+  {
+    path: 'viewer',
+    loadChildren: () =>
+      import('../demo/viewer/viewer.module').then((m) => m.UdemoViewerModule),
+  },
 ];
 
 @NgModule({

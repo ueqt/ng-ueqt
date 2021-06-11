@@ -69,6 +69,10 @@ export class AppComponent {
       name: 'Tooltip 文本提示',
       url: 'tooltip',
     },
+    {
+      name: 'Viewer 视图',
+      url: 'viewer',
+    },
   ];
 
   constructor(
