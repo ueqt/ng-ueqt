@@ -49,6 +49,11 @@ export class UViewerColumnDef {
    * 字段类型
    */
   type?: 'number' | 'string' | string = 'string';
+
+  /**
+   * 额外字段
+   */
+  [key: string]: any;
 }
 
 @Component({
