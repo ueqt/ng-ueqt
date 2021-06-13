@@ -16,7 +16,10 @@
     <cdk-virtual-scroll-viewport class="u-viewer-table-scroll-container" [itemSize]="itemSize"
       [minBufferPx]="itemHeight * 5" [maxBufferPx]="itemHeight * 10">
       <ng-container *cdkVirtualFor="let data of showDatas">
-        <ng-container *ngTemplateOutlet="dataTemplate; context: { $implicit: data }"></ng-container>
+        <div [style.width]="itemWidth ? (itemWidth + 'px') : '100%'" [style.height]="itemHeight + 'px'">
+          <ng-container *ngTemplateOutlet="dataTemplate; context: { $implicit: data, orderColumns: orderColumns }">
+          </ng-container>
+        </div>
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </div>

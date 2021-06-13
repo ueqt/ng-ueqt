@@ -7,23 +7,20 @@ import { Component } from '@angular/core';
   <u-viewer [columnDefs]="columnDefs" [datas]="datas" [dataTemplate]="dataTmpl" [itemHeight]="40" [tableHeight]="'200px'">
   </u-viewer>
   <ng-template #dataTmpl let-data>
-      <div style="height: 40px;"> <!-- 这里高度要和itemHeight一致 -->
       A: {{ data.a }}
       B: {{ data.b }}
       C: {{ data.c }}
-      </div>
   </ng-template>
 
   <br/>
 
   <u-viewer [columnDefs]="columnDefs" [datas]="datas" [dataTemplate]="dataTmpl2" [itemHeight]="40" [itemWidth]="500" [tableHeight]="'200px'">
   </u-viewer>
-  <ng-template #dataTmpl2 let-data>
-      <div style="height: 40px;width: 500px;"> <!-- 这里高度要和itemHeight一致 -->
+  <ng-template #dataTmpl2 let-data let-orderColumns='orderColumns'>
       A: {{ data.a }}
       B: {{ data.b }}
       C: {{ data.c }}
-      </div>
+      {{ orderColumns | json }}
   </ng-template>
 `
 })
