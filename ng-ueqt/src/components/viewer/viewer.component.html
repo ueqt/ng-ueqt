@@ -4,7 +4,7 @@
     <u-button *ngFor="let c of orderColumns" [uClick]="changeOrder" [uClickArgs]="c">
       {{ c.name }} {{ c.isAsc ? '↑' : '↓'}}
     </u-button>
-    <u-input *ngIf="orderColumnOptionIndexes.length > 0" uType="select"
+    <u-input *ngIf="orderColumnOptionIndexes.length > maxOrderNumber" uType="select"
       style="display: inline-block;margin-bottom: 0px;" (change)="selectedOrder($event)">
       <option></option>
       <option *ngFor="let c of orderColumnOptionIndexes" [value]="c">{{ columnDefs[c].name }}</option>

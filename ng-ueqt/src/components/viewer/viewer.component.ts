@@ -156,6 +156,11 @@ export class UViewerComponent implements AfterViewInit {
    */
   @Input() tableHeight: string;
 
+  /**
+   * 最大可排序数量
+   */
+  @Input() maxOrderNumber = 0;
+
   itemSize = 114;
 
   /**
