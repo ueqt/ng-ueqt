@@ -48,7 +48,7 @@ export class UViewerColumnDef {
   /**
    * 字段类型
    */
-  type?: 'number' | 'string' = 'string';
+  type?: 'number' | 'string' | string = 'string';
 }
 
 @Component({
