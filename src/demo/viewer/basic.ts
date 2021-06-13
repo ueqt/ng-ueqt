@@ -16,11 +16,12 @@ import { Component } from '@angular/core';
 
   <u-viewer [columnDefs]="columnDefs" [datas]="datas" [dataTemplate]="dataTmpl2" [itemHeight]="40" [itemWidth]="500" [tableHeight]="'200px'" [maxOrderNumber]="1">
   </u-viewer>
-  <ng-template #dataTmpl2 let-data let-orderColumns='orderColumns'>
+  <ng-template #dataTmpl2 let-data let-orderColumns='orderColumns' let-filterColumns="filterColumns">
       A: {{ data.a }}
       B: {{ data.b }}
       C: {{ data.c }}
       {{ orderColumns | json }}
+      {{ filterColumns | json }}
   </ng-template>
 `
 })

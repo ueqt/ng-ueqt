@@ -26,6 +26,28 @@ export class UViewerOrderColumnModel {
 }
 
 /**
+ * 视图过滤模型
+ */
+export class UViewerFilterColumnModel {
+  /**
+   * 索引号
+   */
+  index: number;
+  /**
+   * 字段名
+   */
+  name: string;
+  /**
+   * 条件
+   */
+  condition: string;
+  /**
+   * 值
+   */
+  value: string;
+}
+
+/**
  * 视图列定义
  */
 export class UViewerColumnDef {
@@ -45,6 +67,10 @@ export class UViewerColumnDef {
    * 禁用排序
    */
   disableSort?: boolean;
+  /**
+   * 禁用过滤
+   */
+  disableFilter?: boolean;
   /**
    * 字段类型
    */
@@ -139,12 +165,21 @@ export class UViewerComponent implements AfterViewInit {
   @Input() set columnDefs(v: UViewerColumnDef[]) {
     this.orderColumns = [];
     this.orderColumnOptionIndexes = [];
+    this.filterColumns = [];
+    this.filterColumnOptionIndexes = [];
     for (let i = 0; i < v.length; i++) {
       v[i].index = i;
       if (v[i].disableSort) {
         continue;
       }
       this.orderColumnOptionIndexes.push(i);
+    }
+    for (let i = 0; i < v.length; i++) {
+      v[i].index = i;
+      if (v[i].disableFilter) {
+        continue;
+      }
+      this.filterColumnOptionIndexes.push(i);
     }
     this.lColumnDefs = v;
   }
@@ -166,6 +201,11 @@ export class UViewerComponent implements AfterViewInit {
    */
   @Input() maxOrderNumber = 0;
 
+  /**
+   * 最大可过滤数量
+   */
+  @Input() maxFilterNumber = 0;
+
   itemSize = 114;
 
   /**
@@ -179,9 +219,46 @@ export class UViewerComponent implements AfterViewInit {
   orderColumns: UViewerOrderColumnModel[] = [];
 
   /**
+   * 实际过滤列
+   */
+  filterColumns: UViewerFilterColumnModel[] = [];
+
+  /**
    * 可选的排序列索引号
    */
   orderColumnOptionIndexes: number[] = [];
+
+  /**
+   * 可选的过滤列索引号
+   */
+  filterColumnOptionIndexes: number[] = [];
+
+  conditionFunctions = { // search method base on conditions list value
+    大于: (value, filterdValue) => {
+      return value > filterdValue;
+    },
+    小于: (value, filterdValue) => {
+      return value < filterdValue;
+    },
+    等于: (value, filterdValue) => {
+      return value === filterdValue;
+    },
+    不等于: (value, filterdValue) => {
+      return value !== filterdValue;
+    },
+    包含: (value, filterdValue) => {
+      return value.toString().includes(filterdValue);
+    },
+    不包含: (value, filterdValue) => {
+      return !value.toString().includes(filterdValue);
+    }
+  };
+
+  conditionOptions = Object.keys(this.conditionFunctions);
+
+  filterIndex = '';
+  filterCondition = '';
+  filterValue = '';
 
   constructor(
     private element: ElementRef
@@ -262,6 +339,17 @@ export class UViewerComponent implements AfterViewInit {
    */
   refresh(): void {
     this.showDatas = [...this.lDatas];
+    for (let j = this.filterColumns.length - 1; j >= 0; j--) {
+      const c = this.filterColumns[j];
+      const key = this.columnDefs[c.index].id;
+      for (let i = this.showDatas.length - 1; i >= 0; i--) {
+        if (!this.conditionFunctions[c.condition](
+          (this.columnDefs[c.index].type === 'number' ? +this.showDatas[i][key] : this.showDatas[i][key]),
+          (this.columnDefs[c.index].type === 'number' ? +c.value : c.value))) {
+          this.showDatas.splice(i, 1);
+        }
+      }
+    }
     for (let j = this.orderColumns.length - 1; j >= 0; j--) {
       const c = this.orderColumns[j];
       const key = this.columnDefs[c.index].id;
@@ -307,5 +395,30 @@ export class UViewerComponent implements AfterViewInit {
         });
       }
     }
+  }
+
+  addFilter = () => {
+    if (this.filterIndex === undefined
+      || this.filterIndex === ''
+      || !this.filterCondition
+      || this.filterValue === undefined
+      || this.filterValue === '') {
+      return;
+    }
+    this.filterColumns.push({
+      index: +this.filterIndex,
+      name: this.columnDefs[this.filterIndex].name,
+      condition: this.filterCondition,
+      value: this.filterValue
+    });
+    this.refresh();
+  }
+
+  changeFilter = async (_, c: UViewerFilterColumnModel) => {
+    const ii = this.filterColumns.findIndex(o => o.index === c.index);
+    if (ii >= 0) {
+      this.filterColumns.splice(ii, 1);
+    }
+    this.refresh();
   }
 }

@@ -1,5 +1,6 @@
 <div class="u-viewer">
     <div class="u-viewer-sort">
+        记录数: {{showDatas.length}}
         <span>排序:</span>
         <u-button *ngFor="let c of orderColumns" [uClick]="changeOrder" [uClickArgs]="c">
             {{ c.name }} {{ c.isAsc ? '↑' : '↓'}}
@@ -9,13 +10,28 @@
             <option *ngFor="let c of orderColumnOptionIndexes" [value]="c">{{ columnDefs[c].name }}</option>
         </u-input>
         <span>过滤:</span>
+        <u-button *ngFor="let c of filterColumns" [uClick]="changeFilter" [uClickArgs]="c">
+            {{ c.name }} {{ c.condition }} {{ c.value }}
+        </u-button>
+        <div *ngIf="maxFilterNumber === 0 || filterColumns.length < maxFilterNumber" style="display: inline-block;">
+            <u-input uType="select" style="display: inline-block;margin-bottom: 0px;" [(ngModel)]="filterIndex">
+                <option></option>
+                <option *ngFor="let c of filterColumnOptionIndexes" [value]="c">{{ columnDefs[c].name }}</option>
+            </u-input>
+            <u-input uType="select" style="display: inline-block;margin-bottom: 0px;" [(ngModel)]="filterCondition">
+                <option></option>
+                <option *ngFor="let c of conditionOptions" [value]="c">{{ c }}</option>
+            </u-input>
+            <u-input style="display: inline-block;margin-bottom: 0px;" [(ngModel)]="filterValue"></u-input>
+            <u-button [uClick]="addFilter">+</u-button>
+        </div>
     </div>
     <hr />
     <div class="u-viewer-table-container" [style.height]="tableHeight">
         <cdk-virtual-scroll-viewport class="u-viewer-table-scroll-container" [itemSize]="itemSize" [minBufferPx]="itemHeight * 5" [maxBufferPx]="itemHeight * 10">
             <ng-container *cdkVirtualFor="let data of showDatas">
                 <div [style.width]="itemWidth ? (itemWidth + 'px') : '100%'" [style.height]="itemHeight + 'px'">
-                    <ng-container *ngTemplateOutlet="dataTemplate; context: { $implicit: data, orderColumns: orderColumns }">
+                    <ng-container *ngTemplateOutlet="dataTemplate; context: { $implicit: data, orderColumns: orderColumns, filterColumns: filterColumns }">
                     </ng-container>
                 </div>
             </ng-container>
