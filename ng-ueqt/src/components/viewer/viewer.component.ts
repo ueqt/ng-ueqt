@@ -179,6 +179,7 @@ export class UViewerComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.calcItemSize();
+    // @ts-ignore
     const observer = new ResizeObserver(entries => {
       entries.forEach(entry => {
         this.calcItemSize();
