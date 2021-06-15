@@ -106,7 +106,7 @@
     height: 32px;
     padding: 0;
     flex-shrink: 0;
-    line-height: 40px;
+    line-height: 32px;
     border-radius: 50%;
     &:hover {
         &:before,
@@ -119,6 +119,9 @@
         &:after {
             border-radius: 90%;
         }
+    }
+    .uicon {
+        margin-top: 8px;
     }
 }
 
