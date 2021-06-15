@@ -1,97 +1,90 @@
 .u-input {
-  position: relative;
-  display: block;
-  // margin-left: 40px;
-  margin-bottom: 35px;
-
-  .u-input-content {
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
+    position: relative;
     display: block;
-    border: none;
-    border-bottom: 1px solid var(--u-primary);
-    cursor: text;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: transparent;
-
-    &:focus {
-      outline: none;
+    // margin-left: 40px;
+    margin-top: 15px;
+    .u-input-content {
+        font-size: 18px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        border: none;
+        border-bottom: 1px solid var(--u-primary);
+        cursor: text;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: transparent;
+        &:focus {
+            outline: none;
+        }
     }
-  }
-
-  .u-input-content[type='date']:not(.u-input-content-hasvalue),
-  .u-input-content[type='datetime-local']:not(.u-input-content-hasvalue),
-  .u-input-content[type='month']:not(.u-input-content-hasvalue),
-  .u-input-content[type='week']:not(.u-input-content-hasvalue),
-  .u-input-content[type='time']:not(.u-input-content-hasvalue) {
-    padding-left: 200px;
-  }
-
-  .u-input-content:focus ~ label,
-  .u-input-content-hasvalue ~ label {
-    top: -10px;
-    font-size: 12px;
-    opacity: 1;
-  }
-
-  label {
-    color: var(--u-primary);
-    font-size: 14px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    top: 15px;
-    left: 10px;
-    min-width: 200px;
-    opacity: 0.3;
-    transition: 0.2s ease all;
-  }
-
-  .u-input-bar {
-    position:relative;
-    display:block;
-    &:before {
-      left:50%;
+    .u-input-content[type='date']:not(.u-input-content-hasvalue),
+    .u-input-content[type='datetime-local']:not(.u-input-content-hasvalue),
+    .u-input-content[type='month']:not(.u-input-content-hasvalue),
+    .u-input-content[type='week']:not(.u-input-content-hasvalue),
+    .u-input-content[type='time']:not(.u-input-content-hasvalue) {
+        padding-left: 200px;
     }
-    &:after {
-      right:50%; 
+    .u-input-content:focus~label,
+    .u-input-content-hasvalue~label {
+        top: -10px;
+        font-size: 12px;
+        opacity: 1;
     }
-  }
-
-  .u-input-bar:before, .u-input-bar:after {
-    content: '';
-    height: 2px; 
-    width: 0;
-    bottom: 1px; 
-    position: absolute;
-    background: var(--u-primary); 
-    transition: 0.2s ease all; 
-  }
-  
-  /* active state */
-  .u-input-content:focus ~ .u-input-bar:before, .u-input-content:focus ~ .u-input-bar:after {
-    width: 50%;
-  }
-
-  .u-select {
-      padding-right: 30px;
-      cursor: pointer;
-      -webkit-appearance: none;
-      background-image: none;
-      border-radius: 4px;
-      // border: 1px solid #dcdfe6;
-      box-sizing: border-box;
-      color: inherit;
-      background-color: inherit;
-      display: inline-block;
-      font-size: inherit;
-      height: 40px;
-      line-height: 40px;
-      outline: none;
-      padding: 0 15px;
-      transition: border-color .2s cubic-bezier(.645,.045,.355,1); 
-      width: 100%;
-      font-family: inherit;
-  }
+    label {
+        color: var(--u-primary);
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        top: 15px;
+        left: 10px;
+        min-width: 200px;
+        opacity: 0.3;
+        transition: 0.2s ease all;
+    }
+    .u-input-bar {
+        position: relative;
+        display: block;
+        &:before {
+            left: 50%;
+        }
+        &:after {
+            right: 50%;
+        }
+    }
+    .u-input-bar:before,
+    .u-input-bar:after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: var(--u-primary);
+        transition: 0.2s ease all;
+    }
+    /* active state */
+    .u-input-content:focus~.u-input-bar:before,
+    .u-input-content:focus~.u-input-bar:after {
+        width: 50%;
+    }
+    .u-select {
+        padding-right: 30px;
+        cursor: pointer;
+        -webkit-appearance: none;
+        background-image: none;
+        border-radius: 4px;
+        // border: 1px solid #dcdfe6;
+        box-sizing: border-box;
+        color: inherit;
+        background-color: inherit;
+        display: inline-block;
+        font-size: inherit;
+        height: 40px;
+        line-height: 40px;
+        outline: none;
+        padding: 0 15px;
+        transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+        width: 100%;
+        font-family: inherit;
+    }
 }

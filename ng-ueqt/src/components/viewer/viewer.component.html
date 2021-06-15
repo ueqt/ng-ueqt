@@ -22,7 +22,7 @@
                 <option></option>
                 <option *ngFor="let c of conditionOptions" [value]="c">{{ c }}</option>
             </u-input>
-            <u-input style="display: inline-block;margin-bottom: 0px;" [(ngModel)]="filterValue"></u-input>
+            <u-input style="display: inline-block;margin-bottom: 0px;" uLabel="值" [(ngModel)]="filterValue"></u-input>
             <u-button [uClick]="addFilter">+</u-button>
         </div>
     </div>
