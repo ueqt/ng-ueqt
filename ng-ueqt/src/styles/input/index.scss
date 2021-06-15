@@ -1,11 +1,11 @@
 .u-input {
     position: relative;
     display: block;
-    // margin-left: 40px;
-    margin-top: 15px;
     .u-input-content {
+        height: 52px;
+        line-height: 52px;
         font-size: 18px;
-        padding: 10px 10px 10px 5px;
+        padding: 20px 10px 10px 5px;
         display: block;
         border: none;
         border-bottom: 1px solid var(--u-primary);
@@ -26,7 +26,7 @@
     }
     .u-input-content:focus~label,
     .u-input-content-hasvalue~label {
-        top: -10px;
+        top: 0px;
         font-size: 12px;
         opacity: 1;
     }
@@ -68,7 +68,6 @@
         width: 50%;
     }
     .u-select {
-        padding-right: 30px;
         cursor: pointer;
         -webkit-appearance: none;
         background-image: none;
@@ -79,10 +78,8 @@
         background-color: inherit;
         display: inline-block;
         font-size: inherit;
-        height: 40px;
-        line-height: 40px;
         outline: none;
-        padding: 0 15px;
+        padding: 5px 15px 0px 15px;
         transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
         width: 100%;
         font-family: inherit;
