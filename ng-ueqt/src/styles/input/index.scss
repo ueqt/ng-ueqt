@@ -28,11 +28,11 @@
     .u-input-content-hasvalue~label {
         top: 0px;
         font-size: 12px;
-        opacity: 1;
+        opacity: 0.5;
     }
     label {
         color: var(--u-primary);
-        font-size: 14px;
+        font-size: 12px;
         font-weight: normal;
         position: absolute;
         pointer-events: none;
@@ -77,9 +77,9 @@
         color: inherit;
         background-color: inherit;
         display: inline-block;
-        font-size: inherit;
+        font-size: 18px;
         outline: none;
-        padding: 5px 15px 0px 15px;
+        padding: 5px 15px 0px 5px;
         transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
         width: 100%;
         font-family: inherit;
