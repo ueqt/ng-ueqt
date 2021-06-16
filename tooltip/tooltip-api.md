@@ -4,14 +4,14 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| `[uTooltip]` | 提示文字 | `string \| TemplateRef<void>` | - |
+| `[uTooltip]` | 提示文字 | `string \| TemplateRef<void>` | |
 | `[uTooltipTrigger]` | 触发行为，可选 `hover/focus/click`，为 `null` 时不响应光标事件 | `'click' \| 'focus' \| 'hover' \| null` | `'hover'` |
 | `[uTooltipPlacement]` | 气泡框位置 | `'top' \| 'left' \| 'right' \| 'bottom' \| 'topLeft' \| 'topRight' \| 'bottomLeft' \| 'bottomRight' \| 'leftTop' \| 'leftBottom' \| 'rightTop' \| 'rightBottom'` | `'top'` |
-| `[uTooltipOrigin]` | 气泡框定位元素 | `ElementRef` | - |
+| `[uTooltipOrigin]` | 气泡框定位元素 | `ElementRef` | |
 | `[uTooltipVisible]` | 显示隐藏气泡框 | `boolean` | `false` |
-| `(uTooltipVisibleChange)` | 显示隐藏的事件 | `EventEmitter<boolean>` | - |
-| `[uTooltipOverlayClassName]` | 卡片类名 | `string` | - |
-| `[uTooltipOverlayStyle]` | 卡片样式 | `object` | - |
+| `(uTooltipVisibleChange)` | 显示隐藏的事件 | `EventEmitter<boolean>` | |
+| `[uTooltipOverlayClassName]` | 卡片类名 | `string` | |
+| `[uTooltipOverlayStyle]` | 卡片样式 | `object` | |
 
 ### 方法
 
