@@ -15,7 +15,7 @@ declare var require: any;
           <udemo-viewer-basic></udemo-viewer-basic>
         </div>
         <div intro>
-          <markdown src="switch/basic.md"></markdown>
+          <markdown src="viewer/basic.md"></markdown>
         </div>
       </udemo-code-box>
     </u-tab>

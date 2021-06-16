@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 declare var require: any;
 
 @Component({
-  selector: 'udemo-contributions',
-  template: ` <u-tabs>
+  selector: 'udemo-timeline',
+  template: `
+  <u-tabs>
     <u-tab uTitle="演示">
       <udemo-code-box
         uTitle="基本使用"
@@ -11,21 +12,22 @@ declare var require: any;
         uOnlineUrl="s/ng-ueqt-grid-basic-299jd"
       >
         <div demo>
-          <udemo-contributions-basic></udemo-contributions-basic>
+          <udemo-timeline-basic></udemo-timeline-basic>
         </div>
         <div intro>
-          <markdown src="contributions/basic.md"></markdown>
+          <markdown src="timeline/basic.md"></markdown>
         </div>
       </udemo-code-box>
     </u-tab>
-    <u-tab uTitle="Contributions 贡献图">
-      <markdown src="contributions/contributions.md"></markdown>
+    <u-tab uTitle="Timeline 时间线">
+      <markdown src="timeline/timeline.md"></markdown>
     </u-tab>
     <u-tab uTitle="API">
-      <markdown src="contributions/contributions-api.md"></markdown>
+      <markdown src="timeline/timeline-api.md"></markdown>
     </u-tab>
-  </u-tabs>`,
+  </u-tabs>
+`,
 })
-export class UdemoContributionsComponent {
+export class UdemoTimelineComponent {
   basic = require('!!raw-loader!./basic.ts').default;
 }

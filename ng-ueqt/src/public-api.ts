@@ -27,6 +27,7 @@ export * from './components/radar';
 export * from './components/switch';
 export * from './components/tabs';
 export * from './components/theme';
+export * from './components/timeline';
 export * from './components/tooltip';
 export * from './components/viewer';
 

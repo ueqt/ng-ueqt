@@ -1,0 +1,22 @@
+<!-- <input type="checkbox" id="Embiggen"> <label for="Embiggen">Make bigger</label><br> -->
+<div role="region" class="u-contributions">
+    <table>
+        <tr>
+            <th></th>
+            <th *ngFor="let month of ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];index as i;" [attr.colspan]="monthWeeks[i]">{{month}}月</th>
+        </tr>
+        <tr *ngFor="let week of ['日', '一', '二', '三', '四', '五', '六'];index as y;">
+            <th>{{ week }}</th>
+            <ng-container *ngFor="let nWeek of weekArray;index as x;">
+                <td [ngClass]="values[y*this.weekNumber+x].class">
+                    <a *ngIf="values[y*this.weekNumber+x].date.getFullYear() === uOptions.year && values[y*this.weekNumber+x].value !== 0" [ngStyle]="{'background-color': values[y*this.weekNumber+x].color}" [uTooltip]="valueTip"></a>
+                    <span *ngIf="values[y*this.weekNumber+x].date.getFullYear() === uOptions.year && values[y*this.weekNumber+x].value === 0"></span>
+                    <ng-template #valueTip>
+                        <div>{{ values[y*this.weekNumber+x].date.toLocaleDateString()}}</div>
+                        <div style="color: yellow;">{{ values[y*this.weekNumber+x].value }}</div>
+                    </ng-template>
+                </td>
+            </ng-container>
+        </tr>
+    </table>
+</div>

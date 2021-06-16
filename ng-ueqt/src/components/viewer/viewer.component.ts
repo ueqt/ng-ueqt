@@ -91,78 +91,78 @@ export class UViewerColumnDef {
 })
 export class UViewerComponent implements AfterViewInit {
 
-  // #region itemHeight
+  // #region uItemHeight
 
-  private lItemHeight = 114;
+  private itemHeight = 114;
   /**
    * 单个元素高度(Viewer只支持固定行高)
    */
-  get itemHeight(): number {
-    return this.lItemHeight;
+  get uItemHeight(): number {
+    return this.itemHeight;
   }
   /**
    * 单个元素高度(Viewer只支持固定行高)
    */
-  @Input() set itemHeight(v: number) {
-    this.lItemHeight = v;
+  @Input() set uItemHeight(v: number) {
+    this.itemHeight = v;
     this.calcItemSize();
   }
 
-  // #endregion itemHeight
+  // #endregion uItemHeight
 
-  // #region itemWidth
+  // #region uItemWidth
 
-  private lItemWidth = 0;
+  private itemWidth = 0;
   /**
    * 单个元素宽度(Viewer只支持固定宽度, 0表示100%)
    */
-  get itemWidth(): number {
-    return this.lItemWidth;
+  get uItemWidth(): number {
+    return this.itemWidth;
   }
   /**
    * 单个元素宽度(Viewer只支持固定宽度, 0表示100%)
    */
-  @Input() set itemWidth(v: number) {
-    this.lItemWidth = v;
+  @Input() set uItemWidth(v: number) {
+    this.itemWidth = v;
     this.calcItemSize();
   }
 
-  // #endregion itemWidth
+  // #endregion uItemWidth
 
-  // #region datas
+  // #region uDatas
 
-  private lDatas: any[] = [];
+  private datas: any[] = [];
   /**
    * 要显示的数据数组
    */
-  get datas(): any[] {
-    return this.lDatas;
+  get uDatas(): any[] {
+    return this.datas;
   }
 
   /**
    * 要显示的数据数组
    */
-  @Input() set datas(v: any[]) {
-    this.lDatas = v;
+  @Input() set uDatas(v: any[]) {
+    this.datas = v;
     this.refresh();
   }
 
-  // #endregion datas
+  // #endregion uDatas
 
-  // #region columnDefs
+  // #region uColumnDefs
 
-  private lColumnDefs: UViewerColumnDef[] = [];
+  private columnDefs: UViewerColumnDef[] = [];
   /**
    * 列定义
    */
-  get columnDefs(): UViewerColumnDef[] {
-    return this.lColumnDefs;
+  get uColumnDefs(): UViewerColumnDef[] {
+    return this.columnDefs;
   }
 
   /**
    * 列定义
    */
-  @Input() set columnDefs(v: UViewerColumnDef[]) {
+  @Input() set uColumnDefs(v: UViewerColumnDef[]) {
     this.orderColumns = [];
     this.orderColumnOptionIndexes = [];
     this.filterColumns = [];
@@ -181,30 +181,30 @@ export class UViewerComponent implements AfterViewInit {
       }
       this.filterColumnOptionIndexes.push(i);
     }
-    this.lColumnDefs = v;
+    this.columnDefs = v;
   }
 
-  // #endregion columnDefs
+  // #endregion uColumnDefs
 
   /**
    * 显示的模板
    */
-  @Input() dataTemplate: TemplateRef<any>;
+  @Input() uDataTemplate: TemplateRef<any>;
 
   /**
    * 表格高度
    */
-  @Input() tableHeight: string;
+  @Input() uTableHeight: string;
 
   /**
    * 最大可排序数量
    */
-  @Input() maxOrderNumber = 0;
+  @Input() uMaxOrderNumber = 0;
 
   /**
    * 最大可过滤数量
    */
-  @Input() maxFilterNumber = 0;
+  @Input() uMaxFilterNumber = 0;
 
   itemSize = 114;
 
@@ -278,7 +278,7 @@ export class UViewerComponent implements AfterViewInit {
   }
 
   calcItemSize(): void {
-    this.itemSize = this.itemHeight;
+    this.itemSize = this.uItemHeight;
     // 为了拿到实际的offsetWidth需要timeout
     setTimeout(() => {
       // 自适应分一行多列
@@ -286,10 +286,10 @@ export class UViewerComponent implements AfterViewInit {
       const nc: HTMLDivElement = n.getElementsByClassName('u-viewer-table-container')[0] as HTMLDivElement;
       const actWidth = nc.offsetWidth;
       let itemNumberOfLine = 1;
-      if (this.lItemWidth) {
-        itemNumberOfLine = Math.floor(actWidth / this.lItemWidth);
+      if (this.itemWidth) {
+        itemNumberOfLine = Math.floor(actWidth / this.itemWidth);
       }
-      this.itemSize = Math.floor(this.itemHeight / itemNumberOfLine);
+      this.itemSize = Math.floor(this.uItemHeight / itemNumberOfLine);
       const wr: HTMLElement = nc.childNodes[0].childNodes[0] as HTMLElement;
       wr.style.display = 'grid';
       let c = '';
@@ -323,7 +323,7 @@ export class UViewerComponent implements AfterViewInit {
     const key = +event.target.value;
     this.orderColumns.push({
       index: key,
-      name: this.columnDefs[key].name,
+      name: this.uColumnDefs[key].name,
       isAsc: true
     } as UViewerOrderColumnModel);
     // 从orderOptionIds里去除已经选择的项
@@ -338,22 +338,22 @@ export class UViewerComponent implements AfterViewInit {
    * 重新计算显示的数据
    */
   refresh(): void {
-    this.showDatas = [...this.lDatas];
+    this.showDatas = [...this.datas];
     for (let j = this.filterColumns.length - 1; j >= 0; j--) {
       const c = this.filterColumns[j];
-      const key = this.columnDefs[c.index].id;
+      const key = this.uColumnDefs[c.index].id;
       for (let i = this.showDatas.length - 1; i >= 0; i--) {
         if (!this.conditionFunctions[c.condition](
-          (this.columnDefs[c.index].type === 'number' ? +this.showDatas[i][key] : this.showDatas[i][key]),
-          (this.columnDefs[c.index].type === 'number' ? +c.value : c.value))) {
+          (this.uColumnDefs[c.index].type === 'number' ? +this.showDatas[i][key] : this.showDatas[i][key]),
+          (this.uColumnDefs[c.index].type === 'number' ? +c.value : c.value))) {
           this.showDatas.splice(i, 1);
         }
       }
     }
     for (let j = this.orderColumns.length - 1; j >= 0; j--) {
       const c = this.orderColumns[j];
-      const key = this.columnDefs[c.index].id;
-      if (this.columnDefs[c.index].type === 'number') {
+      const key = this.uColumnDefs[c.index].id;
+      if (this.uColumnDefs[c.index].type === 'number') {
         this.showDatas.sort((a, b) => {
           if (c.isAsc) {
             if ((+a[key]) > (+b[key])) {
@@ -407,7 +407,7 @@ export class UViewerComponent implements AfterViewInit {
     }
     this.filterColumns.push({
       index: +this.filterIndex,
-      name: this.columnDefs[this.filterIndex].name,
+      name: this.uColumnDefs[this.filterIndex].name,
       condition: this.filterCondition,
       value: this.filterValue
     });

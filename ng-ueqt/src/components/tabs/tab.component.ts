@@ -49,9 +49,21 @@ export class UTabComponent {
 
   @ViewChild('bodyTpl') content: TemplateRef<void>;
 
+  /**
+   * 选项卡头显示文字
+   */
   @Input() uTitle: string;
+  /**
+   * 自定义标题
+   */
   @Input() uCustomTitle: TemplateRef<void>;
+  /**
+   * 是否禁用
+   */
   @Input() @InputBoolean() uDisabled = false;
+  /**
+   * title 被点击的回调函数
+   */
   @Output() readonly uClick = new EventEmitter<void>();
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {

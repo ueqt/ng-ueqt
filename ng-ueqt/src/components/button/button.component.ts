@@ -16,17 +16,35 @@ export class UButtonComponent {
 
     isLoading = false;
 
-    @Input() uColor = 'var(--u-primary)';
-
-    @Input() uDisabled = false;
-
+    /**
+     * 点击事件(只要传事件方法名，用箭头函数写)
+     */
     @Input() uClick: (button: UButtonComponent, args: any, event: Event) => Promise<void>;
 
+    /**
+     * 点击事件参数
+     */
     @Input() uClickArgs: any;
 
-    @Input() uShape: 'rectangle' | 'circle';
+    /**
+     * 颜色
+     */
+    @Input() uColor = 'var(--u-primary)';
 
+    /**
+     * 是否禁用
+     */
+    @Input() uDisabled = false;
+
+    /**
+     * 是否仅图标模式
+     */
     @Input() uIconOnly = false;
+
+    /**
+     * 图形样式
+     */
+    @Input() uShape: 'rectangle' | 'circle';
 
     @HostBinding('class.u-button') classButton = true;
 

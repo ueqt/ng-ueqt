@@ -59,14 +59,39 @@ export class USiderComponent implements OnInit, OnDestroy, OnChanges {
   widthSetting: string | null = null;
   matchBreakPoint = false;
 
-  @Input() uCollapsedWidth = 80;
-  @Input() uWidth: string | number = 200;
-  @Input() @InputBoolean() uCollapsed = false;
+  /**
+   * 触发响应式布局的断点
+   */
   @Input() uBreakpoint: UBreakpointKey | null = null;
-  @Input() @InputBoolean() uCollapsible = false;
-  @Input() uTrigger: TemplateRef<void> | undefined | null = undefined;
-  @Input() uZeroTrigger: TemplateRef<void> | null = null;
 
+  /**
+   * 收缩宽度，设置为 0 会出现特殊 trigger
+   */
+  @Input() uCollapsedWidth = 80;
+  /**
+   * 是否可收起
+   */
+  @Input() @InputBoolean() uCollapsible = false;
+  /**
+   * 当前收起状态，可双向绑定
+   */
+  @Input() @InputBoolean() uCollapsed = false;
+  /**
+   * 自定义 trigger，设置为 null 时隐藏 trigger
+   */
+  @Input() uTrigger: TemplateRef<void> | undefined | null = undefined;
+  /**
+   * 自定义 uCollapsedWidth 为 0 时的 特殊 trigger
+   */
+  @Input() uZeroTrigger: TemplateRef<void> | null = null;
+  /**
+   * 宽度
+   */
+  @Input() uWidth: string | number = 200;
+
+  /**
+   * 展开-收起时的回调函数
+   */
   @Output() readonly uCollapsedChange = new EventEmitter();
 
   @HostBinding('class.u-layout-sider') layoutSider = true;

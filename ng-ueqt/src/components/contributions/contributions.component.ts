@@ -20,38 +20,15 @@ export class UContributionsModel {
   exportAs: 'uContributions',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-  <!-- <input type="checkbox" id="Embiggen"> <label for="Embiggen">Make bigger</label><br> -->
-  <div role="region" class="u-contributions">
-    <table>
-      <tr>
-        <th></th>
-        <th *ngFor="let month of ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];index as i;"
-          [attr.colspan]="monthWeeks[i]">{{month}}月</th>
-      </tr>
-      <tr *ngFor="let week of ['日', '一', '二', '三', '四', '五', '六'];index as y;">
-        <th>{{ week }}</th>
-        <ng-container *ngFor="let nWeek of weekArray;index as x;">
-          <td [ngClass]="values[y*this.weekNumber+x].class">
-            <a *ngIf="values[y*this.weekNumber+x].date.getFullYear() === options.year && values[y*this.weekNumber+x].value !== 0"
-              [ngStyle]="{'background-color': values[y*this.weekNumber+x].color}"
-              [uTooltip]="valueTip"></a>
-            <span *ngIf="values[y*this.weekNumber+x].date.getFullYear() === options.year && values[y*this.weekNumber+x].value === 0"></span>
-            <ng-template #valueTip>
-            <div>{{ values[y*this.weekNumber+x].date.toLocaleDateString()}}</div>
-            <div style="color: yellow;">{{ values[y*this.weekNumber+x].value }}</div>
-            </ng-template>
-          </td>
-        </ng-container>
-      </tr>
-    </table>
-  </div>
-  `,
+  templateUrl: './contributions.component.html',
 })
 export class UContributionsComponent implements OnInit {
   // https://adrianroselli.com/2018/02/github-contributions-chart.html
 
-  @Input() options: UContributionsModel = new UContributionsModel();
+  /**
+   * 内容
+   */
+  @Input() uOptions: UContributionsModel = new UContributionsModel();
 
   /**
    * 一年有几周(x数量)
@@ -84,7 +61,7 @@ export class UContributionsComponent implements OnInit {
     let totalWeek = 0;
     for (let i = 1; i < 12; i++) {
       // 从2月找到11月，找每月的第一天的x-1作为上一个月length
-      const first = new Date(this.options.year, i, 1);
+      const first = new Date(this.uOptions.year, i, 1);
       const point = this.dateToPoint(first);
       const thisWeek = point.x - totalWeek;
       this.monthWeeks.push(thisWeek);
@@ -95,8 +72,8 @@ export class UContributionsComponent implements OnInit {
   }
 
   calcWeekNumber(): number {
-    const start = new Date(this.options.year, 0, 1);
-    const end = new Date(this.options.year, 11, 31);
+    const start = new Date(this.uOptions.year, 0, 1);
+    const end = new Date(this.uOptions.year, 11, 31);
     const allDay = Math.floor(end.getTime() / this.PROXIMATE_ONE_DAY)
       - Math.floor(start.getTime() / this.PROXIMATE_ONE_DAY) + 1;
 
@@ -125,10 +102,10 @@ export class UContributionsComponent implements OnInit {
       dateString += '-' + day;
     }
     let value = 0;
-    if (this.options.datas[dateString]) {
-      value = this.options.datas[dateString];
+    if (this.uOptions.datas[dateString]) {
+      value = this.uOptions.datas[dateString];
     }
-    let mclass = date.getFullYear() === this.options.year ? 'year' : '';
+    let mclass = date.getFullYear() === this.uOptions.year ? 'year' : '';
     // 判断是不是一个月的第一周，第一周加.left
     const weekOfMonth = this.weekOfMonth(date);
     const weekStartDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -163,7 +140,7 @@ export class UContributionsComponent implements OnInit {
       mclass += ' right';
     }
     let color = '';
-    for (const piece of this.options.pieces) {
+    for (const piece of this.uOptions.pieces) {
       if (value > piece.min && value <= piece.max) {
         color = piece.color;
         mclass += ' has-color';
@@ -213,7 +190,7 @@ export class UContributionsComponent implements OnInit {
    * @return date
    */
   pointToDate(point: { x: number, y: number }): Date {
-    const start = new Date(this.options.year, 0, 1);
+    const start = new Date(this.uOptions.year, 0, 1);
     const nthDay = point.x * 7 - start.getDay() + point.y;
     const date = new Date(start.getTime());
     date.setDate(start.getDate() + nthDay);

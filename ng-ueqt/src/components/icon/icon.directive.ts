@@ -16,10 +16,19 @@ import { DOCUMENT } from '@angular/common';
   exportAs: 'uIcon',
 })
 export class UIconDirective implements OnInit, OnChanges {
+  /**
+   * 图标类型
+   */
   @Input('uIcon') iconName: string;
 
+  /**
+   * 图标尺寸
+   */
   @Input() uIconSize = 16;
 
+  /**
+   * 图标样式类
+   */
   @Input() uIconClass = '';
 
   constructor(

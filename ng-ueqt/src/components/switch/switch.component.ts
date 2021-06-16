@@ -24,8 +24,17 @@ import { InputBoolean } from '../core';
 export class USwitchComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @ViewChild('switchElement') private switchElement: ElementRef;
 
+  /**
+   * 是否禁用
+   */
   @Input() @InputBoolean() uDisabled = false;
+  /**
+   * 开的模板
+   */
   @Input() uCheckedChildren: string | TemplateRef<void> | null = null;
+  /**
+   * 关的模板
+   */
   @Input() uUnCheckedChildren: string | TemplateRef<void> | null = null;
 
   @HostBinding('class.u-switch') classSwitch = true;

@@ -83,19 +83,22 @@ export class UMenuComponent implements OnChanges {
   /**
    * 数据
    */
-  @Input() datas: UMenuNode[] = [];
+  @Input() uDatas: UMenuNode[] = [];
 
   /**
    * 自定义节点模板
    */
-  @Input() customNode: TemplateRef<UMenuNode> | null = null;
+  @Input() uCustomNode: TemplateRef<UMenuNode> | null = null;
 
   /**
    * 模式
    */
-  @Input() mode: 'vertical' | 'horizontal' | 'inline' = 'inline';
+  @Input() uMode: 'vertical' | 'horizontal' | 'inline' = 'inline';
 
-  @Output() nodeClick = new EventEmitter<UMenuNode>();
+  /**
+   * 节点点击事件
+   */
+  @Output() uNodeClick = new EventEmitter<UMenuNode>();
 
   @HostBinding('class.u-menu') menuClass = true;
 
@@ -117,7 +120,7 @@ export class UMenuComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.flatNodes = [];
-    this.datas.forEach((node) => this.flattenNode(node, 1, null));
+    this.uDatas.forEach((node) => this.flattenNode(node, 1, null));
     // console.log(this.flatNodes);
     this.dataSource = new ArrayDataSource(this.flatNodes);
   }
@@ -140,8 +143,8 @@ export class UMenuComponent implements OnChanges {
 
   selectNode(node: UMenuNode): void {
     this.selectedNode = node;
-    if (this.nodeClick) {
-      this.nodeClick.emit(node);
+    if (this.uNodeClick) {
+      this.uNodeClick.emit(node);
     }
   }
 
@@ -219,8 +222,8 @@ export class UMenuComponent implements OnChanges {
         const strategy = this.overlay.position()
           .flexibleConnectedTo(source)
           .withPositions([{
-            originX: (node.level === 1 && this.mode === 'horizontal') ? 'start' : 'end',
-            originY: (node.level === 1 && this.mode === 'horizontal') ? 'bottom' : 'top',
+            originX: (node.level === 1 && this.uMode === 'horizontal') ? 'start' : 'end',
+            originY: (node.level === 1 && this.uMode === 'horizontal') ? 'bottom' : 'top',
             overlayX: 'start',
             overlayY: 'top',
             offsetX: 0,

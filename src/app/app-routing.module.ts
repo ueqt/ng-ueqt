@@ -70,6 +70,11 @@ const routes: Routes = [
       import('../demo/theme/theme.module').then((m) => m.UdemoThemeModule),
   },
   {
+    path: 'timeline',
+    loadChildren: () =>
+      import('../demo/timeline/timeline.module').then((m) => m.UdemoTimelineModule),
+  },
+  {
     path: 'tooltip',
     loadChildren: () =>
       import('../demo/tooltip/tooltip.module').then((m) => m.UdemoTooltipModule),

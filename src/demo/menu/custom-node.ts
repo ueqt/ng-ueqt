@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   selector: 'udemo-menu-custom-node',
   template: `
   Inline<br />
-  <u-menu [datas]="datas" [customNode]="custom"></u-menu>
+  <u-menu [uDatas]="datas" [uCustomNode]="custom"></u-menu>
   <hr />
   Horizontal<br />
-  <u-menu [datas]="datas" [customNode]="custom" mode='horizontal'></u-menu>
+  <u-menu [uDatas]="datas" [uCustomNode]="custom" mode='horizontal'></u-menu>
   <hr />
   Vertical<br />
-  <u-menu [datas]="datas" [customNode]="custom" mode='vertical'></u-menu>
+  <u-menu [uDatas]="datas" [uCustomNode]="custom" mode='vertical'></u-menu>
   <hr />
     <ng-template #custom let-node="node"
       ><i uIcon="bars" style="margin-right: 10px;line-height: 22px;"></i>

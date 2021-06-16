@@ -30,38 +30,7 @@ import { takeUntil } from 'rxjs/operators';
   exportAs: 'uTabs',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <ng-container *ngIf="listOfUTabComponent">
-      <u-tabs-nav [selectedIndex]="uSelectedIndex">
-        <div
-          uTabLabel
-          [class.u-tabs-tab-active]="uSelectedIndex == i"
-          [disabled]="tab.uDisabled"
-          (click)="clickLabel(i, tab.uDisabled)"
-          *ngFor="let tab of listOfUTabComponent; let i = index"
-        >
-          <ng-container
-            [ngTemplateOutlet]="tab.uCustomTitle || defaultTitle"
-          ></ng-container>
-          <ng-template #defaultTitle>
-            {{ tab.uTitle }}
-          </ng-template>
-        </div>
-      </u-tabs-nav>
-      <div
-        #tabContent
-        class="u-tabs-content"
-        [style.margin-left.%]="-(uSelectedIndex || 0) * 100"
-      >
-        <u-tab-body
-          class="u-tabs-tabpane"
-          *ngFor="let tab of listOfUTabComponent; let i = index"
-          [active]="uSelectedIndex == i"
-          [content]="tab.template || tab.content"
-        ></u-tab-body>
-      </div>
-    </ng-container>
-  `,
+  templateUrl: './tabs.component.html',
 })
 export class UTabsComponent
   implements AfterContentChecked, AfterContentInit, OnDestroy {
@@ -71,6 +40,9 @@ export class UTabsComponent
 
   private indexToSelect = 0;
   private selectedIndex = -1;
+  /**
+   * 当前激活 tab 面板的 序列号，可双向绑定
+   */
   @Input()
   set uSelectedIndex(value: number) {
     this.indexToSelect = value;
@@ -85,6 +57,9 @@ export class UTabsComponent
   private tabsSubscription = Subscription.EMPTY;
   private destroy$ = new Subject<void>();
 
+  /**
+   * 当前激活 tab 面板的 序列号变更回调函数
+   */
   @Output() readonly uSelectedIndexChange: EventEmitter<
     number
   > = new EventEmitter<number>();

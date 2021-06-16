@@ -66,6 +66,10 @@ export class AppComponent {
       url: 'theme',
     },
     {
+      name: 'Timeline 时间线',
+      url: 'timeline',
+    },
+    {
       name: 'Tooltip 文本提示',
       url: 'tooltip',
     },

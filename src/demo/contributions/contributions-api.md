@@ -1,7 +1,7 @@
 ## API
 
-### [uIcon]
+### \<u-contributions\>
 
 | 参数      | 说明                         | 类型   | 默认值 |
 | --------- | ---------------------------- | ------ | ------ |
-| `[uIcon]` | 图标类型，遵循图标的命名规范 | string | -      |
+| `[uOptions]` | 内容 | `UContributionsModel` | -      |

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'udemo-viewer-basic',
   template: `
-  <u-viewer [columnDefs]="columnDefs" [datas]="datas" [dataTemplate]="dataTmpl" [itemHeight]="40" [tableHeight]="'200px'">
+  <u-viewer [uColumnDefs]="columnDefs" [uDatas]="datas" [uDataTemplate]="dataTmpl" [uItemHeight]="40" [uTableHeight]="'200px'">
   </u-viewer>
   <ng-template #dataTmpl let-data>
       A: {{ data.a }}
@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
 
   <br/>
 
-  <u-viewer [columnDefs]="columnDefs" [datas]="datas" [dataTemplate]="dataTmpl2" [itemHeight]="40" [itemWidth]="500" [tableHeight]="'200px'" [maxOrderNumber]="1">
+  <u-viewer [uColumnDefs]="columnDefs" [uDatas]="datas" [uDataTemplate]="dataTmpl2" [uItemHeight]="40" [uItemWidth]="500" [uTableHeight]="'200px'" [uMaxOrderNumber]="1">
   </u-viewer>
   <ng-template #dataTmpl2 let-data let-orderColumns='orderColumns' let-filterColumns="filterColumns">
       A: {{ data.a }}

@@ -18,7 +18,7 @@ declare var require: any;
         </div>
       </udemo-code-box>
     </u-tab>
-    <u-tab uTitle="radar 雷达图">
+    <u-tab uTitle="Radar 雷达图">
       <markdown src="radar/radar.md"></markdown>
     </u-tab>
     <u-tab uTitle="API">

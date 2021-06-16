@@ -3,7 +3,7 @@ import { URadarModel } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-radar-basic',
-  template: `<u-radar [options]="options"></u-radar>`,
+  template: `<u-radar [uOptions]="options"></u-radar>`,
 })
 export class UdemoRadarBasicComponent {
 

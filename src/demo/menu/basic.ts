@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   selector: 'udemo-menu-basic',
   template: `
   Inline<br />
-  <u-menu [datas]="datas"></u-menu>
+  <u-menu [uDatas]="datas"></u-menu>
   <hr/>
   Horizontal<br />
-  <u-menu [datas]="datas" mode="horizontal"></u-menu>
+  <u-menu [uDatas]="datas" mode="horizontal"></u-menu>
   <hr/>
   Vertical<br />
-  <u-menu [datas]="datas" mode="vertical"></u-menu>
+  <u-menu [uDatas]="datas" mode="vertical"></u-menu>
   <hr/>
   `,
 })
