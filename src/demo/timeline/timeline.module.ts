@@ -11,6 +11,10 @@ import { MarkdownModule } from 'ngx-markdown';
 import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UButtonModule, UTimelineModule } from 'ng-ueqt';
 const routes: Routes = [{ path: '', component: UdemoTimelineComponent }];
 
+const icons: UIconDefinition[] = [
+  AllIcons.UIconBars,
+];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +24,7 @@ const routes: Routes = [{ path: '', component: UdemoTimelineComponent }];
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
     UTabsModule,
+    UIconModule.forRoot(icons),
     UTimelineModule
   ],
   declarations: [UdemoTimelineComponent, UdemoTimelineBasicComponent],

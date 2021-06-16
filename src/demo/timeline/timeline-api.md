@@ -12,6 +12,9 @@
 | --- | --- | --- | --- |
 | `[uContent]` | 内容 | `string \| TemplateRef<{ $implicit: any }> \| null` | `null` |
 | `[uContentArgs]` | 内容参数 | `any` | |
+| `[uBadge]` | 提示符 | `string \| TemplateRef<{ $implicit: any }> \| null` | `null` |
+| `[uBadgeArgs]` | 提示符参数 | `any` | |
+| `[uBadgeBackgroundColor]` | 提示符背景色 | `string` | |
 
 ### \<u-timeline-break\>
 
@@ -19,3 +22,8 @@
 | --- | --- | --- | --- |
 | `[uContent]` | 内容 | `string \| TemplateRef<{ $implicit: any }> \| null` | `null` |
 | `[uContentArgs]` | 内容参数 | `any` | |
+
+### \<u-timeline-line\>
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |

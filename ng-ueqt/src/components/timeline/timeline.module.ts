@@ -7,10 +7,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UTimelineBreakComponent } from './timeline-break.component';
 import { UTimelineItemComponent } from './timeline-item.component';
+import { UTimelineLineComponent } from './timeline-line.component';
 
 const components = [
   UTimelineBreakComponent,
   UTimelineItemComponent,
+  UTimelineLineComponent,
   UTimelineComponent
 ];
 

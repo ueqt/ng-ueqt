@@ -23,7 +23,7 @@
     }
     .u-timeline-item-badge {
         position: relative;
-        z-index: 1;
+        // z-index: 1;
         display: flex;
         width: 32px;
         height: 32px;
@@ -36,6 +36,7 @@
         border-radius: 50%;
         justify-content: center;
         flex-shrink: 0;
+        cursor: pointer;
     }
     .u-timeline-item-body {
         min-width: 0;
@@ -43,5 +44,43 @@
         margin-top: 4px;
         color: #444d56;
         flex: auto;
+    }
+}
+
+.u-timeline-horizontal {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    .u-timeline-item {
+        overflow: hidden;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        box-sizing: content-box;
+        display: flex;
+        height: 36px;
+        padding: 0 24px;
+        &::before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 0;
+            height: 0;
+            content: '';
+            background-color: #e1e4e8;
+        }
+    }
+    .u-timeline-line {
+        display: flex;
+        align-items: center;
+        border-top-width: 1px;
+        border-top-style: solid;
+        flex: auto;
+        height: 0;
+        margin: 0 -16px;
+        min-width: 32px;
+        border-top-color: rgba(0, 0, 0, .12);
     }
 }
