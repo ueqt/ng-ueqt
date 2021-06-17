@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
       <u-timeline-item [uBadge]="stepTmpl" [uBadgeArgs]="step" [uBadgeBackgroundColor]="step === currentStep ? 'red' : 'grey'"></u-timeline-item>
     </ng-container>
   </u-timeline>
-  <ng-template #stepTmpl let-data><span (click)="onClickStep(data)">{{data}}</span></ng-template>
+  <ng-template #stepTmpl let-data><span class="u-timeline-badge-span" (click)="onClickStep(data)">{{data}}</span></ng-template>
   <div>{{currentStep}}</div>
 `
 })
