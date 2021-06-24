@@ -11,6 +11,7 @@ export enum UFlexDirections {
   rowReverse = 'row-reverse',
   columnReverse = 'column-reverse'
 }
+export type UFlexDirectionConstants = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 
 /**
  * Flex横向排列方式
@@ -23,6 +24,7 @@ export enum UFlexAlignmentHorizontals {
   spaceAround = 'space-around',
   spaceEvenly = 'space-evenly'
 }
+export type UFlexAlignmentHorizontalConstants = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 
 /**
  * Flex纵向排列方式
@@ -34,6 +36,7 @@ export enum UFlexAlignmentVerticals {
   center = 'center',
   end = 'flex-end'
 }
+export type UFlexAlignmentVerticalConstants = 'stretch' | 'baseline' | 'flex-start' | 'center' | 'flex-end';
 
 @Component({
   selector: 'u-flex',
@@ -46,17 +49,17 @@ export class UFlexComponent implements AfterContentInit {
   /**
    * 方向
    */
-  @Input() uDirection: UFlexDirections = UFlexDirections.row;
+  @Input() uDirection: UFlexDirections | UFlexDirectionConstants = UFlexDirections.row;
 
   /**
    * 横向排列
    */
-  @Input() uAlignmentHorizontal: UFlexAlignmentHorizontals = UFlexAlignmentHorizontals.start;
+  @Input() uAlignmentHorizontal: UFlexAlignmentHorizontals | UFlexAlignmentHorizontalConstants = UFlexAlignmentHorizontals.start;
 
   /**
    * 竖向排列
    */
-  @Input() uAlignmentVertical: UFlexAlignmentVerticals = UFlexAlignmentVerticals.stretch;
+  @Input() uAlignmentVertical: UFlexAlignmentVerticals | UFlexAlignmentVerticalConstants = UFlexAlignmentVerticals.stretch;
 
   // #region gap
 
@@ -105,17 +108,17 @@ export class UFlexComponent implements AfterContentInit {
   }
 
   @HostBinding('style.flex-direction')
-  get styleFlexDirection(): UFlexDirections {
+  get styleFlexDirection(): UFlexDirections | UFlexDirectionConstants {
     return this.uDirection;
   }
 
   @HostBinding('style.justify-content')
-  get styleAignmentHorizontal(): UFlexAlignmentHorizontals {
+  get styleAignmentHorizontal(): UFlexAlignmentHorizontals | UFlexAlignmentHorizontalConstants {
     return this.uAlignmentHorizontal;
   }
 
   @HostBinding('style.align-items')
-  get styleAignmentVertical(): UFlexAlignmentVerticals {
+  get styleAignmentVertical(): UFlexAlignmentVerticals | UFlexAlignmentVerticalConstants {
     return this.uAlignmentVertical;
   }
 
