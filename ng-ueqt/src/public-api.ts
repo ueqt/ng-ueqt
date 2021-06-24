@@ -18,6 +18,7 @@ export * from './components/card';
 export * from './components/contributions';
 export * from './components/core';
 export * from './components/dynamic';
+export * from './components/flex';
 export * from './components/icon';
 export * from './components/input';
 export * from './components/layout';

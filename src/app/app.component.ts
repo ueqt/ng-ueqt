@@ -30,6 +30,10 @@ export class AppComponent {
       url: 'dynamic'
     },
     {
+      name: 'Flex Flex布局',
+      url: 'flex'
+    },
+    {
       name: 'Icon 图标',
       url: 'icon',
     },

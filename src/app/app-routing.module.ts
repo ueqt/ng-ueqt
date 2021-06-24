@@ -25,6 +25,11 @@ const routes: Routes = [
       import('../demo/dynamic/dynamic.module').then((m) => m.UdemoDynamicModule),
   },
   {
+    path: 'flex',
+    loadChildren: () =>
+      import('../demo/flex/flex.module').then((m) => m.UdemoFlexModule),
+  },
+  {
     path: 'icon',
     loadChildren: () =>
       import('../demo/icon/icon.module').then((m) => m.UdemoIconModule),
