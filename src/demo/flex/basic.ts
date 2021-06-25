@@ -42,7 +42,7 @@ import { UFlexAlignmentHorizontals, UFlexAlignmentVerticals, UFlexDirections } f
   <hr />
 
   <div style="width: 100%; height: 200px; border: 1px solid gray;" (click)="changeDirection()">
-    <u-flex [uDirection]="fillDirection" uAlignmentVertical="stretch" uGap="10">
+    <u-flex [uDirection]="fillDirection" uAlignmentVertical="stretch" [uGap]="10">
       <div uFlex="20"><div class="blocks one">uFlex="20"</div></div>
       <div uFlex="60"><div class="blocks two">uFlex="60"</div></div>
       <div uFlex="120px"><div class="blocks three">uFlex="120px"</div></div>

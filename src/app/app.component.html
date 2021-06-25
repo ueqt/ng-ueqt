@@ -3,7 +3,7 @@
         <a style="float: right;" href="https://github.com/ueqt/ng-ueqt" target="_blank"><img src="https://img.shields.io/npm/v/ng-ueqt.svg" /></a>
     </u-header>
     <u-layout>
-        <u-sider class="app-sider" uCollapsible uBreakpoint="lg" [uCollapsedWidth]="0">
+        <u-sider class="app-sider" [uCollapsible]="true" uBreakpoint="lg" [uCollapsedWidth]="0">
             <div class="app-menu">
                 <u-menu [uDatas]="datas" (uNodeClick)="menuClick($event)"></u-menu>
             </div>

@@ -26,7 +26,7 @@ import { Component } from '@angular/core';
 `
 })
 export class UdemoTimelineBasicComponent {
-  years = [1990, 2000, 2010, 2020];
+  years = ['1990', '2000', '2010', '2020'];
 
   steps = [1, 2, 3, 4];
 

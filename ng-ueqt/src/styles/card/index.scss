@@ -1,92 +1,78 @@
 .u-card {
-  $u-card-header-size: 40px !default;
-
-  position: relative;
-  border-radius: .125rem;
-  border: 1px solid var(--u-primary-18);
-  box-shadow: 0 1.6px 3.6px 0 hsl(0deg 0% 0% / 13%), 0 0.3px 0.9px 0 hsl(0deg 0% 0% / 11%);
-  background-color: hsla(0,0%,100%,.998);
-  outline-color: hsla(0,0%,9%,1);
-  color: hsla(0,0%,9%,1);
-  max-width: 100%;
-  position: relative;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  // background-color: var(--u-primary);
-
-  .u-card-header {
+    $u-card-header-size: 40px !default;
+    position: relative;
+    border-radius: .125rem;
+    border: 1px solid var(--u-primary-18);
+    box-shadow: 0 1.6px 3.6px 0 hsl(0deg 0% 0% / 13%), 0 0.3px 0.9px 0 hsl(0deg 0% 0% / 11%);
+    background-color: hsla(0, 0%, 100%, .998);
+    outline-color: hsla(0, 0%, 9%, 1);
+    color: hsla(0, 0%, 9%, 1);
+    max-width: 100%;
+    position: relative;
+    padding: 16px;
     display: flex;
-    flex-direction: row;
-
-    .u-card-avatar {
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      object-fit: cover;
+    flex-direction: column;
+    justify-content: flex-start;
+    // background-color: var(--u-primary);
+    .u-card-header {
+        display: flex;
+        flex-direction: row;
+        .u-card-avatar {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+        .u-card-header-text {
+            margin: 0 16px;
+            width: 100%;
+            .u-card-title {
+                display: block;
+                margin-bottom: 12px;
+                font-size: 20px;
+                font-weight: 500;
+            }
+            .u-card-title:not(:first-child) {
+                margin-top: -4px;
+            }
+            .u-card-subtitle:not(:first-child) {
+                margin-top: -8px;
+            }
+            .u-card-subtitle {
+                display: block;
+                margin-bottom: 16px;
+                font-size: 14px;
+                color: rgba(0, 0, 0, .54);
+            }
+        }
     }
-    
-    .u-card-header-text {
-      margin: 0 16px;
-      width: 100%;
-
-      .u-card-title {
-        display: block;
-        margin-bottom: 12px;
-        font-size: 20px;
-        font-weight: 500;
-      }
-
-      .u-card-title:not(:first-child) {
-        margin-top: -4px;
-      }
-
-      .u-card-subtitle:not(:first-child) {
-        margin-top: -8px;
-      }
-      
-      .u-card-subtitle {
+    .u-card-image>* {
+        width: calc(100% + 32px);
+        margin: 0 -16px 16px -16px;
+    }
+    .u-card-content {
         display: block;
         margin-bottom: 16px;
         font-size: 14px;
-        color: rgba(0,0,0,.54);
-      }
+        &> :last-child:not(.u-card-footer) {
+            margin-bottom: 0;
+        }
     }
-  }
-
-  .u-card-image > * {
-    width: calc(100% + 32px);
-    margin: 0 -16px 16px -16px;
-  }
-
-  .u-card-content {
-    display: block;
-    margin-bottom: 16px;
-    font-size: 14px;
-
-    & > :last-child:not(.u-card-footer) {
-      margin-bottom: 0;
+    &> :last-child:not(.u-card-footer) {
+        margin-bottom: 0;
     }
-  }
-
-  & > :last-child:not(.u-card-footer) {
-    margin-bottom: 0;
-  }
-
-  .u-card-actions {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    // background: #fff;
-    border-top: 1px solid #f0f0f0;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .u-card-footer {
-    display: block;
-    margin: 0 16px 16px 16px;
-  }
+    .u-card-actions {
+        margin: 0;
+        padding: 16px 0 0 0;
+        list-style: none;
+        // background: #fff;
+        border-top: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .u-card-footer {
+        display: block;
+        margin: 0 16px 16px 16px;
+    }
 }

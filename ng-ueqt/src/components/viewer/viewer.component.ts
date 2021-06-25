@@ -397,7 +397,7 @@ export class UViewerComponent implements AfterViewInit {
     }
   }
 
-  addFilter = () => {
+  addFilter = async () => {
     if (this.filterIndex === undefined
       || this.filterIndex === ''
       || !this.filterCondition
