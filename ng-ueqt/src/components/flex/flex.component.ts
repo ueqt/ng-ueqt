@@ -93,9 +93,19 @@ export class UFlexComponent {
    */
   @Input() uGap = 0;
 
+  /**
+   * 是否换行
+   */
+  @Input() uWrap = false;
+
   @HostBinding('class.u-flex-container')
   get classFlexContainer(): boolean {
     return true;
+  }
+
+  @HostBinding('class.u-flex-wrap')
+  get classFlexWrap(): boolean {
+    return this.uWrap;
   }
 
   @HostBinding('class.u-flex-row')
