@@ -1,111 +1,96 @@
-import { MediaMatcher } from '@angular/cdk/layout';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { getEnumKeyByEnumValue } from '../util';
 
-import { UResizeService } from './resize';
-
-export enum UBreakpointEnum {
-  xxl = 'xxl',
-  xl = 'xl',
-  lg = 'lg',
-  md = 'md',
-  sm = 'sm',
-  xs = 'xs',
+export enum UBreakpoints {
+  xs = 'XSmall',
+  sm = 'Small',
+  md = 'Medium',
+  lg = 'Large',
+  xl = 'XLarge',
 }
 
-export type BreakpointMap = { [key in UBreakpointEnum]: string };
-export type BreakpointBooleanMap = { [key in UBreakpointEnum]: boolean };
-export type UBreakpointKey = keyof typeof UBreakpointEnum;
-
-export const gridResponsiveMap: BreakpointMap = {
-  xs: '(max-width: 575px)',
-  sm: '(min-width: 576px)',
-  md: '(min-width: 768px)',
-  lg: '(min-width: 992px)',
-  xl: '(min-width: 1200px)',
-  xxl: '(min-width: 1600px)',
-};
-
-export const siderResponsiveMap: BreakpointMap = {
-  xs: '(max-width: 479.98px)',
-  sm: '(max-width: 575.98px)',
-  md: '(max-width: 767.98px)',
-  lg: '(max-width: 991.98px)',
-  xl: '(max-width: 1199.98px)',
-  xxl: '(max-width: 1599.98px)',
-};
+export type UBreakpointKey = keyof typeof UBreakpoints;
 
 @Injectable({
   providedIn: 'root',
 })
-export class UBreakpointService {
-  constructor(
-    private resizeService: UResizeService,
-    private mediaMatcher: MediaMatcher
-  ) {
-    this.resizeService.subscribe().subscribe(() => {});
+export class UBreakpointService implements OnDestroy {
+
+  // id: xs
+  // name: XSmall
+  // definition: (max-width: 599.98px)
+
+  destroyed$ = new Subject<void>();
+  /**
+   * 当前屏幕尺寸ID
+   */
+  currentScreenSizeId: string;
+
+  constructor(public breakpointObserver: BreakpointObserver) {
+    breakpointObserver.observe(this.getAllDefinitions())
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(result => {
+        for (const query of Object.keys(result.breakpoints)) {
+          if (result.breakpoints[query]) {
+            this.currentScreenSizeId = this.getIdFromDefinition(query);
+          }
+        }
+      });
   }
 
-  subscribe(breakpointMap: BreakpointMap): Observable<UBreakpointEnum>;
-  subscribe(
-    breakpointMap: BreakpointMap,
-    fullMap: true
-  ): Observable<BreakpointBooleanMap>;
-  subscribe(
-    breakpointMap: BreakpointMap,
-    fullMap?: true
-  ): Observable<UBreakpointEnum | BreakpointBooleanMap> {
-    if (fullMap) {
-      const get = () => this.matchMedia(breakpointMap, true);
-      return this.resizeService.subscribe().pipe(
-        map(get),
-        startWith(get()),
-        distinctUntilChanged(
-          (
-            x: [UBreakpointEnum, BreakpointBooleanMap],
-            y: [UBreakpointEnum, BreakpointBooleanMap]
-          ) => x[0] === y[0]
-        ),
-        map((x) => x[1])
-      );
-    } else {
-      const get = () => this.matchMedia(breakpointMap);
-      return this.resizeService
-        .subscribe()
-        .pipe(map(get), startWith(get()), distinctUntilChanged());
+
+  /**
+   * 获取所有的定义
+   */
+  getAllDefinitions(): string[] {
+    return Object.keys(UBreakpoints).map(k => this.getDefinitionFromId(k));
+  }
+
+  /**
+   * 从定义获取id
+   */
+  getIdFromDefinition(definition: string): string {
+    const key = Object.keys(Breakpoints).find(k => Breakpoints[k] === definition);
+    if (!key) {
+      return '';
     }
+    return getEnumKeyByEnumValue(UBreakpoints, key);
   }
 
-  private matchMedia(breakpointMap: BreakpointMap): UBreakpointEnum;
-  private matchMedia(
-    breakpointMap: BreakpointMap,
-    fullMap: true
-  ): [UBreakpointEnum, BreakpointBooleanMap];
-  private matchMedia(
-    breakpointMap: BreakpointMap,
-    fullMap?: true
-  ): UBreakpointEnum | [UBreakpointEnum, BreakpointBooleanMap] {
-    let bp = UBreakpointEnum.md;
+  /**
+   * 从xs等获取实际的max-width字符串
+   */
+  getDefinitionFromId(id: string): string {
+    return Breakpoints[UBreakpoints[id]];
+  }
 
-    const breakpointBooleanMap: Partial<BreakpointBooleanMap> = {};
-
-    Object.keys(breakpointMap).map((breakpoint) => {
-      const castBP = breakpoint as UBreakpointEnum;
-      const matched = this.mediaMatcher.matchMedia(gridResponsiveMap[castBP])
-        .matches;
-
-      breakpointBooleanMap[breakpoint as UBreakpointEnum] = matched;
-
-      if (matched) {
-        bp = castBP;
+  /**
+   * 获取当前尺寸下的值
+   * @param component 组件
+   * @param fieldPrefix 字段前缀
+   */
+  getCurrentSizeValue(component: any, fieldPrefix: string): any {
+    let result = component[fieldPrefix];
+    if (!this.currentScreenSizeId) {
+      return result;
+    }
+    const keys = Object.keys(UBreakpoints);
+    for (let i = keys.length - 1; i >= 0; i--) {
+      const k = keys[i];
+      result = component[fieldPrefix + k.substr(0, 1).toUpperCase() + k.substr(1, 1)] || result;
+      if (this.currentScreenSizeId === k) {
+        return result;
       }
-    });
-
-    if (fullMap) {
-      return [bp, breakpointBooleanMap as BreakpointBooleanMap];
-    } else {
-      return bp;
     }
+    return result;
   }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
 }

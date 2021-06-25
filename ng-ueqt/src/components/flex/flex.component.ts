@@ -1,6 +1,8 @@
 import {
   Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, ViewChildren, ElementRef, AfterContentInit
 } from '@angular/core';
+import { Breakpoints } from '@angular/cdk/layout';
+import { UBreakpointService } from '../core';
 
 /**
  * Flex方向
@@ -45,11 +47,36 @@ export type UFlexAlignmentVerticalConstants = 'stretch' | 'baseline' | 'flex-sta
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './flex.component.html'
 })
-export class UFlexComponent implements AfterContentInit {
+export class UFlexComponent {
   /**
    * 方向
    */
   @Input() uDirection: UFlexDirections | UFlexDirectionConstants = UFlexDirections.row;
+
+  /**
+   * 方向
+   */
+  @Input() uDirectionXs: UFlexDirections | UFlexDirectionConstants;
+
+  /**
+   * 方向
+   */
+  @Input() uDirectionSm: UFlexDirections | UFlexDirectionConstants;
+
+  /**
+   * 方向
+   */
+  @Input() uDirectionMd: UFlexDirections | UFlexDirectionConstants;
+
+  /**
+   * 方向
+   */
+  @Input() uDirectionLg: UFlexDirections | UFlexDirectionConstants;
+
+  /**
+   * 方向
+   */
+  @Input() uDirectionXl: UFlexDirections | UFlexDirectionConstants;
 
   /**
    * 横向排列
@@ -61,36 +88,10 @@ export class UFlexComponent implements AfterContentInit {
    */
   @Input() uAlignmentVertical: UFlexAlignmentVerticals | UFlexAlignmentVerticalConstants = UFlexAlignmentVerticals.stretch;
 
-  // #region gap
-
-  private gap = 0;
   /**
    * 间距
    */
-  @Input() set uGap(v: number) {
-    this.gap = v;
-    if (v) {
-      // 重新计算子gap
-      for (let i = 0; i < this.selfElement.children.length; i++) {
-        const c: HTMLElement = this.selfElement.children.item(i) as HTMLElement;
-        c.style.padding = (v / 2).toString() + 'px';
-        if (c.children.length > 0) {
-          const cc = c.children[0] as HTMLElement;
-          cc.style.boxSizing = 'border-box';
-          cc.style.height = '100%';
-          cc.style.width = '100%';
-        }
-      }
-    }
-  }
-  /**
-   * 间距
-   */
-  get uGap(): number {
-    return this.gap;
-  }
-
-  // #endregion gap
+  @Input() uGap = 0;
 
   @HostBinding('class.u-flex-container')
   get classFlexContainer(): boolean {
@@ -99,17 +100,19 @@ export class UFlexComponent implements AfterContentInit {
 
   @HostBinding('class.u-flex-row')
   get classFlexRow(): boolean {
-    return this.uDirection === UFlexDirections.row || this.uDirection === UFlexDirections.rowReverse;
+    const value = this.directionValue;
+    return value === UFlexDirections.row || value === UFlexDirections.rowReverse;
   }
 
   @HostBinding('class.u-flex-column')
   get classFlexColumn(): boolean {
-    return this.uDirection === UFlexDirections.column || this.uDirection === UFlexDirections.columnReverse;
+    const value = this.directionValue;
+    return value === UFlexDirections.column || value === UFlexDirections.columnReverse;
   }
 
   @HostBinding('style.flex-direction')
   get styleFlexDirection(): UFlexDirections | UFlexDirectionConstants {
-    return this.uDirection;
+    return this.directionValue;
   }
 
   @HostBinding('style.justify-content')
@@ -122,13 +125,12 @@ export class UFlexComponent implements AfterContentInit {
     return this.uAlignmentVertical;
   }
 
-  private selfElement: HTMLElement;
-
-  constructor(private element: ElementRef) {
-    this.selfElement = this.element.nativeElement;
+  /**
+   * 实际尺寸下的方向
+   */
+  get directionValue(): UFlexDirections | UFlexDirectionConstants {
+    return this.breakpointService.getCurrentSizeValue(this, 'uDirection');
   }
 
-  ngAfterContentInit(): void {
-    this.uGap = this.gap;
-  }
+  constructor(private breakpointService: UBreakpointService) { }
 }

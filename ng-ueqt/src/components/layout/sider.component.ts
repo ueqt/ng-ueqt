@@ -20,11 +20,12 @@ import {
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import {
-  UBreakpointService,
   UBreakpointKey,
-  siderResponsiveMap,
+  UBreakpoints,
+  UBreakpointService,
 } from '../core/services';
 import { InputBoolean, toCssPixel } from '../core/util';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'u-sider',
@@ -126,14 +127,14 @@ export class USiderComponent implements OnInit, OnDestroy, OnChanges {
     this.updateStyleMap();
 
     if (this.platform.isBrowser) {
-      this.breakpointService
-        .subscribe(siderResponsiveMap, true)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((map) => {
+      this.breakpointService.breakpointObserver.observe(
+        this.breakpointService.getAllDefinitions()
+      ).pipe(takeUntil(this.destroy$))
+        .subscribe(result => {
           const breakpoint = this.uBreakpoint;
           if (breakpoint) {
             this.inNextTick().subscribe(() => {
-              this.matchBreakPoint = !map[breakpoint];
+              this.matchBreakPoint = !result.breakpoints[this.breakpointService.getDefinitionFromId(breakpoint)];
               this.setCollapsed(this.matchBreakPoint);
               this.cdr.markForCheck();
             });
