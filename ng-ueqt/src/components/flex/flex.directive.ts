@@ -95,9 +95,9 @@ export class UFlexDirective {
     return (this.parentFlex.uGap / 2) + 'px';
   }
 
-  @HostBinding('class.u-flex-has-children')
-  get classFlexHasChildren(): boolean {
-    if (this.parentFlex.uGap < 0) {
+  @HostBinding('class.u-flex-has-gap-children')
+  get classFlexHasGapChildren(): boolean {
+    if (!this.parentFlex.uGap) {
       return false;
     }
     return this.element.nativeElement.children.length > 0;
