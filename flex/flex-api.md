@@ -7,7 +7,8 @@
 | `[uDirection(Xs|Sm|Md|Lg|Xl)]` | 方向 | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'` | `'row'` |
 | `[uAlignmentHorizontal]` | 横向排列方式 | `'start' \| 'center' \| 'end' \| 'space-around' \| 'space-between' \| 'space-evenly'` | `'start'` |
 | `[uAlignmentVertical]` | 纵向排列方式 | `'stretch' \| 'baseline' \| 'start' \| 'center' \|  'end'` | `'stretch'` |
-| `[uGap]` | 间隔像素 | `number` | 0 |
+| `[uGap]` | 间隔像素 | `number` | `0` |
+| `[uWrap]` | 是否换行 | `boolean` | `false` |
 
 ### [u-flex]
 
