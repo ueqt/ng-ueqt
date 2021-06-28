@@ -1,6 +1,6 @@
 {
   "name": "ng-ueqt",
-  "version": "0.16.10",
+  "version": "0.17.1",
   "peerDependencies": {
     "@angular/common": "^10.0.6",
     "@angular/core": "^10.0.6"

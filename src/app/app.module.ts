@@ -1,7 +1,7 @@
 import { UThemeModule } from './../../ng-ueqt/src/components/theme/theme.module';
-import { UIconBars } from './../../ng-ueqt/src/components/icon/primer-icons/three-bars';
-import { UIconRight } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-right';
-import { UIconLeft } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-left';
+import { uiconBars } from './../../ng-ueqt/src/components/icon/primer-icons/three-bars';
+import { uiconRight } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-right';
+import { uiconLeft } from './../../ng-ueqt/src/components/icon/primer-icons/chevron-left';
 import { UMenuModule } from './../../ng-ueqt/src/components/menu/menu.module';
 import { ULayoutModule } from './../../ng-ueqt/src/components/layout/layout.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UIconDefinition, UIconModule } from 'ng-ueqt';
 
-const icons: UIconDefinition[] = [UIconLeft, UIconRight, UIconBars];
+const icons: UIconDefinition[] = [uiconLeft, uiconRight, uiconBars];
 
 @NgModule({
   declarations: [AppComponent],

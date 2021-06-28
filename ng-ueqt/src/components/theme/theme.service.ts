@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getContrastHex, hexToRgb, rgbContrast, rgbShade, rgbTint, rgbToHex } from '../core/util';
+import { getContrastHex, hexToRgb, rgbShade, rgbTint, rgbToHex } from '../core/util';
 
 /**
  * 皮肤服务
@@ -31,6 +31,7 @@ export class UThemeService {
 
   /**
    * 修改皮肤
+   *
    * @param themeName 皮肤名
    */
   change(themeName: string): void {
@@ -41,6 +42,7 @@ export class UThemeService {
 
   /**
    * 使用皮肤
+   *
    * @param themeColors 皮肤颜色
    */
   private use(themeColors: string[]): void {

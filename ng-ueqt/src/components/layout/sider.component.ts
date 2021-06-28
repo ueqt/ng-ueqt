@@ -1,7 +1,6 @@
 import { UMenuComponent } from './../menu/menu.component';
 import { Platform } from '@angular/cdk/platform';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -21,11 +20,9 @@ import { Subject, Observable } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import {
   UBreakpointKey,
-  UBreakpoints,
   UBreakpointService,
 } from '../core/services';
 import { InputBoolean, toCssPixel } from '../core/util';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'u-sider',
@@ -52,13 +49,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class USiderComponent implements OnInit, OnDestroy, OnChanges {
   // static ngAcceptInputType_nzCollapsible: BooleanInput;
   // static ngAcceptInputType_nzCollapsed: BooleanInput;
-
-  @ContentChild(UMenuComponent) uMenu: UMenuComponent | null = null;
-
-  private destroy$ = new Subject();
-  private flexSetting: string | null = null;
-  widthSetting: string | null = null;
-  matchBreakPoint = false;
 
   /**
    * 触发响应式布局的断点
@@ -116,6 +106,14 @@ export class USiderComponent implements OnInit, OnDestroy, OnChanges {
   get layoutSiderZeroWidth(): boolean {
     return this.uCollapsed && this.uCollapsedWidth === 0;
   }
+
+  @ContentChild(UMenuComponent) uMenu: UMenuComponent | null = null;
+
+  widthSetting: string | null = null;
+  matchBreakPoint = false;
+
+  private destroy$ = new Subject();
+  private flexSetting: string | null = null;
 
   constructor(
     private platform: Platform,

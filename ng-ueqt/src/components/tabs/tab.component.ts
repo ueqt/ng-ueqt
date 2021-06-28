@@ -6,16 +6,12 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
-  OnDestroy,
   Output,
   Renderer2,
-  SimpleChanges,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Subject } from 'rxjs';
 import { InputBoolean } from '../core/util';
 
 @Component({
@@ -30,18 +26,6 @@ import { InputBoolean } from '../core/util';
   `,
 })
 export class UTabComponent {
-  /**
-   * 是否活动页
-   */
-  isActive = false;
-  /**
-   * 与选中标签页的距离
-   */
-  position = 0;
-  /**
-   * 与上一个选择的标签页的距离
-   */
-  origin = 0;
 
   @ContentChild(UTabDirective, { read: TemplateRef }) template!: TemplateRef<
     void
@@ -65,6 +49,19 @@ export class UTabComponent {
    * title 被点击的回调函数
    */
   @Output() readonly uClick = new EventEmitter<void>();
+
+  /**
+   * 是否活动页
+   */
+  isActive = false;
+  /**
+   * 与选中标签页的距离
+   */
+  position = 0;
+  /**
+   * 与上一个选择的标签页的距离
+   */
+  origin = 0;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(elementRef.nativeElement, 'u-tab');

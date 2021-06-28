@@ -32,14 +32,11 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './tabs.component.html',
 })
-export class UTabsComponent
-  implements AfterContentChecked, AfterContentInit, OnDestroy {
+export class UTabsComponent implements AfterContentChecked, AfterContentInit, OnDestroy {
   @ContentChildren(UTabComponent) listOfUTabComponent: QueryList<UTabComponent>;
   @ViewChild(UTabsNavComponent) uTabsNavComponent: UTabsNavComponent;
   @ViewChild('tabContent') tabContent: ElementRef;
 
-  private indexToSelect = 0;
-  private selectedIndex = -1;
   /**
    * 当前激活 tab 面板的 序列号，可双向绑定
    */
@@ -53,10 +50,6 @@ export class UTabsComponent
 
   @HostBinding('class.u-tabs') classTabs = true;
 
-  /** Subscription to tabs being added/removed. */
-  private tabsSubscription = Subscription.EMPTY;
-  private destroy$ = new Subject<void>();
-
   /**
    * 当前激活 tab 面板的 序列号变更回调函数
    */
@@ -64,29 +57,24 @@ export class UTabsComponent
     number
   > = new EventEmitter<number>();
 
-  clickLabel(index: number, disabled: boolean): void {
-    if (!disabled) {
-      this.emitClickEvent(index);
-    }
-  }
+  /** Subscription to tabs being added/removed. */
+  private tabsSubscription = Subscription.EMPTY;
+  private destroy$ = new Subject<void>();
 
-  private emitClickEvent(index: number): void {
-    const tabs = this.listOfUTabComponent.toArray();
-    this.uSelectedIndex = index;
-    tabs[index].uClick.emit();
-    this.cdr.markForCheck();
-  }
-
-  private clampTabIndex(index: number): number {
-    // 将输入的值限定在合理的范围内
-    return Math.min(this.listOfUTabComponent.length - 1, Math.max(index, 0));
-  }
+  private indexToSelect = 0;
+  private selectedIndex = -1;
 
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef
   ) {}
+
+  clickLabel(index: number, disabled: boolean): void {
+    if (!disabled) {
+      this.emitClickEvent(index);
+    }
+  }
 
   ngAfterContentChecked(): void {
     if (this.listOfUTabComponent && this.listOfUTabComponent.length) {
@@ -163,4 +151,17 @@ export class UTabsComponent
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  private emitClickEvent(index: number): void {
+    const tabs = this.listOfUTabComponent.toArray();
+    this.uSelectedIndex = index;
+    tabs[index].uClick.emit();
+    this.cdr.markForCheck();
+  }
+
+  private clampTabIndex(index: number): number {
+    // 将输入的值限定在合理的范围内
+    return Math.min(this.listOfUTabComponent.length - 1, Math.max(index, 0));
+  }
+
 }

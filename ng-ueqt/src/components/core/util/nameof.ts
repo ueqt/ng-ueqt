@@ -1,40 +1,34 @@
 // from ts-simaple-nameof
-function cleanseAssertionOperators<T>(parsedName: string): keyof T {
-  return parsedName.replace(/[?!]/g, '') as (keyof T);
-}
+const cleanseAssertionOperators = <T>(parsedName: string): keyof T => parsedName.replace(/[?!]/g, '') as (keyof T);
 
 /**
  * 获取变量名快捷定义
  */
-export function nameofAllDefinition<T extends object>(TCreator: new () => T): any {
-  return (nameFunction: (obj: T) => any): string => {
-    return nameofAll<T>(TCreator, nameFunction);
-  };
-}
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const nameofAllDefinition = <T extends object>(tCreator: new () => T): any =>
+  (nameFunction: (obj: T) => any): string => nameofAll<T>(tCreator, nameFunction);
 
 /**
  * 获取变量名，包括类名
  */
-export function nameofAll<T extends object>(
-  TCreator: new () => T,
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const nameofAll = <T extends object>(
+  tCreator: new () => T,
   nameFunction: ((obj: T) => any) | (new (...params: any[]) => T)
-): string {
-  return ('ueqt___' + TCreator.name + '__' + nameof<T>(nameFunction)) as any;
-}
+): string => 'ueqt___' + tCreator.name + '__' + nameof<T>(nameFunction);
 
 /**
  * 获取变量名快捷定义
  */
-export function nameofDefinition<T extends object>(TCreator: new () => T): any {
-  return (nameFunction: (obj: T) => any): keyof T => {
-    return nameof<T>(nameFunction);
-  };
-}
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const nameofDefinition = <T extends object>(tCreator: new () => T): any =>
+  (nameFunction: (obj: T) => any): keyof T => nameof<T>(nameFunction);
 
 /**
  * 获取变量名
  */
-export function nameof<T extends object>(nameFunction: ((obj: T) => any) | (new (...params: any[]) => T)): keyof T {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const nameof = <T extends object>(nameFunction: ((obj: T) => any) | (new (...params: any[]) => T)): keyof T => {
   const fnStr = nameFunction.toString();
 
   // ES6 class name
@@ -73,4 +67,4 @@ export function nameof<T extends object>(nameFunction: ((obj: T) => any) | (new 
 
   // Invalid function
   throw new Error('nameof: Invalid function.');
-}
+};

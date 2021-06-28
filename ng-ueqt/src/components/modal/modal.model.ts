@@ -6,30 +6,37 @@ export const U_MODAL_MODEL_TOKEN = new InjectionToken<UModalModel>('U_MODAL_MODE
 /**
  * 消息类型
  */
+// eslint-disable-next-line no-shadow
 export enum UModalTypes {
   /**
    * 信息
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Info,
   /**
    * 成功
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Success,
   /**
    * 错误
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Error,
   /**
    * 警告
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Warn,
   /**
    * 确认
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Confirm,
   /**
    * 自定义
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Custom
 }
 

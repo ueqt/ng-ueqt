@@ -13,7 +13,7 @@ import { USiderComponent } from './sider.component';
   exportAs: 'uLayout',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <ng-content></ng-content> `,
+  template: '<ng-content></ng-content>',
 })
 export class ULayoutComponent {
   @ContentChildren(USiderComponent) listOfNzSiderComponent!: QueryList<

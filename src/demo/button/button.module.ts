@@ -6,16 +6,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UButtonModule } from 'ng-ueqt';
+import { UIconDefinition, allIcons, UIconModule, UTabsModule, UButtonModule } from 'ng-ueqt';
 import { UdemoButtonComponent } from './button';
 const routes: Routes = [{ path: '', component: UdemoButtonComponent }];
 
 const icons: UIconDefinition[] = [
-  AllIcons.UIconLeft,
-  AllIcons.UIconRight,
-  AllIcons.UIconUp,
-  AllIcons.UIconDown,
-  AllIcons.UIconBars,
+  allIcons.uiconLeft,
+  allIcons.uiconRight,
+  allIcons.uiconUp,
+  allIcons.uiconDown,
+  allIcons.uiconBars,
 ];
 
 @NgModule({

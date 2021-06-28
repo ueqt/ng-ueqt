@@ -81,7 +81,7 @@ export class UModalComponent implements OnInit, AfterViewInit {
       }
     }
     this.model.overlayRef.dispose();
-  }
+  };
 
   doCancel = async () => {
     if (this.model.cancelCallBack) {
@@ -91,11 +91,11 @@ export class UModalComponent implements OnInit, AfterViewInit {
       }
     }
     this.model.overlayRef.dispose();
-  }
+  };
 
   defaultClose = async () => {
     this.close();
-  }
+  };
 
   /**
    * 关闭

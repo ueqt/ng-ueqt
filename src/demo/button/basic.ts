@@ -44,12 +44,12 @@ export class UdemoButtonBasicComponent {
     console.log(this);
     await sleep(5000);
     console.log('test');
-  }
+  };
 
   testArgs = async (button: UButtonComponent, args: any[]) => {
     console.log(this);
     console.log(args);
     await sleep(5000);
     console.log('testArgs');
-  }
+  };
 }

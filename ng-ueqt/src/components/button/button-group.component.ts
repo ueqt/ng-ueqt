@@ -1,5 +1,5 @@
 import {
-  Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, HostListener, Output, EventEmitter
+  Component, ChangeDetectionStrategy, ViewEncapsulation, HostBinding
 } from '@angular/core';
 
 @Component({

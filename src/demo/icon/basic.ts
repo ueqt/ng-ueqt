@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AllIcons, UIconDefinition } from 'ng-ueqt';
+import { allIcons, UIconDefinition } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-icon-basic',
@@ -53,7 +53,7 @@ import { AllIcons, UIconDefinition } from 'ng-ueqt';
   ]
 })
 export class UdemoIconBasicComponent {
-  primerIcons = AllIcons as {
+  primerIcons = allIcons as {
     [key: string]: UIconDefinition;
   };
 

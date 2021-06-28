@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UButtonModule, UModalModule } from 'ng-ueqt';
+import { UIconDefinition, allIcons, UIconModule, UTabsModule, UButtonModule, UModalModule } from 'ng-ueqt';
 import { UdemoModalComponent } from './modal';
 const routes: Routes = [{ path: '', component: UdemoModalComponent }];
 

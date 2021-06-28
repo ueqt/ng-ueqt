@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-declare var require: any;
+declare const require: any;
 
 @Component({
   selector: 'udemo-icon',

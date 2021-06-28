@@ -2,7 +2,7 @@ import { UModalModel, UModalTypes, U_MODAL_MODEL_TOKEN } from './modal.model';
 import { UModalComponent } from './modal.component';
 import { Injectable, Injector } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 
 
 /**
@@ -17,6 +17,7 @@ export class UModalService {
 
   /**
    * 成功
+   *
    * @param message 消息
    */
   success(
@@ -34,6 +35,7 @@ export class UModalService {
 
   /**
    * 信息
+   *
    * @param message 消息
    */
   info(
@@ -50,6 +52,7 @@ export class UModalService {
 
   /**
    * 警告
+   *
    * @param message 消息
    */
   warn(
@@ -66,6 +69,7 @@ export class UModalService {
 
   /**
    * 错误
+   *
    * @param message 消息
    */
   error(
@@ -82,6 +86,7 @@ export class UModalService {
 
   /**
    * 确认
+   *
    * @param message 消息
    * @param confirmCallBack 确认回调
    * @param cancelCallBack 取消回调
@@ -121,6 +126,7 @@ export class UModalService {
 
   /**
    * 显示模态窗口
+   *
    * @param model 模型
    */
   private showModalModel(model: UModalModel): UModalComponent {

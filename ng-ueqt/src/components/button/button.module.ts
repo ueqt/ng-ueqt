@@ -4,13 +4,13 @@ import { UButtonComponent } from './button.component';
 import { UButtonGroupComponent } from './button-group.component';
 
 const components = [
-    UButtonComponent,
-    UButtonGroupComponent
+  UButtonComponent,
+  UButtonGroupComponent
 ];
 
 @NgModule({
-    imports: [CommonModule],
-    exports: [...components],
-    declarations: [...components]
+  imports: [CommonModule],
+  exports: [...components],
+  declarations: [...components]
 })
 export class UButtonModule { }

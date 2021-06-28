@@ -2,7 +2,6 @@ import { UModalComponent } from './../../../ng-ueqt/src/components/modal/modal.c
 import { UModalService } from './../../../ng-ueqt/src/components/modal/modal.service';
 import { UButtonComponent } from './../../../ng-ueqt/src/components/button/button.component';
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { sleep } from 'ng-ueqt/components/core/util';
 
 @Component({
   selector: 'udemo-modal-basic',
@@ -30,24 +29,24 @@ export class UdemoModalBasicComponent {
 
   info = async () => {
     this.modalService.info('<b>info</b>');
-  }
+  };
 
   success = async () => {
     const ref = this.modalService.success('success<br/>wow');
     setTimeout(() => {
       ref.close();
     }, 3000);
-  }
+  };
 
   error = async () => {
     this.modalService.error('error');
-  }
+  };
 
   warn = async () => {
     this.modalService.warn('warn', () => {
       console.log('warn close');
     }, '关闭');
-  }
+  };
 
   confirm = async () => {
     this.modalService.confirm('confirm', () => {
@@ -55,23 +54,23 @@ export class UdemoModalBasicComponent {
     }, () => {
       console.log('取消');
     }, '确认');
-  }
+  };
 
   customComponent = async () => {
     const ref = this.modalService.custom(UdemoModalTestComponent, {
       abc: 'world'
     }, '测试自定义');
-  }
+  };
 
   customTemplateRef = async () => {
     const ref = this.modalService.custom(this.tp, {
       abc: 'world'
     }, '自定义模板');
-  }
+  };
 
   close = async (_: UButtonComponent, data: any) => {
     data.modal.close();
-  }
+  };
 }
 
 @Component({
@@ -85,11 +84,11 @@ export class UdemoModalBasicComponent {
 })
 export class UdemoModalTestComponent {
 
-  modal: UModalComponent;
-
   @Input() abc: string;
+
+  modal: UModalComponent;
 
   close = async () => {
     this.modal.close();
-  }
+  };
 }

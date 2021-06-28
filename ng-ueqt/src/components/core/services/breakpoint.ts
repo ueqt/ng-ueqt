@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { getEnumKeyByEnumValue } from '../util';
 
+// eslint-disable-next-line no-shadow
 export enum UBreakpoints {
   xs = 'XSmall',
   sm = 'Small',
@@ -69,6 +70,7 @@ export class UBreakpointService implements OnDestroy {
 
   /**
    * 获取当前尺寸下的值
+   *
    * @param component 组件
    * @param fieldPrefix 字段前缀
    */

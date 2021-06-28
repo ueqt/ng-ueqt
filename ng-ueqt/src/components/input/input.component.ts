@@ -29,7 +29,9 @@ export class UInputComponent implements ControlValueAccessor {
   /**
    * 输入类型
    */
-  @Input() uType: 'text' | 'number' | 'textarea' | 'password' | 'date' | 'datetime-local' | 'email' | 'month' | 'search' | 'tel' | 'time' | 'url' | 'week' | 'select';
+  @Input() uType: 'text' | 'number' | 'textarea' | 'password' |
+    'date' | 'datetime-local' | 'email' | 'month' | 'search' |
+    'tel' | 'time' | 'url' | 'week' | 'select';
 
   /**
    * 最大长度
@@ -55,12 +57,12 @@ export class UInputComponent implements ControlValueAccessor {
     }
   }
 
-  onChange = (value: string) => { };
-  onTouched = () => { };
-
   constructor(
     private cdr: ChangeDetectorRef
   ) { }
+
+  onChange = (value: string) => { };
+  onTouched = () => { };
 
   onBlur(): void {
     this.onTouched();

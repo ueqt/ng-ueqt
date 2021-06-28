@@ -11,7 +11,9 @@ import { UFlexAlignmentHorizontals, UFlexAlignmentVerticals, UFlexDirections } f
   </u-flex>
   <hr/>
   <div style="width: 100%; height: 500px; border: 1px solid gray;">
-    <u-flex [uDirection]="direction.value" [uAlignmentHorizontal]="alignmentHorizontal.value" [uAlignmentVertical]="alignmentVertical.value">
+    <u-flex [uDirection]="direction.value"
+    [uAlignmentHorizontal]="alignmentHorizontal.value"
+    [uAlignmentVertical]="alignmentVertical.value">
       <div class="blocks one">1</div>
       <div class="blocks two">2</div>
       <div class="blocks three">3</div>

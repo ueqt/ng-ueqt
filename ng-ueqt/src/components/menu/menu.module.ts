@@ -9,10 +9,10 @@ import { UIconDefinition } from '../icon';
 import * as PrimerIcons from '../icon/primer-icons';
 
 const icons: UIconDefinition[] = [
-  PrimerIcons.UIconUp,
-  PrimerIcons.UIconDown,
-  PrimerIcons.UIconLeft,
-  PrimerIcons.UIconRight
+  PrimerIcons.uiconUp,
+  PrimerIcons.uiconDown,
+  PrimerIcons.uiconLeft,
+  PrimerIcons.uiconRight
 ];
 
 export const components = [

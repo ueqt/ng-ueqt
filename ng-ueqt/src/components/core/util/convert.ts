@@ -5,46 +5,34 @@ import {
 } from '@angular/cdk/coercion';
 import { UAny, UFunctionProp } from './types';
 
-export function toBoolean(value: boolean | string): boolean {
-  return coerceBooleanProperty(value);
-}
+export const toBoolean = (value: boolean | string): boolean => coerceBooleanProperty(value);
 
-export function toNumber(value: number | string): number;
-export function toNumber<D>(value: number | string, fallback: D): number | D;
-export function toNumber(
+export const toNumber = (
   value: number | string,
   fallbackValue: number = 0
-): number {
-  return _isNumberValue(value) ? Number(value) : fallbackValue;
-}
+): number => _isNumberValue(value) ? Number(value) : fallbackValue;
 
-export function toCssPixel(value: number | string): string {
-  return coerceCssPixelValue(value);
-}
-
-// tslint:disable no-invalid-this
+export const toCssPixel = (value: number | string): string => coerceCssPixelValue(value);
 
 /**
  * Get the function-property type's value
  */
-export function valueFunctionProp<T>(
+export const valueFunctionProp = <T>(
   prop: UFunctionProp<T> | T,
   ...args: UAny[]
-): T {
-  return typeof prop === 'function'
+): T => typeof prop === 'function'
     ? (prop as UFunctionProp<T>)(...args)
     : prop;
-}
 
-function propDecoratorFactory<T, D>(
+const propDecoratorFactory = <T, D>(
   name: string,
   fallback: (v: T) => D
-): (target: UAny, propName: string) => void {
-  function propDecorator(
+): (target: UAny, propName: string) => void => {
+  const propDecorator = (
     target: UAny,
     propName: string,
     originalDescriptor?: TypedPropertyDescriptor<UAny>
-  ): UAny {
+  ): UAny => {
     const privatePropName = `$$__${propName}`;
 
     if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -71,10 +59,10 @@ function propDecoratorFactory<T, D>(
         this[privatePropName] = fallback(value);
       },
     };
-  }
+  };
 
   return propDecorator;
-}
+};
 
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
@@ -92,21 +80,19 @@ function propDecoratorFactory<T, D>(
  * // __visible = false;
  * ```
  */
-export function InputBoolean(): UAny {
-  return propDecoratorFactory('InputBoolean', toBoolean);
-}
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const InputBoolean = (): UAny => propDecoratorFactory('InputBoolean', toBoolean);
 
-export function InputCssPixel(): UAny {
-  return propDecoratorFactory('InputCssPixel', toCssPixel);
-}
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const InputCssPixel = (): UAny => propDecoratorFactory('InputCssPixel', toCssPixel);
 
-export function InputNumber(fallbackValue?: UAny): UAny {
-  return propDecoratorFactory('InputNumber', (value: string | number) =>
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const InputNumber = (fallbackValue?: UAny): UAny =>
+  propDecoratorFactory('InputNumber', (value: string | number) =>
     toNumber(value, fallbackValue)
   );
-}
 
-export function pxToNumber(value: string | null): number {
+export const pxToNumber = (value: string | null): number => {
   if (!value) {
     return 0;
   }
@@ -114,4 +100,4 @@ export function pxToNumber(value: string | null): number {
   const match = value.match(/^\d*(\.\d*)?/);
 
   return match ? Number(match[0]) : 0;
-}
+};

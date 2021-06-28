@@ -31,7 +31,7 @@ export const DEFAULT_MENTION_BOTTOM_POSITIONS = [
   new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' })
 ];
 
-export function getPlacementName(position: ConnectedOverlayPositionChange): string | undefined {
+export const getPlacementName = (position: ConnectedOverlayPositionChange): string | undefined => {
   for (const placement in POSITION_MAP) {
     if (
       position.connectionPair.originX === POSITION_MAP[placement].originX &&
@@ -43,4 +43,4 @@ export function getPlacementName(position: ConnectedOverlayPositionChange): stri
     }
   }
   return undefined;
-}
+};

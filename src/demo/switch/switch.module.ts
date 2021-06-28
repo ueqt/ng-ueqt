@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UButtonModule } from 'ng-ueqt';
+import { UIconDefinition, allIcons, UIconModule, UTabsModule, UButtonModule } from 'ng-ueqt';
 const routes: Routes = [{ path: '', component: UdemoSwitchComponent }];
 
 @NgModule({

@@ -52,6 +52,11 @@ export class UViewerFilterColumnModel {
  */
 export class UViewerColumnDef {
   /**
+   * 额外字段
+   */
+  [key: string]: any;
+
+  /**
    * 索引号（自动生成）
    */
   index?: number;
@@ -71,15 +76,11 @@ export class UViewerColumnDef {
    * 禁用过滤
    */
   disableFilter?: boolean;
+
   /**
    * 字段类型
    */
   type?: 'number' | 'string' | string = 'string';
-
-  /**
-   * 额外字段
-   */
-  [key: string]: any;
 }
 
 @Component({
@@ -91,9 +92,28 @@ export class UViewerColumnDef {
 })
 export class UViewerComponent implements AfterViewInit {
 
+  /**
+   * 显示的模板
+   */
+  @Input() uDataTemplate: TemplateRef<any>;
+
+  /**
+   * 表格高度
+   */
+  @Input() uTableHeight: string;
+
+  /**
+   * 最大可排序数量
+   */
+  @Input() uMaxOrderNumber = 0;
+
+  /**
+   * 最大可过滤数量
+   */
+  @Input() uMaxFilterNumber = 0;
+
   // #region uItemHeight
 
-  private itemHeight = 114;
   /**
    * 单个元素高度(Viewer只支持固定行高)
    */
@@ -112,7 +132,6 @@ export class UViewerComponent implements AfterViewInit {
 
   // #region uItemWidth
 
-  private itemWidth = 0;
   /**
    * 单个元素宽度(Viewer只支持固定宽度, 0表示100%)
    */
@@ -131,7 +150,6 @@ export class UViewerComponent implements AfterViewInit {
 
   // #region uDatas
 
-  private datas: any[] = [];
   /**
    * 要显示的数据数组
    */
@@ -151,7 +169,6 @@ export class UViewerComponent implements AfterViewInit {
 
   // #region uColumnDefs
 
-  private columnDefs: UViewerColumnDef[] = [];
   /**
    * 列定义
    */
@@ -186,26 +203,6 @@ export class UViewerComponent implements AfterViewInit {
 
   // #endregion uColumnDefs
 
-  /**
-   * 显示的模板
-   */
-  @Input() uDataTemplate: TemplateRef<any>;
-
-  /**
-   * 表格高度
-   */
-  @Input() uTableHeight: string;
-
-  /**
-   * 最大可排序数量
-   */
-  @Input() uMaxOrderNumber = 0;
-
-  /**
-   * 最大可过滤数量
-   */
-  @Input() uMaxFilterNumber = 0;
-
   itemSize = 114;
 
   /**
@@ -234,24 +231,12 @@ export class UViewerComponent implements AfterViewInit {
   filterColumnOptionIndexes: number[] = [];
 
   conditionFunctions = { // search method base on conditions list value
-    大于: (value, filterdValue) => {
-      return value > filterdValue;
-    },
-    小于: (value, filterdValue) => {
-      return value < filterdValue;
-    },
-    等于: (value, filterdValue) => {
-      return value === filterdValue;
-    },
-    不等于: (value, filterdValue) => {
-      return value !== filterdValue;
-    },
-    包含: (value, filterdValue) => {
-      return value.toString().includes(filterdValue);
-    },
-    不包含: (value, filterdValue) => {
-      return !value.toString().includes(filterdValue);
-    }
+    大于: (value, filterdValue) => value > filterdValue,
+    小于: (value, filterdValue) => value < filterdValue,
+    等于: (value, filterdValue) => value === filterdValue,
+    不等于: (value, filterdValue) => value !== filterdValue,
+    包含: (value, filterdValue) => value.toString().includes(filterdValue),
+    不包含: (value, filterdValue) => !value.toString().includes(filterdValue)
   };
 
   conditionOptions = Object.keys(this.conditionFunctions);
@@ -259,6 +244,11 @@ export class UViewerComponent implements AfterViewInit {
   filterIndex = '';
   filterCondition = '';
   filterValue = '';
+
+  private datas: any[] = [];
+  private itemHeight = 114;
+  private itemWidth = 0;
+  private columnDefs: UViewerColumnDef[] = [];
 
   constructor(
     private element: ElementRef
@@ -317,7 +307,7 @@ export class UViewerComponent implements AfterViewInit {
       this.orderColumnOptionIndexes.push(c.index);
     }
     this.refresh();
-  }
+  };
 
   selectedOrder(event): void {
     const key = +event.target.value;
@@ -412,7 +402,7 @@ export class UViewerComponent implements AfterViewInit {
       value: this.filterValue
     });
     this.refresh();
-  }
+  };
 
   changeFilter = async (_, c: UViewerFilterColumnModel) => {
     const ii = this.filterColumns.findIndex(o => o.index === c.index);
@@ -420,5 +410,5 @@ export class UViewerComponent implements AfterViewInit {
       this.filterColumns.splice(ii, 1);
     }
     this.refresh();
-  }
+  };
 }

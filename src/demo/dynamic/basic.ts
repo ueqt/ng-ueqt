@@ -4,7 +4,7 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
 
 @Component({
   selector: 'udemo-dynamic-basic',
-  template: `<div #parent></div>`
+  template: '<div #parent></div>'
 })
 export class UdemoDynamicBasicComponent implements AfterViewInit {
 

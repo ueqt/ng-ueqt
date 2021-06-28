@@ -3,7 +3,7 @@ import { UContributionsModel } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-contributions-basic',
-  template: `<u-contributions [uOptions]="options"></u-contributions>`,
+  template: '<u-contributions [uOptions]="options"></u-contributions>',
 })
 export class UdemoContributionsBasicComponent {
 

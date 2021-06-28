@@ -7,6 +7,7 @@ import { UBreakpointService } from '../core';
 /**
  * Flex方向
  */
+// eslint-disable-next-line no-shadow
 export enum UFlexDirections {
   row = 'row',
   column = 'column',
@@ -18,6 +19,7 @@ export type UFlexDirectionConstants = 'row' | 'column' | 'row-reverse' | 'column
 /**
  * Flex横向排列方式
  */
+// eslint-disable-next-line no-shadow
 export enum UFlexAlignmentHorizontals {
   start = 'flex-start',
   center = 'center',
@@ -31,6 +33,7 @@ export type UFlexAlignmentHorizontalConstants = 'flex-start' | 'center' | 'flex-
 /**
  * Flex纵向排列方式
  */
+// eslint-disable-next-line no-shadow
 export enum UFlexAlignmentVerticals {
   stretch = 'stretch',
   baseline = 'baseline',

@@ -11,7 +11,7 @@ import {
   exportAs: 'uFooter',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <ng-content></ng-content> `,
+  template: '<ng-content></ng-content>',
 })
 export class UFooterComponent {
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {

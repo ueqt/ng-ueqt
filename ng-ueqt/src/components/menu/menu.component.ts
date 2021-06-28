@@ -14,12 +14,14 @@ import {
   ViewContainerRef,
   ViewChild,
   EmbeddedViewRef,
-  ElementRef,
 } from '@angular/core';
 import { UAny } from '../core/util/types';
 import { TemplatePortal } from '@angular/cdk/portal';
 
 export class UMenuNode {
+
+  [key: string]: UAny;
+
   /**
    * 唯一标识符
    */
@@ -60,7 +62,6 @@ export class UMenuNode {
    * 父节点
    */
   parent?: UMenuNode;
-  [key: string]: UAny;
 }
 
 @Component({
@@ -70,15 +71,6 @@ export class UMenuNode {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UMenuComponent implements OnChanges {
-
-  private ids = {};
-
-  private focusCount = 0;
-
-  /**
-   * 所有打开的弹出框的node，每个index就是每个层级打开的内容
-   */
-  private openedPopups: UMenuNode[] = [];
 
   /**
    * 数据
@@ -114,9 +106,18 @@ export class UMenuComponent implements OnChanges {
   dataSource = new ArrayDataSource([]);
   flatNodes: UMenuNode[] = [];
 
-  hasChild = (_: number, node: UMenuNode) => node.expandable;
+  private ids = {};
+
+  private focusCount = 0;
+
+  /**
+   * 所有打开的弹出框的node，每个index就是每个层级打开的内容
+   */
+  private openedPopups: UMenuNode[] = [];
 
   constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) { }
+
+  hasChild = (_: number, node: UMenuNode) => node.expandable;
 
   ngOnChanges(): void {
     this.flatNodes = [];
@@ -145,37 +146,6 @@ export class UMenuComponent implements OnChanges {
     this.selectedNode = node;
     if (this.uNodeClick) {
       this.uNodeClick.emit(node);
-    }
-  }
-
-  /**
-   * 生成id
-   * @param id 要生成的id
-   */
-  private generateId(id: string): string {
-    if (this.ids[id]) {
-      // 已经存在
-      return this.generateId(id + '!');
-    }
-    return id;
-  }
-
-  private flattenNode(
-    node: UMenuNode,
-    level: number,
-    parent: UMenuNode
-  ): void {
-    node.id = this.generateId(node.id || node.name);
-    node.level = level;
-    node.isExpanded = false;
-    node.parent = parent;
-
-    this.flatNodes.push(node);
-
-    if (this.expandable(node)) {
-      node.children.forEach((child, i) => {
-        this.flattenNode(child, level + 1, node);
-      });
     }
   }
 
@@ -249,7 +219,7 @@ export class UMenuComponent implements OnChanges {
         this.selectNode(node);
       }
     }
-  }
+  };
 
   findPopupRef(target: any): any {
     if (target.classList.contains('u-menu-popup')) {
@@ -289,5 +259,37 @@ export class UMenuComponent implements OnChanges {
     this.flatNodes.forEach(n => {
       this.closeNodeAndSubNodes(n);
     });
+  }
+
+  /**
+   * 生成id
+   *
+   * @param id 要生成的id
+   */
+  private generateId(id: string): string {
+    if (this.ids[id]) {
+      // 已经存在
+      return this.generateId(id + '!');
+    }
+    return id;
+  }
+
+  private flattenNode(
+    node: UMenuNode,
+    level: number,
+    parent: UMenuNode
+  ): void {
+    node.id = this.generateId(node.id || node.name);
+    node.level = level;
+    node.isExpanded = false;
+    node.parent = parent;
+
+    this.flatNodes.push(node);
+
+    if (this.expandable(node)) {
+      node.children.forEach((child, i) => {
+        this.flattenNode(child, level + 1, node);
+      });
+    }
   }
 }

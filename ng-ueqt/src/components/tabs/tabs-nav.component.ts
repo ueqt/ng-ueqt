@@ -109,8 +109,7 @@ const HEADER_SCROLL_INTERVAL = 100;
     </div>
   `,
 })
-export class UTabsNavComponent
-  implements AfterViewInit, AfterContentChecked, AfterContentInit, OnDestroy {
+export class UTabsNavComponent implements AfterViewInit, AfterContentChecked, AfterContentInit, OnDestroy {
   @HostBinding('class.u-tabs-nav') classTabsNav = true;
 
   @ContentChildren(UTabLabelDirective) items: QueryList<UTabLabelDirective>;
@@ -123,15 +122,6 @@ export class UTabsNavComponent
   @ViewChild('tabPrev') previousPaginator: ElementRef<HTMLElement>;
   @ViewChild('tabNext') nextPaginator: ElementRef<HTMLElement>;
 
-  // The distance in pixels that the tab labels should be translated to the left.
-  private mScrollDistance = 0;
-
-  // Whether the header should scroll to the selected index after the view has been checked.
-  private selectedIndexChanged = false;
-
-  // Emits when the component is destroyed.
-  private destroy$ = new Subject<void>();
-
   // Whether the controls for pagination should be displayed
   showPaginationControls = false;
 
@@ -140,6 +130,24 @@ export class UTabsNavComponent
 
   // Whether the tab list can be scrolled more towards the beginning of the tab label list.
   disableScrollBefore = true;
+
+  // Event emitted when the option is selected.
+  readonly selectFocusedIndex: EventEmitter<number> = new EventEmitter<
+    number
+  >();
+
+  // Event emitted when a label is focused.
+  readonly indexFocused: EventEmitter<number> = new EventEmitter<number>();
+
+
+  // The distance in pixels that the tab labels should be translated to the left.
+  private mScrollDistance = 0;
+
+  // Whether the header should scroll to the selected index after the view has been checked.
+  private selectedIndexChanged = false;
+
+  // Emits when the component is destroyed.
+  private destroy$ = new Subject<void>();
 
   // The number of tab labels that are displayed on the header.
   // When this changes, the header should re-evaluate the scroll position.
@@ -175,14 +183,6 @@ export class UTabsNavComponent
     }
   }
   private mSelectedIndex = 0;
-
-  // Event emitted when the option is selected.
-  readonly selectFocusedIndex: EventEmitter<number> = new EventEmitter<
-    number
-  >();
-
-  // Event emitted when a label is focused.
-  readonly indexFocused: EventEmitter<number> = new EventEmitter<number>();
 
   // @ViewChild('navContainerElement') navContainerElement!: ElementRef<
   //   HTMLDivElement
@@ -312,7 +312,7 @@ export class UTabsNavComponent
   }
 
   // Called when the user has selected an item via the keyboard.
-  itemSelected(event: KeyboardEvent): void {}
+  itemSelected(event: KeyboardEvent): void { }
 
   /** Handles keyboard events on the header. */
   handleKeydown(event: KeyboardEvent): void {
@@ -321,7 +321,7 @@ export class UTabsNavComponent
       return;
     }
 
-    // tslint:disable-next-line: deprecation
+    // eslint-disable-next-line import/no-deprecated
     switch (event.keyCode) {
       case ENTER:
       case SPACE:
@@ -615,6 +615,7 @@ export class UTabsNavComponent
   /**
    * Handles the user pressing down on one of the paginators.
    * Starts scrolling the header after a certain amount of time.
+   *
    * @param direction In which direction the paginator should be scrolled.
    */
   handlePaginatorPress(
@@ -646,6 +647,7 @@ export class UTabsNavComponent
 
   /**
    * Scrolls the header to a given position.
+   *
    * @param position Position to which to scroll.
    * @returns Information on the current scroll distance and the maximum.
    */

@@ -6,16 +6,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, URadarModule } from 'ng-ueqt';
+import { UIconDefinition, allIcons, UIconModule, UTabsModule, URadarModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoRadarComponent }];
 
 const icons: UIconDefinition[] = [
-  AllIcons.UIconLeft,
-  AllIcons.UIconRight,
-  AllIcons.UIconUp,
-  AllIcons.UIconDown,
-  AllIcons.UIconBars,
+  allIcons.uiconLeft,
+  allIcons.uiconRight,
+  allIcons.uiconUp,
+  allIcons.uiconDown,
+  allIcons.uiconBars,
 ];
 
 @NgModule({

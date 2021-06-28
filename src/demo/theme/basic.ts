@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   template: `
 <u-button (click)="change()">修改皮肤</u-button>
 <div>
-  <div *ngFor="let t of theme.colorNames" style="border: solid 1px black;display: inline-block;margin-right: 10px; padding: 5px;" [style.color]="'var('+ t + ')'">{{t}}</div>
+  <div *ngFor="let t of theme.colorNames"
+    style="border: solid 1px black;display: inline-block;margin-right: 10px; padding: 5px;"
+    [style.color]="'var('+ t + ')'">{{t}}</div>
 </div>
 `
 })

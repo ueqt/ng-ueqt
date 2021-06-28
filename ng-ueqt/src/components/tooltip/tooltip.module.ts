@@ -7,13 +7,13 @@ import { CommonModule } from '@angular/common';
 import { UTooltipComponent } from './tooltip.component';
 
 const components = [
-    UTooltipDirective,
-    UTooltipComponent
+  UTooltipDirective,
+  UTooltipComponent
 ];
 
 @NgModule({
-    imports: [CommonModule, OverlayModule, UOutletModule, UOverlayModule],
-    exports: [...components],
-    declarations: [...components]
+  imports: [CommonModule, OverlayModule, UOutletModule, UOverlayModule],
+  exports: [...components],
+  declarations: [...components]
 })
 export class UTooltipModule { }

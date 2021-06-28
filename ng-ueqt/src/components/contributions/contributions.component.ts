@@ -42,7 +42,7 @@ export class UContributionsComponent implements OnInit {
   values: { date: Date, value: number, color: string, class: string }[] = [];
 
   // (24*60*60*1000)
-  private PROXIMATE_ONE_DAY = 86400000;
+  private proximateOneDay = 86400000;
 
   constructor() {
   }
@@ -74,8 +74,8 @@ export class UContributionsComponent implements OnInit {
   calcWeekNumber(): number {
     const start = new Date(this.uOptions.year, 0, 1);
     const end = new Date(this.uOptions.year, 11, 31);
-    const allDay = Math.floor(end.getTime() / this.PROXIMATE_ONE_DAY)
-      - Math.floor(start.getTime() / this.PROXIMATE_ONE_DAY) + 1;
+    const allDay = Math.floor(end.getTime() / this.proximateOneDay)
+      - Math.floor(start.getTime() / this.proximateOneDay) + 1;
 
     const nthWeek = Math.floor((allDay + start.getDay() + 6) / 7);
     return nthWeek;
@@ -157,6 +157,7 @@ export class UContributionsComponent implements OnInit {
 
   /**
    * 一个月的第几周
+   *
    * @param date 日期
    */
   weekOfMonth(date: Date): number {
@@ -167,6 +168,7 @@ export class UContributionsComponent implements OnInit {
 
   /**
    * 日期转坐标
+   *
    * @param date 日期
    */
   dateToPoint(date: Date): { x: number, y: number } {
@@ -174,8 +176,8 @@ export class UContributionsComponent implements OnInit {
 
     const start = new Date(date.getFullYear(), 0, 1);
 
-    const allDay = Math.floor(date.getTime() / this.PROXIMATE_ONE_DAY)
-      - Math.floor(start.getTime() / this.PROXIMATE_ONE_DAY) + 1;
+    const allDay = Math.floor(date.getTime() / this.proximateOneDay)
+      - Math.floor(start.getTime() / this.proximateOneDay) + 1;
 
     const nthWeek = Math.floor((allDay + start.getDay() + 6) / 7) - 1;
     return {
@@ -186,6 +188,7 @@ export class UContributionsComponent implements OnInit {
 
   /**
    * Convert a (x, y) point to time date
+   *
    * @param  point point
    * @return date
    */

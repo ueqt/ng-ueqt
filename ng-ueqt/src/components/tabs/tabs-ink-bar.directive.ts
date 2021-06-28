@@ -17,12 +17,6 @@ export class UTabsInkBarDirective {
     this.setStyles(element);
   }
 
-  private setStyles(element: HTMLElement): void {
-    const inkBar: HTMLElement = this.elementRef.nativeElement;
-    inkBar.style.left = this.getLeftPosition(element);
-    inkBar.style.width = this.getElementWidth(element);
-  }
-
   getLeftPosition(element: HTMLElement): string {
     return element ? (element.offsetLeft || 0) + 'px' : '0';
   }
@@ -37,5 +31,11 @@ export class UTabsInkBarDirective {
 
   hide(): void {
     this.elementRef.nativeElement.style.visibility = 'hidden';
+  }
+
+  private setStyles(element: HTMLElement): void {
+    const inkBar: HTMLElement = this.elementRef.nativeElement;
+    inkBar.style.left = this.getLeftPosition(element);
+    inkBar.style.width = this.getElementWidth(element);
   }
 }

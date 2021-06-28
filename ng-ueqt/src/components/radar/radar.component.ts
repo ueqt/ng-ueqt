@@ -1,4 +1,3 @@
-import { UAny } from './../core/util/types';
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
 
 export class URadarModel {
@@ -78,11 +77,12 @@ export class URadarComponent {
 
   get columns(): { key: string, index: number, angle: number }[] {
     return this.uOptions.captions.map((value: string, index: number, array: string[]) => {
-      return {
+      const result = {
         key: value,
         index,
         angle: (Math.PI * 2 * index) / array.length
       };
+      return result;
     });
   }
 
@@ -109,6 +109,24 @@ export class URadarComponent {
     return Math.sin(angle - Math.PI / 2) * distance;
   }
 
+  getAxis(col: { key: string, index: number, angle: number }): string {
+    const result = this.points([
+      [0, 0],
+      [
+        this.polarToX(col.angle, this.size / 2),
+        this.polarToY(col.angle, this.size / 2)
+      ]
+    ]);
+    return result;
+  }
+
+  getColor(index: number): string {
+    if (this.uOptions.colors.length <= index) {
+      return '#edc951';
+    }
+    return this.uOptions.colors[index];
+  }
+
   private pathDefinition(points: number[][]): string {
     let d = 'M' + points[0][0].toFixed(4) + ',' + points[0][1].toFixed(4);
     for (let i = 1; i < points.length; i++) {
@@ -117,25 +135,8 @@ export class URadarComponent {
     return d + 'z';
   }
 
-  getAxis(col: { key: string, index: number, angle: number }): string {
-    return this.points([
-      [0, 0],
-      [
-        this.polarToX(col.angle, this.size / 2),
-        this.polarToY(col.angle, this.size / 2)
-      ]
-    ]);
-  }
-
   private points(points: number[][]): string {
     return points.map(point => point[0].toFixed(4) + ',' + point[1].toFixed(4))
       .join(' ');
-  }
-
-  getColor(index: number): string {
-    if (this.uOptions.colors.length <= index) {
-      return '#edc951';
-    }
-    return this.uOptions.colors[index];
   }
 }

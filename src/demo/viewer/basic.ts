@@ -14,7 +14,9 @@ import { Component } from '@angular/core';
 
   <br/>
 
-  <u-viewer [uColumnDefs]="columnDefs" [uDatas]="datas" [uDataTemplate]="dataTmpl2" [uItemHeight]="40" [uItemWidth]="500" [uTableHeight]="'200px'" [uMaxOrderNumber]="1">
+  <u-viewer [uColumnDefs]="columnDefs" [uDatas]="datas"
+    [uDataTemplate]="dataTmpl2" [uItemHeight]="40" [uItemWidth]="500"
+    [uTableHeight]="'200px'" [uMaxOrderNumber]="1">
   </u-viewer>
   <ng-template #dataTmpl2 let-data let-orderColumns='orderColumns' let-filterColumns="filterColumns">
       A: {{ data.a }}

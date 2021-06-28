@@ -7,16 +7,16 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { UdemoTooltipPlacementComponent } from './placement';
-import { UIconDefinition, AllIcons, UIconModule, UTabsModule, UTooltipModule } from 'ng-ueqt';
+import { UIconDefinition, allIcons, UIconModule, UTabsModule, UTooltipModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoTooltipComponent }];
 
 const icons: UIconDefinition[] = [
-  AllIcons.UIconLeft,
-  AllIcons.UIconRight,
-  AllIcons.UIconUp,
-  AllIcons.UIconDown,
-  AllIcons.UIconBars,
+  allIcons.uiconLeft,
+  allIcons.uiconRight,
+  allIcons.uiconUp,
+  allIcons.uiconDown,
+  allIcons.uiconBars,
 ];
 
 @NgModule({

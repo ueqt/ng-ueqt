@@ -22,8 +22,6 @@ import { InputBoolean } from '../core';
   templateUrl: './switch.component.html'
 })
 export class USwitchComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
-  @ViewChild('switchElement') private switchElement: ElementRef;
-
   /**
    * 是否禁用
    */
@@ -39,15 +37,27 @@ export class USwitchComponent implements ControlValueAccessor, AfterViewInit, On
 
   @HostBinding('class.u-switch') classSwitch = true;
 
-  isChecked = false;
+  @ViewChild('switchElement') private switchElement: ElementRef;
 
-  onChange = (value: boolean) => { };
-  onTouched = () => { };
+  isChecked = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private focusMonitor: FocusMonitor
   ) { }
+
+  @HostListener('click', ['$event'])
+  onHostClick(e: MouseEvent): void {
+    e.preventDefault();
+    if (this.uDisabled) {
+      return;
+    }
+    this.updateValue(!this.isChecked);
+  }
+
+  onChange = (value: boolean) => { };
+  onTouched = () => { };
+
 
   ngAfterViewInit(): void {
     this.focusMonitor.monitor(this.switchElement.nativeElement, true).subscribe(focusOrigin => {
@@ -60,15 +70,6 @@ export class USwitchComponent implements ControlValueAccessor, AfterViewInit, On
 
   ngOnDestroy(): void {
     this.focusMonitor.stopMonitoring(this.switchElement.nativeElement);
-  }
-
-  @HostListener('click', ['$event'])
-  onHostClick(e: MouseEvent): void {
-    e.preventDefault();
-    if (this.uDisabled) {
-      return;
-    }
-    this.updateValue(!this.isChecked);
   }
 
   updateValue(value: boolean): void {

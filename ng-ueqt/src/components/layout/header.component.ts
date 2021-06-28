@@ -11,7 +11,7 @@ import {
   exportAs: 'uHeader',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  template: ` <ng-content></ng-content> `,
+  template: '<ng-content></ng-content>',
 })
 export class UHeaderComponent {
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {

@@ -46,20 +46,20 @@ export class UdemoTabsBasicComponent {}
 
 @Component({
   selector: 'udemo-tab-content-eagerly',
-  template: ` eagerly `,
+  template: ' eagerly ',
 })
 export class UDemoTabContentEagerlyComponent implements OnInit {
   ngOnInit(): void {
-    console.log(`I will init eagerly`);
+    console.log('I will init eagerly');
   }
 }
 
 @Component({
   selector: 'udemo-tab-content-lazy',
-  template: ` lazy `,
+  template: ' lazy ',
 })
 export class UDemoTabContentLazyComponent implements OnInit {
   ngOnInit(): void {
-    console.log(`I will init when tab active`);
+    console.log('I will init when tab active');
   }
 }
