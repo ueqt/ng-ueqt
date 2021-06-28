@@ -1,60 +1,59 @@
 {
-  "name": "site",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "lint-staged": "lint-staged",
-    "prepare": "npx husky install",
-    "start": "ng serve --hmr",
-    "deploy": "ng build ng-ueqt --prod && cd dist/ng-ueqt && npm publish",
-    "build": "ng build ng-ueqt --prod && ng build --prod --base-href=/ng-ueqt/",
-    "lint": "ng lint"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "~11.2.14",
-    "@angular/cdk": "~11.2.13",
-    "@angular/common": "~11.2.14",
-    "@angular/compiler": "~11.2.14",
-    "@angular/core": "~11.2.14",
-    "@angular/forms": "~11.2.14",
-    "@angular/platform-browser": "~11.2.14",
-    "@angular/platform-browser-dynamic": "~11.2.14",
-    "@angular/router": "~11.2.14",
-    "marked": "2.0.7",
-    "ngx-markdown": "~11.0.1",
-    "rxjs": "7.1.0",
-    "tslib": "2.2.0",
-    "zone.js": "0.11.4"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.12",
-    "@angular-eslint/builder": "4.3.0",
-    "@angular-eslint/eslint-plugin": "4.3.0",
-    "@angular-eslint/eslint-plugin-template": "4.3.0",
-    "@angular-eslint/schematics": "4.3.0",
-    "@angular-eslint/template-parser": "4.3.0",
-    "@angular/cli": "~11.2.14",
-    "@angular/compiler-cli": "~11.2.14",
-    "@types/node": "^15.12.2",
-    "@typescript-eslint/eslint-plugin": "4.16.1",
-    "@typescript-eslint/parser": "4.16.1",
-    "eslint": "^7.6.0",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jsdoc": "latest",
-    "eslint-plugin-prefer-arrow": "latest",
-    "husky": "^6.0.0",
-    "is-svg": ">=4.3.1",
-    "lint-staged": "^11.0.0",
-    "ng-packagr": "^12.0.5",
-    "semver": "^7.3.5",
-    "ts-node": "~10.0.0",
-    "typescript": "~4.1.5"
-  },
-  "lint-staged": {
-    "{ng-ueqt, src}/**/*.ts": [
-      "eslint",
-      "git add"
-    ]
-  }
+    "name": "site",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "ng",
+        "lint-staged": "lint-staged",
+        "prepare": "npx husky install",
+        "start": "ng serve --hmr",
+        "deploy": "ng build ng-ueqt --prod && cd dist/ng-ueqt && npm publish",
+        "build": "ng build ng-ueqt --prod && ng build --prod --base-href=/ng-ueqt/",
+        "lint": "ng lint"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "~11.2.14",
+        "@angular/cdk": "~11.2.13",
+        "@angular/common": "~11.2.14",
+        "@angular/compiler": "~11.2.14",
+        "@angular/core": "~11.2.14",
+        "@angular/forms": "~11.2.14",
+        "@angular/platform-browser": "~11.2.14",
+        "@angular/platform-browser-dynamic": "~11.2.14",
+        "@angular/router": "~11.2.14",
+        "marked": "2.0.7",
+        "ngx-markdown": "~11.0.1",
+        "rxjs": "7.1.0",
+        "tslib": "2.2.0",
+        "zone.js": "0.11.4"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "~0.1102.12",
+        "@angular-eslint/builder": "4.3.0",
+        "@angular-eslint/eslint-plugin": "4.3.0",
+        "@angular-eslint/eslint-plugin-template": "4.3.0",
+        "@angular-eslint/schematics": "4.3.0",
+        "@angular-eslint/template-parser": "4.3.0",
+        "@angular/cli": "~11.2.14",
+        "@angular/compiler-cli": "~11.2.14",
+        "@types/node": "^15.12.2",
+        "@typescript-eslint/eslint-plugin": "4.16.1",
+        "@typescript-eslint/parser": "4.16.1",
+        "eslint": "^7.6.0",
+        "eslint-plugin-import": "latest",
+        "eslint-plugin-jsdoc": "latest",
+        "eslint-plugin-prefer-arrow": "latest",
+        "husky": "^6.0.0",
+        "is-svg": ">=4.3.1",
+        "lint-staged": "^11.0.0",
+        "ng-packagr": "^12.0.5",
+        "semver": "^7.3.5",
+        "ts-node": "~10.0.0",
+        "typescript": "~4.1.5"
+    },
+    "lint-staged": {
+        "{ng-ueqt, src}/**/*.ts": [
+            "eslint"
+        ]
+    }
 }
