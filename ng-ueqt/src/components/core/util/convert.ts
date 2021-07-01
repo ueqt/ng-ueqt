@@ -24,15 +24,18 @@ export const valueFunctionProp = <T>(
     ? (prop as UFunctionProp<T>)(...args)
     : prop;
 
-const propDecoratorFactory = <T, D>(
+// 下面这句不要改成箭头函数，否则ng build --prod会报错
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+function propDecoratorFactory<T, D>(
   name: string,
   fallback: (v: T) => D
-): (target: UAny, propName: string) => void => {
-  const propDecorator = (
+): (target: UAny, propName: string) => void {
+  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+  function propDecorator(
     target: UAny,
     propName: string,
     originalDescriptor?: TypedPropertyDescriptor<UAny>
-  ): UAny => {
+  ): UAny {
     const privatePropName = `$$__${propName}`;
 
     if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -59,10 +62,10 @@ const propDecoratorFactory = <T, D>(
         this[privatePropName] = fallback(value);
       },
     };
-  };
+  }
 
   return propDecorator;
-};
+}
 
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
@@ -80,17 +83,22 @@ const propDecoratorFactory = <T, D>(
  * // __visible = false;
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const InputBoolean = (): UAny => propDecoratorFactory('InputBoolean', toBoolean);
+// eslint-disable-next-line @typescript-eslint/naming-convention, prefer-arrow/prefer-arrow-functions
+export function InputBoolean(): UAny {
+  return propDecoratorFactory('InputBoolean', toBoolean);
+}
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const InputCssPixel = (): UAny => propDecoratorFactory('InputCssPixel', toCssPixel);
+// eslint-disable-next-line @typescript-eslint/naming-convention, prefer-arrow/prefer-arrow-functions
+export function InputCssPixel(): UAny {
+  return propDecoratorFactory('InputCssPixel', toCssPixel);
+}
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const InputNumber = (fallbackValue?: UAny): UAny =>
-  propDecoratorFactory('InputNumber', (value: string | number) =>
+// eslint-disable-next-line @typescript-eslint/naming-convention, prefer-arrow/prefer-arrow-functions
+export function InputNumber(fallbackValue?: UAny): UAny {
+  return propDecoratorFactory('InputNumber', (value: string | number) =>
     toNumber(value, fallbackValue)
   );
+}
 
 export const pxToNumber = (value: string | null): number => {
   if (!value) {
