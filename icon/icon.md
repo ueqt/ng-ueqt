@@ -29,9 +29,9 @@ import { UIconLeft } from 'ng-ueqt/icons';
 const icons: UIconDefinition[] = [ UIconLeft ];
 
 // 引入全部的图标，不推荐 ❌
-// import { AllIcons } from 'ng-ueqt';
+// import { allIcons } from 'ng-ueqt';
 
-// const primerIcons = AllIcons as {
+// const primerIcons = allIcons as {
 //   [key: string]: UIconDefinition;
 // };
 // const icons: UIconDefinition[] = Object.keys(primerIcons).map(key => primerIcons[key])
