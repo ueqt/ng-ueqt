@@ -1,5 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { InjectionToken } from '@angular/core';
+import { UModalComponent } from './modal.component';
 
 export const U_MODAL_MODEL_TOKEN = new InjectionToken<UModalModel>('U_MODAL_MODEL');
 
@@ -85,3 +86,19 @@ export class UModalModel {
    */
   customArgs?: any;
 }
+
+/**
+ * 模态参数类
+ */
+export class UModalArgModel {
+  /**
+   * 其他字段
+   */
+  [key: string]: any;
+
+  /**
+   * 模态组件
+   */
+  modal: UModalComponent;
+}
+

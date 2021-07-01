@@ -1,7 +1,5 @@
-import { UModalComponent } from './../../../ng-ueqt/src/components/modal/modal.component';
-import { UModalService } from './../../../ng-ueqt/src/components/modal/modal.service';
-import { UButtonComponent } from './../../../ng-ueqt/src/components/button/button.component';
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { UModalArgModel, UModalComponent, UModalService, UButtonComponent } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-modal-basic',
@@ -68,7 +66,7 @@ export class UdemoModalBasicComponent {
     }, '自定义模板');
   };
 
-  close = async (_: UButtonComponent, data: any) => {
+  close = async (_: UButtonComponent, data: UModalArgModel) => {
     data.modal.close();
   };
 }
