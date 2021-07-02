@@ -1,69 +1,54 @@
 // :root {
 // }
-
 // https://material.angular.io/cdk/overlay/overview
+@use "sass:math";
 @import '~@angular/cdk/overlay-prebuilt.css';
-
 // Media queries breakpoints
 // Extra small screen / phone
 $screen-xs: 480px;
 $screen-xs-min: $screen-xs;
-
 // Small screen / tablet
 $screen-sm: 576px;
 $screen-sm-min: $screen-sm;
-
 // Medium screen / desktop
 $screen-md: 768px;
 $screen-md-min: $screen-md;
-
 // Large screen / wide desktop
 $screen-lg: 992px;
 $screen-lg-min: $screen-lg;
-
 // Extra large screen / full hd
 $screen-xl: 1200px;
 $screen-xl-min: $screen-xl;
-
 // Extra extra large screen / large desktop
 $screen-xxl: 1600px;
 $screen-xxl-min: $screen-xxl;
-
 // provide a maximum
 $screen-xs-max: ($screen-sm-min - 1px);
 $screen-sm-max: ($screen-md-min - 1px);
 $screen-md-max: ($screen-lg-min - 1px);
 $screen-lg-max: ($screen-xl-min - 1px);
 $screen-xl-max: ($screen-xxl-min - 1px);
-
-$screen-max: (
-  -xs: $screen-xs-max,
-  -sm: $screen-sm-max,
-  -md: $screen-md-max,
-  -lg: $screen-lg-max,
-  -xl: $screen-xl-max
-);
-
+$screen-max: ( -xs: $screen-xs-max, -sm: $screen-sm-max, -md: $screen-md-max, -lg: $screen-lg-max, -xl: $screen-xl-max);
 // Grid system
 $grid-columns: 24;
-
 // tabIndex会有边框
 [tabindex] {
-  outline: none !important;
+    outline: none !important;
 }
 
 @function abs($num) {
-  @if($num < 0) {
-    @return -$num;
-  } @else {
-    @return $num;
-  }
+    @if($num < 0) {
+        @return -$num;
+    }
+    @else {
+        @return $num;
+    }
 }
 
 @function sqrt($num) {
-  $temp: 1;
-  @while abs($temp - $num / $temp) > 1e-6 {
-    $temp: ($temp + $num / $temp) / 2;
-  }
-  @return $temp;
+    $temp: 1;
+    @while abs($temp - math.div($num, $temp))>1e-6 {
+        $temp: ($temp + math.div($num, $temp)) * 0.5;
+    }
+    @return $temp;
 }
