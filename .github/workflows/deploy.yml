@@ -13,6 +13,10 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ github.ref }} # Use new version for build after bump version
+      - name: Change Node Version
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       # - name: Automated Version Bump
       #   uses: phips28/gh-action-bump-version@master
