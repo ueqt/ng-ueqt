@@ -37,6 +37,7 @@
           }
         ],
         "@typescript-eslint/member-delimiter-style": "off",
+        "@typescript-eslint/member-ordering": "off",
         "@typescript-eslint/quotes": [
           "error",
           "single",

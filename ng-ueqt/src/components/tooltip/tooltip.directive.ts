@@ -1,7 +1,5 @@
 import { UAny } from './../core/util/types';
 import {
-  ComponentFactory,
-  ComponentFactoryResolver,
   Directive,
   ElementRef,
   EventEmitter,
@@ -68,8 +66,6 @@ export class UTooltipDirective implements OnChanges, OnDestroy, AfterViewInit {
 
   @HostBinding('class.u-tooltip-open') get tooltipOpen(): boolean { return this.uTooltipVisible; }
 
-  componentFactory: ComponentFactory<UTooltipComponent> = this.resolver.resolveComponentFactory(UTooltipComponent);
-
   visible = false;
 
   component: UTooltipComponent;
@@ -80,7 +76,6 @@ export class UTooltipDirective implements OnChanges, OnDestroy, AfterViewInit {
   constructor(
     public elementRef: ElementRef,
     protected hostView: ViewContainerRef,
-    protected resolver: ComponentFactoryResolver,
     protected renderer: Renderer2
   ) { }
 
@@ -155,13 +150,15 @@ export class UTooltipDirective implements OnChanges, OnDestroy, AfterViewInit {
    * Create a dynamic tooltip component. This method can be override.
    */
   protected createComponent(): void {
-    const componentRef = this.hostView.createComponent<UTooltipComponent>(this.componentFactory);
+    const componentRef = this.hostView.createComponent(UTooltipComponent);
 
     this.component = componentRef.instance;
 
     // Remove the component's DOM because it should be in the overlay container.
     this.renderer.removeChild(this.renderer.parentNode(this.elementRef.nativeElement), componentRef.location.nativeElement);
-    this.component.setOverlayOrigin({ elementRef: this.uTooltipOrigin || this.elementRef });
+    const origin: any = this.uTooltipOrigin || this.elementRef;
+    origin.elementRef = this.uTooltipOrigin || this.elementRef;
+    this.component.setOverlayOrigin(origin);
 
     this.updateChangedProperties([]);
 
