@@ -6,8 +6,8 @@
     "lint-staged": "lint-staged",
     "prepare": "npx husky install",
     "start": "ng serve --hmr",
-    "deploy": "ng build ng-ueqt --prod && cd dist/ng-ueqt && npm publish",
-    "build": "ng build ng-ueqt --prod && ng build --prod --base-href=/ng-ueqt/",
+    "deploy": "ng build ng-ueqt && cd dist/ng-ueqt && npm publish",
+    "build": "ng build ng-ueqt && ng build --base-href=/ng-ueqt/",
     "lint": "ng lint"
   },
   "private": true,
