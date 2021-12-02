@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
   <u-menu [uDatas]="datas"></u-menu>
   <hr/>
   Horizontal<br />
-  <u-menu [uDatas]="datas" mode="horizontal"></u-menu>
+  <u-menu [uDatas]="datas" uMode="horizontal"></u-menu>
   <hr/>
   Vertical<br />
-  <u-menu [uDatas]="datas" mode="vertical"></u-menu>
+  <u-menu [uDatas]="datas" uMode="vertical"></u-menu>
   <hr/>
   `,
 })

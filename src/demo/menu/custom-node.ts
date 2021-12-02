@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
   <u-menu [uDatas]="datas" [uCustomNode]="custom"></u-menu>
   <hr />
   Horizontal<br />
-  <u-menu [uDatas]="datas" [uCustomNode]="custom" mode='horizontal'></u-menu>
+  <u-menu [uDatas]="datas" [uCustomNode]="custom" uMode='horizontal'></u-menu>
   <hr />
   Vertical<br />
-  <u-menu [uDatas]="datas" [uCustomNode]="custom" mode='vertical'></u-menu>
+  <u-menu [uDatas]="datas" [uCustomNode]="custom" uMode='vertical'></u-menu>
   <hr />
     <ng-template #custom let-node="node"
       ><i uIcon="bars" style="margin-right: 10px;line-height: 22px;"></i>

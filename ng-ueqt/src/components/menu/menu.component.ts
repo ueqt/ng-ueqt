@@ -100,7 +100,7 @@ export class UMenuComponent implements OnChanges {
 
   treeControl = new FlatTreeControl<UMenuNode>(
     (node) => node.level,
-    (node) => node.expandable
+    (node) => this.expandable(node)
   );
 
   dataSource = new ArrayDataSource([]);
@@ -117,7 +117,7 @@ export class UMenuComponent implements OnChanges {
 
   constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) { }
 
-  hasChild = (_: number, node: UMenuNode) => node.expandable;
+  hasChild = (_: number, node: UMenuNode) => this.expandable(node);
 
   ngOnChanges(): void {
     this.flatNodes = [];
