@@ -29,12 +29,12 @@ import { UIconLeft } from 'ng-ueqt/icons';
 const icons: UIconDefinition[] = [ UIconLeft ];
 
 // 引入全部的图标，不推荐 ❌
-// import { allIcons } from 'ng-ueqt';
+// import { allIconDefs, allIcons, materialIconDefs, primerIconDefs } from 'ng-ueqt';
 
-// const primerIcons = allIcons as {
-//   [key: string]: UIconDefinition;
-// };
-// const icons: UIconDefinition[] = Object.keys(primerIcons).map(key => primerIcons[key])
+// const icons: UIconDefinition[] = [ ...allIconDefs ];
+// const icons: UIconDefinition[] = [ ...materialIconDefs ];
+// const icons: UIconDefinition[] = [ ...primerIconDefs ];
+// const icons: UIconDefinition[] = [ allIcons.up, allIcons.down ];
 
 @NgModule({
   declarations: [

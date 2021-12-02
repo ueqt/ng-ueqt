@@ -6,18 +6,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import { allIcons, UIconDefinition, UIconModule, UTabsModule } from 'ng-ueqt';
+import { allIconDefs, UIconModule, UTabsModule } from 'ng-ueqt';
 
 const routes: Routes = [{ path: '', component: UdemoIconComponent }];
-
-const icons: UIconDefinition[] = [
-  allIcons.uiconLeft,
-  allIcons.uiconRight,
-  allIcons.uiconUp,
-  allIcons.uiconDown,
-  allIcons.uiconBars,
-];
-
 @NgModule({
   imports: [
     CommonModule,
@@ -26,7 +17,7 @@ const icons: UIconDefinition[] = [
     MarkdownModule.forRoot({ loader: HttpClient }),
     UCodeboxModule,
     UTabsModule,
-    UIconModule.forRoot(icons),
+    UIconModule.forRoot(allIconDefs),
   ],
   declarations: [UdemoIconComponent, UdemoIconBasicComponent],
 })

@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
-import { allIcons, UIconDefinition } from 'ng-ueqt';
+import { allIcons, materialIconDefs, primerIconDefs, UIconDefinition } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-icon-basic',
   template: `
+  <h2>Primer Icons</h2>
   <ul>
-    <li *ngFor="let icon of icons">
+    <li *ngFor="let icon of primerIcons">
+        <i [uIcon]="icon.name" style="color:red;" [uIconSize]="24" uIconClass="icon-test"></i>
+        <span>{{icon.name}}</span>
+    </li>
+</ul>
+<hr/>
+<h2>Material Icons</h2>
+<ul>
+    <li *ngFor="let icon of materialIcons">
         <i [uIcon]="icon.name" style="color:red;" [uIconSize]="24" uIconClass="icon-test"></i>
         <span>{{icon.name}}</span>
     </li>
@@ -53,9 +62,6 @@ import { allIcons, UIconDefinition } from 'ng-ueqt';
   ]
 })
 export class UdemoIconBasicComponent {
-  primerIcons = allIcons as {
-    [key: string]: UIconDefinition;
-  };
-
-  icons: UIconDefinition[] = Object.keys(this.primerIcons).map(key => this.primerIcons[key]);
+  primerIcons: UIconDefinition[] = [...primerIconDefs];
+  materialIcons: UIconDefinition[] = [...materialIconDefs];
 }
