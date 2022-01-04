@@ -19,9 +19,11 @@ export class UdemoMenuBasicComponent {
   datas: UMenuNode[] = [
     {
       name: 'aaa',
+      isExpanded: true,
       children: [
         {
           name: 'aaa-1',
+          isExpanded: true,
           children: [
             {
               name: 'aaa-1-1',

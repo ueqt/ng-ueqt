@@ -281,7 +281,7 @@ export class UMenuComponent implements OnChanges {
   ): void {
     node.id = this.generateId(node.id || node.name);
     node.level = level;
-    node.isExpanded = false;
+    node.isExpanded = node.isExpanded || false;
     node.parent = parent;
 
     this.flatNodes.push(node);
