@@ -14,7 +14,6 @@ const components = [
   imports: [CommonModule, OverlayModule, UButtonModule, UDynamicModule],
   exports: [...components],
   declarations: [...components],
-  entryComponents: [UModalComponent],
   providers: [UModalService]
-})
+  })
 export class UModalModule { }
