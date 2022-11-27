@@ -15,7 +15,7 @@ export const nameofAllDefinition = <T extends object>(tCreator: new () => T): an
 export const nameofAll = <T extends object>(
   tCreator: new () => T,
   nameFunction: ((obj: T) => any) | (new (...params: any[]) => T)
-): string => 'ueqt___' + tCreator.name + '__' + nameof<T>(nameFunction);
+): string => 'ueqt___' + tCreator.name + '__' + (nameof<T>(nameFunction)).toString();
 
 /**
  * 获取变量名快捷定义
