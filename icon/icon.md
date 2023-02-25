@@ -1,7 +1,7 @@
 语义化的矢量图形。
 
 ```ts
-import { UIconModule } from "ng-ueqt";
+import { UIconDirective } from "ng-ueqt";
 ```
 
 ### SVG 图标
@@ -21,7 +21,7 @@ import { UIconModule } from "ng-ueqt";
 
 ```ts
 import { UIconDefinition } from 'ng-ueqt';
-import { UIconModule } from 'ng-ueqt';
+import { UIconDirective, provideIconChild } from 'ng-ueqt';
 
 // 引入你需要的图标，比如你需要 Left，推荐 ✔️
 import { UIconLeft } from 'ng-ueqt/icons';
@@ -36,37 +36,40 @@ const icons: UIconDefinition[] = [ UIconLeft ];
 // const icons: UIconDefinition[] = [ ...primerIconDefs ];
 // const icons: UIconDefinition[] = [ allIcons.up, allIcons.down ];
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    UIconModule.forRoot(icons)
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideIconRoot(icons),
   ]
-  bootstrap: [ AppComponent ]
-})
-export class AppModule {
-}
+}).catch(err => console.error(err));
+
 ```
 
 ### 在子模块中补充图标
 
-有时候，为了避免增大 main.js 的体积，你可能想要从懒加载模块中引入图标，这时你就可以使用 `UIconModule.forChild` 来追加图标。
+有时候，为了避免增大 main.js 的体积，你可能想要从懒加载模块中引入图标，这时你就可以使用 `provideIconChild(icons)` 来追加图标。
 
 ```ts
-@NgModule({
-  imports: [UIconModule.forChild([UIconLeft])],
+@Component({
+  standalone: true,
+  imports: [
+    UIconDirective
+  ],
+  providers: [
+    provideIconChild(icons)
+  ]
 })
-class ChildIconModule {}
-
-@NgModule({
-  imports: [CommonModule, ChildIconModule],
-})
-class ChildModule {}
+export class ChildComponent {
+}
 ```
 
-这样，当 `ChildModule` 加载之后，整个应用都能够使用 UIconLeft 图标。
+这样，当 `ChildComponent` 加载之后，整个应用都能够使用 UIconLeft 图标。
 
-当然，不要忘记在 `U_ICONS` 中删除该图标。
+## API
 
-注意，一定要单独定义一个IconModule，否则会覆盖`ChildModule`里其他module定义的`icon`
+### [uIcon]
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| `[uIcon]` | 图标类型，遵循图标的命名规范 | `string` | |
+| `[uIconSize]` | 图标尺寸 | `number` | `16`     |
+| `[uIconClass]` | 图标样式类 | `string` | |
