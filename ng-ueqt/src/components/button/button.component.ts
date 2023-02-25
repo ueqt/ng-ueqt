@@ -11,6 +11,7 @@ import { getContrastHex } from '../core/util';
 })
 export class UButtonComponent {
 
+  // 因为要等待事件返回才取消loading动画，所以不能用(uClick)，emit是不等待的
   /**
    * 点击事件(只要传事件方法名，用箭头函数写)
    */
