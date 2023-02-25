@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component } from '@angular/core';
-import { UContributionsModel } from 'ng-ueqt';
+import { UContributionsComponent, UContributionsModel } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-contributions-basic',
+  standalone: true,
+  imports: [
+    UContributionsComponent,
+  ],
   template: '<u-contributions [uOptions]="options"></u-contributions>',
 })
 export class UdemoContributionsBasicComponent {

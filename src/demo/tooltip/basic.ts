@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { UTooltipDirective } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-tooltip-basic',
+  standalone: true,
+  imports: [
+    UTooltipDirective,
+  ],
   template: `
   <div uTooltip="tips" style="background: blue;">hover me</div>
 

@@ -1,12 +1,16 @@
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import {
-  Component, ChangeDetectionStrategy, ViewEncapsulation,
-  Input, HostBinding, forwardRef, ChangeDetectorRef
-} from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'u-input',
   exportAs: 'uInput',
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    FormsModule,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
@@ -16,7 +20,22 @@ import {
       multi: true
     }
   ],
-  templateUrl: './input.component.html'
+  template: `
+<input *ngIf="uType !== 'textarea' && uType !== 'select'" class="u-input-content"
+  [class.u-input-content-hasvalue]="!!data" [attr.type]="uType || 'text'" [(ngModel)]="data" [maxlength]="uMaxLength"
+  (blur)="onBlur()" />
+<textarea *ngIf="uType === 'textarea'" class="u-input-content" [class.u-input-content-hasvalue]="!!data"
+  [(ngModel)]="data" [maxlength]="uMaxLength"></textarea>
+<select *ngIf="uType === 'select'" class="u-input-content u-select" [class.u-input-content-hasvalue]="!!data"
+  [(ngModel)]="data">
+  <ng-content></ng-content>
+  <ng-container *ngIf="uOptions">
+    <option *ngFor="let o of uOptions" [ngValue]="o">{{o.label}}</option>
+  </ng-container>
+</select>
+<span class="u-input-bar"></span>
+<label>{{uLabel}}</label>
+  `
 })
 export class UInputComponent implements ControlValueAccessor {
   @HostBinding('class.u-input') classInput = true;

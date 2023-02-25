@@ -9,6 +9,7 @@ import {
 @Component({
   selector: 'u-footer',
   exportAs: 'uFooter',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',

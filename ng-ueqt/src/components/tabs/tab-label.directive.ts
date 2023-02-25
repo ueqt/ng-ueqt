@@ -10,6 +10,7 @@ import { InputBoolean } from '../core/util';
 @Directive({
   selector: '[uTabLabel]',
   exportAs: 'uTabLabel',
+  standalone: true,
 })
 export class UTabLabelDirective {
   @Input() @InputBoolean() disabled = false;

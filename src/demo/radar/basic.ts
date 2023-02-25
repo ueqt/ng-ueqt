@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { URadarModel } from 'ng-ueqt';
+import { URadarComponent, URadarModel } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-radar-basic',
+  standalone: true,
+  imports: [
+    URadarComponent,
+  ],
   template: '<u-radar [uOptions]="options"></u-radar>',
 })
 export class UdemoRadarBasicComponent {

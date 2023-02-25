@@ -23,10 +23,17 @@ import {
   UBreakpointService,
 } from '../core/services';
 import { InputBoolean, toCssPixel } from '../core/util';
+import { USiderTriggerComponent } from './sider-trigger.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'u-sider',
   exportAs: 'uSider',
+  standalone: true,
+  imports: [
+    NgIf,
+    USiderTriggerComponent,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

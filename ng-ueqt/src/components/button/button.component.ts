@@ -1,16 +1,13 @@
-import {
-  Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding, HostListener, Output, EventEmitter
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Input, ViewEncapsulation } from '@angular/core';
 import { getContrastHex } from '../core/util';
 
 @Component({
   selector: 'u-button',
   exportAs: 'uButton',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <ng-content></ng-content>
-    `
+  template: '<ng-content></ng-content>'
 })
 export class UButtonComponent {
 

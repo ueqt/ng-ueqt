@@ -3,13 +3,25 @@ import {
   TemplateRef,
   HostBinding,
 } from '@angular/core';
+import { UStringTemplateOutletDirective } from '../core';
 
 @Component({
   selector: 'u-timeline-item',
   exportAs: 'uTimelineItem',
+  standalone: true,
+  imports: [
+    UStringTemplateOutletDirective,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './timeline-item.component.html'
+  template: `
+<div class="u-timeline-item-badge" [style.background-color]="uBadgeBackgroundColor">
+    <ng-container *uStringTemplateOutlet="uBadge; context: {$implicit: uBadgeArgs}">{{ uBadge }}</ng-container>
+</div>
+<div class="u-timeline-item-body">
+    <ng-container *uStringTemplateOutlet="uContent; context: {$implicit: uContentArgs}">{{ uContent }}</ng-container>
+</div>
+  `
 })
 export class UTimelineItemComponent {
 

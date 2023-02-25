@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
 @Component({
   selector: 'u-card',
   exportAs: 'uCard',
+  standalone: true,
   template: `<ng-content></ng-content>
   <ng-content select="u-card-footer"></ng-content>`,
   encapsulation: ViewEncapsulation.None,

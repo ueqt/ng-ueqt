@@ -1,9 +1,27 @@
-import { UButtonComponent } from './../../../ng-ueqt/src/components/button/button.component';
 import { Component } from '@angular/core';
-import { sleep } from 'ng-ueqt/components/core/util';
+import { allIcons, provideIconChild, sleep,
+  UButtonComponent, UButtonGroupComponent, UIconDefinition, UIconDirective, UInputComponent } from 'ng-ueqt';
+
+const icons: UIconDefinition[] = [
+  allIcons.uiconLeft,
+  allIcons.uiconRight,
+  allIcons.uiconUp,
+  allIcons.uiconDown,
+  allIcons.uiconBars,
+];
 
 @Component({
   selector: 'udemo-button-basic',
+  standalone: true,
+  imports: [
+    UButtonComponent,
+    UButtonGroupComponent,
+    UInputComponent,
+    UIconDirective,
+  ],
+  providers: [
+    provideIconChild(icons)
+  ],
   template: `
   <u-button [uClick]="test">Primary</u-button>
   <u-button uColor="red" [uIconOnly]="true" [uClick]="test">

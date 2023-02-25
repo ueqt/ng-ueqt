@@ -1,4 +1,3 @@
-export * from './tabs.module';
 export * from './tab.component';
 export * from './tab-label.directive';
 export * from './tab.directive';

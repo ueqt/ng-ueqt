@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { USwitchComponent } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-switch-basic',
+  standalone: true,
+  imports: [
+    USwitchComponent,
+    FormsModule,
+  ],
   template: `
   <u-switch [(ngModel)]="result"></u-switch>
   <u-switch [(ngModel)]="result" uCheckedChildren="开" uUnCheckedChildren="关"></u-switch>

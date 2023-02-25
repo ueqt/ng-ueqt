@@ -3,12 +3,13 @@ import {
   Component,
   ElementRef,
   Renderer2,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
   selector: 'u-content',
   exportAs: 'uContent',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   template: '<ng-content></ng-content>',

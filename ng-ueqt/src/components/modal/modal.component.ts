@@ -1,4 +1,6 @@
+import { NgIf } from '@angular/common';
 import { Component, HostBinding, Inject, ViewChild, ElementRef, AfterViewInit, ViewContainerRef, OnInit } from '@angular/core';
+import { UButtonComponent } from '../button';
 import { UDynamicService } from '../dynamic';
 import { UModalModel, UModalTypes, U_MODAL_MODEL_TOKEN } from './modal.model';
 
@@ -7,7 +9,32 @@ import { UModalModel, UModalTypes, U_MODAL_MODEL_TOKEN } from './modal.model';
  */
 @Component({
   selector: 'u-modal',
-  templateUrl: './modal.component.html'
+  exportAs: 'uModal',
+  standalone: true,
+  imports: [
+    NgIf,
+    UButtonComponent,
+  ],
+  template: `
+<div class="u-modal-container">
+  <div class="u-modal" [style.background-color]="styleBg" [style.color]="styleColor">
+    <div *ngIf="!ignoreTitleBar" class="u-modal-title-bar">
+      <span class="u-modal-title">{{model.title}}</span>
+      <u-button style="float: right;" uColor="var(--u-primary)" [uClick]="defaultClose">X</u-button>
+    </div>
+    <div class="u-modal-content">
+      <div *ngIf="model.message" class="u-modal-body" [innerHtml]="model.message">
+      </div>
+      <div *ngIf="model.customComponentType" #customComponent>
+      </div>
+      <div *ngIf="!model.customComponentType" class="u-modal-footer" [style.border-top-color]="styleBorderColor">
+        <u-button [uClick]="doConfirm">{{ model.confirmLabel || '确定' }}</u-button>
+        <u-button *ngIf="model.type === types.Confirm" [uClick]="doCancel">{{ model.cancelLabel || '取消' }}</u-button>
+      </div>
+    </div>
+  </div>
+</div>
+  `
 })
 export class UModalComponent implements OnInit, AfterViewInit {
 

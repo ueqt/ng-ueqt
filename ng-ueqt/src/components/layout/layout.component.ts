@@ -11,6 +11,7 @@ import { USiderComponent } from './sider.component';
 @Component({
   selector: 'u-layout',
   exportAs: 'uLayout',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',

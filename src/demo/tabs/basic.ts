@@ -1,7 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { UTabComponent, UTabsComponent } from 'ng-ueqt';
+
+
+@Component({
+  selector: 'udemo-tab-content-eagerly',
+  standalone: true,
+  template: ' eagerly ',
+})
+export class UDemoTabContentEagerlyComponent implements OnInit {
+  ngOnInit(): void {
+    console.log('I will init eagerly');
+  }
+}
+
+@Component({
+  selector: 'udemo-tab-content-lazy',
+  standalone: true,
+  template: ' lazy ',
+})
+export class UDemoTabContentLazyComponent implements OnInit {
+  ngOnInit(): void {
+    console.log('I will init when tab active');
+  }
+}
 
 @Component({
   selector: 'udemo-tabs-basic',
+  standalone: true,
+  imports: [
+    UTabComponent,
+    UTabsComponent,
+    UDemoTabContentEagerlyComponent,
+    UDemoTabContentLazyComponent,
+  ],
   template: `
     <u-tabs>
       <u-tab uTitle="eagerly">
@@ -43,23 +74,3 @@ import { Component, OnInit } from '@angular/core';
   `,
 })
 export class UdemoTabsBasicComponent {}
-
-@Component({
-  selector: 'udemo-tab-content-eagerly',
-  template: ' eagerly ',
-})
-export class UDemoTabContentEagerlyComponent implements OnInit {
-  ngOnInit(): void {
-    console.log('I will init eagerly');
-  }
-}
-
-@Component({
-  selector: 'udemo-tab-content-lazy',
-  template: ' lazy ',
-})
-export class UDemoTabContentLazyComponent implements OnInit {
-  ngOnInit(): void {
-    console.log('I will init when tab active');
-  }
-}

@@ -1,87 +1,48 @@
-import { UThemeService } from './../../ng-ueqt/src/components/theme/theme.service';
+import { Component, ViewChild } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { UContentComponent, UHeaderComponent, ULayoutComponent, UMenuNode, USiderComponent } from 'ng-ueqt';
 import { UMenuComponent } from './../../ng-ueqt/src/components/menu/menu.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { UMenuNode } from 'ng-ueqt';
-import { Router, NavigationEnd } from '@angular/router';
+import { UThemeService } from './../../ng-ueqt/src/components/theme/theme.service';
+import { menus } from '../demo';
 
 @Component({
   selector: 'udemo-root',
-  templateUrl: './app.component.html',
+  standalone: true,
+  imports: [
+    ULayoutComponent,
+    UHeaderComponent,
+    USiderComponent,
+    UMenuComponent,
+    UContentComponent,
+    RouterOutlet,
+  ],
+  template: `
+<u-layout>
+    <u-header class="app-header">NG-UEQT
+        <a style="float: right;" href="https://github.com/ueqt/ng-ueqt" target="_blank">
+          <img src="https://img.shields.io/npm/v/ng-ueqt.svg" />
+        </a>
+    </u-header>
+    <u-layout>
+        <u-sider class="app-sider" [uCollapsible]="true" uBreakpoint="lg" [uCollapsedWidth]="0">
+            <div class="app-menu">
+                <u-menu [uDatas]="datas" (uNodeClick)="menuClick($event)"></u-menu>
+            </div>
+        </u-sider>
+        <u-content>
+            <div class="app-content">
+                <router-outlet></router-outlet>
+            </div>
+        </u-content>
+    </u-layout>
+</u-layout>
+  `,
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   @ViewChild(UMenuComponent) menu: UMenuComponent;
 
-  datas: UMenuNode[] = [
-    {
-      name: 'Button 按钮',
-      url: 'button'
-    },
-    {
-      name: 'Card 卡片',
-      url: 'card'
-    },
-    {
-      name: 'Contributions 贡献图',
-      url: 'contributions'
-    },
-    {
-      name: 'Dynamic 动态组件',
-      url: 'dynamic'
-    },
-    {
-      name: 'Flex Flex布局',
-      url: 'flex'
-    },
-    {
-      name: 'Icon 图标',
-      url: 'icon',
-    },
-    {
-      name: 'Input 输入框',
-      url: 'input',
-    },
-    {
-      name: 'Layout 布局',
-      url: 'layout',
-    },
-    {
-      name: 'Menu 菜单',
-      url: 'menu',
-    },
-    {
-      name: 'Modal 模态框',
-      url: 'modal'
-    },
-    {
-      name: 'Radar 雷达图',
-      url: 'radar',
-    },
-    {
-      name: 'Switch 开关',
-      url: 'switch',
-    },
-    {
-      name: 'Tabs 标签页',
-      url: 'tabs',
-    },
-    {
-      name: 'Theme 皮肤',
-      url: 'theme',
-    },
-    {
-      name: 'Timeline 时间线',
-      url: 'timeline',
-    },
-    {
-      name: 'Tooltip 文本提示',
-      url: 'tooltip',
-    },
-    {
-      name: 'Viewer 视图',
-      url: 'viewer',
-    },
-  ];
+  datas = menus;
 
   constructor(
     private router: Router,

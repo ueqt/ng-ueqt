@@ -6,5 +6,6 @@ import { Directive } from '@angular/core';
 @Directive({
   selector: '[uTab]',
   exportAs: 'uTab',
+  standalone: true,
 })
 export class UTabDirective {}

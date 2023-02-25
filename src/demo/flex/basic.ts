@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
-import { UFlexAlignmentHorizontals, UFlexAlignmentVerticals, UFlexDirections } from 'ng-ueqt';
+import { FormsModule } from '@angular/forms';
+import { UFlexAlignmentHorizontals, UFlexAlignmentVerticals, UFlexComponent, UFlexDirections, UInputComponent } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-flex-basic',
+  standalone: true,
+  imports: [
+    UFlexComponent,
+    UInputComponent,
+    FormsModule,
+  ],
   template: `
   <u-flex uDirection="row" uAlignmentHorizontal="space-around">
     <u-input uType="select" uLabel="方向" [uOptions]="flexDirections" [(ngModel)]="direction"></u-input>

@@ -1,9 +1,10 @@
-import { UDynamicService } from './../../../ng-ueqt/src/components/dynamic/dynamic.service';
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { UDynamicService } from 'ng-ueqt';
 
 
 @Component({
   selector: 'udemo-dynamic-basic',
+  standalone: true,
   template: '<div #parent></div>'
 })
 export class UdemoDynamicBasicComponent implements AfterViewInit {
@@ -24,6 +25,7 @@ export class UdemoDynamicBasicComponent implements AfterViewInit {
 
 @Component({
   selector: 'udemo-dynamic-test',
+  standalone: true,
   template: '<div>Hello {{abc}}</div>'
 })
 export class UdemoDynamicTestComponent {

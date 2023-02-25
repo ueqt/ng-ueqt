@@ -18,6 +18,6 @@ const allIconKeys = { ...PrimerIcons, ...MaterialIcons } as {
 };
 export const allIconDefs: UIconDefinition[] = Object.keys(allIconKeys).map(key => allIconKeys[key]);
 
-export * from './icon.module';
 export * from './icon.model';
 export * from './icon.directive';
+export * from './icon.provider';

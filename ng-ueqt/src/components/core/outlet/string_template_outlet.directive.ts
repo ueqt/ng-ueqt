@@ -1,9 +1,10 @@
-import { UAny } from './../util/types';
 import { Directive, EmbeddedViewRef, Input, OnChanges, SimpleChange, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
+import { UAny } from './../util/types';
 
 @Directive({
   selector: '[uStringTemplateOutlet]',
-  exportAs: 'uStringTemplateOutlet'
+  exportAs: 'uStringTemplateOutlet',
+  standalone: true,
 })
 export class UStringTemplateOutletDirective<Template = unknown> implements OnChanges {
   @Input() uStringTemplateOutletContext: UAny | null = null;

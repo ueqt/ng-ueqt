@@ -1,3 +1,4 @@
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +11,11 @@ import {
 @Component({
   selector: 'u-tab-body',
   exportAs: 'uTabBody',
+  standalone: true,
+  imports: [
+    NgIf,
+    NgTemplateOutlet,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

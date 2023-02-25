@@ -7,9 +7,10 @@ import {
 @Component({
   selector: 'u-timeline-line',
   exportAs: 'uTimelineLine',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './timeline-line.component.html'
+  template: ''
 })
 export class UTimelineLineComponent {
   @HostBinding('class.u-timeline-line') classTimelineLine = true;

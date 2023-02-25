@@ -1,8 +1,21 @@
-import { UMenuNode } from 'ng-ueqt';
+import { allIcons, UIconDefinition, UIconDirective, UMenuComponent, UMenuNode } from 'ng-ueqt';
 import { Component } from '@angular/core';
+import { provideIconChild } from 'ng-ueqt/components/icon/icon.provider';
+
+const icons: UIconDefinition[] = [
+  allIcons.uiconBars
+];
 
 @Component({
   selector: 'udemo-menu-custom-node',
+  standalone: true,
+  imports: [
+    UMenuComponent,
+    UIconDirective,
+  ],
+  providers: [
+    provideIconChild(icons)
+  ],
   template: `
   Inline<br />
   <u-menu [uDatas]="datas" [uCustomNode]="custom"></u-menu>

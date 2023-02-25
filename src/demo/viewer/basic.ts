@@ -1,8 +1,14 @@
-import { UViewerColumnDef } from './../../../ng-ueqt/src/components/viewer/viewer.component';
+import { UViewerColumnDef, UViewerComponent } from './../../../ng-ueqt/src/components/viewer/viewer.component';
 import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'udemo-viewer-basic',
+  standalone: true,
+  imports: [
+    JsonPipe,
+    UViewerComponent,
+  ],
   template: `
   <u-viewer [uColumnDefs]="columnDefs" [uDatas]="datas" [uDataTemplate]="dataTmpl" [uItemHeight]="40" [uTableHeight]="'200px'">
   </u-viewer>

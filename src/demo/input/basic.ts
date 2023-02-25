@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { UInputComponent } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-input-basic',
+  standalone: true,
+  imports: [
+    UInputComponent,
+    FormsModule,
+  ],
   template: `
   {{ text }}
   <u-input uLabel="text" [uMaxLength]="5" [(ngModel)]="text"></u-input>

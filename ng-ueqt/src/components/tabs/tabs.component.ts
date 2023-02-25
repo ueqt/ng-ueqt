@@ -24,13 +24,41 @@ import { UTabComponent } from './tab.component';
 import { UTabsNavComponent } from './tabs-nav.component';
 import { UAny } from '../core/util';
 import { takeUntil } from 'rxjs/operators';
+import { NgForOf, NgIf, NgTemplateOutlet } from '@angular/common';
+import { UTabLabelDirective } from './tab-label.directive';
+import { UTabBodyComponent } from './tab-body.component';
 
 @Component({
   selector: 'u-tabs',
   exportAs: 'uTabs',
+  standalone: true,
+  imports: [
+    NgIf,
+    NgForOf,
+    NgTemplateOutlet,
+    UTabsNavComponent,
+    UTabLabelDirective,
+    UTabBodyComponent,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './tabs.component.html',
+  template: `
+<ng-container *ngIf="listOfUTabComponent">
+    <u-tabs-nav [selectedIndex]="uSelectedIndex">
+        <div uTabLabel [class.u-tabs-tab-active]="uSelectedIndex === i" [disabled]="tab.uDisabled"
+          (click)="clickLabel(i, tab.uDisabled)" *ngFor="let tab of listOfUTabComponent; let i = index">
+            <ng-container [ngTemplateOutlet]="tab.uCustomTitle || defaultTitle"></ng-container>
+            <ng-template #defaultTitle>
+                {{ tab.uTitle }}
+            </ng-template>
+        </div>
+    </u-tabs-nav>
+    <div #tabContent class="u-tabs-content" [style.margin-left.%]="-(uSelectedIndex || 0) * 100">
+        <u-tab-body class="u-tabs-tabpane" *ngFor="let tab of listOfUTabComponent; let i = index"
+          [active]="uSelectedIndex === i" [content]="tab.template || tab.content"></u-tab-body>
+    </div>
+</ng-container>
+  `
 })
 export class UTabsComponent implements AfterContentChecked, AfterContentInit, OnDestroy {
   @ContentChildren(UTabComponent) listOfUTabComponent: QueryList<UTabComponent>;

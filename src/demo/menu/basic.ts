@@ -1,8 +1,12 @@
-import { UMenuNode } from 'ng-ueqt';
+import { UMenuComponent, UMenuNode } from 'ng-ueqt';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'udemo-menu-basic',
+  standalone: true,
+  imports: [
+    UMenuComponent,
+  ],
   template: `
   Inline<br />
   <u-menu [uDatas]="datas"></u-menu>

@@ -1,8 +1,15 @@
 import { UThemeService } from './../../../ng-ueqt/src/components/theme/theme.service';
 import { Component, OnInit } from '@angular/core';
+import { UButtonComponent } from 'ng-ueqt';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'udemo-theme-basic',
+  standalone: true,
+  imports: [
+    NgFor,
+    UButtonComponent,
+  ],
   template: `
 <u-button (click)="change()">修改皮肤</u-button>
 <div>

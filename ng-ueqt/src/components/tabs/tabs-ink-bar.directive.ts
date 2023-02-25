@@ -3,6 +3,7 @@ import { Directive, ElementRef, Input, NgZone, Renderer2 } from '@angular/core';
 @Directive({
   selector: '[uTabsInkBar]',
   exportAs: 'uTabsInkBar',
+  standalone: true,
 })
 export class UTabsInkBarDirective {
   constructor(

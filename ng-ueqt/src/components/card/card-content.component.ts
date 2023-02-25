@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
 @Component({
   selector: 'u-card-content',
   exportAs: 'uCardContent',
+  standalone: true,
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

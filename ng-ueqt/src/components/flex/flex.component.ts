@@ -46,9 +46,10 @@ export type UFlexAlignmentVerticalConstants = 'stretch' | 'baseline' | 'flex-sta
 @Component({
   selector: 'u-flex',
   exportAs: 'uFlex',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './flex.component.html'
+  template: '<ng-content></ng-content>',
 })
 export class UFlexComponent {
   /**

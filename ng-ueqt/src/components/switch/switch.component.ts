@@ -1,15 +1,21 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
+import { NgIf } from '@angular/common';
 import {
   Component, ChangeDetectionStrategy, ViewEncapsulation, Input,
   HostBinding, ElementRef, ViewChild, TemplateRef,
   Output, EventEmitter, forwardRef, ChangeDetectorRef, HostListener, AfterViewInit, OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputBoolean } from '../core';
+import { InputBoolean, UStringTemplateOutletDirective } from '../core';
 
 @Component({
   selector: 'u-switch',
   exportAs: 'uSwitch',
+  standalone: true,
+  imports: [
+    NgIf,
+    UStringTemplateOutletDirective,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
@@ -19,7 +25,22 @@ import { InputBoolean } from '../core';
       multi: true
     }
   ],
-  templateUrl: './switch.component.html'
+  template: `
+<button type="button" class="u-switch-button" #switchElement [disabled]="uDisabled" [class.u-switch-checked]="isChecked"
+  [class.u-switch-disabled]="uDisabled" (keydown)="onKeyDown($event)">
+  <span class="u-switch-handle">
+  </span>
+  <span class="u-switch-inner">
+    <ng-container *ngIf="isChecked; else uncheckTemplate">
+      <ng-container *uStringTemplateOutlet="uCheckedChildren">{{ uCheckedChildren }}</ng-container>
+    </ng-container>
+    <ng-template #uncheckTemplate>
+      <ng-container *uStringTemplateOutlet="uUnCheckedChildren">{{ uUnCheckedChildren }}</ng-container>
+    </ng-template>
+  </span>
+  <div class="u-click-animating-node"></div>
+</button>
+  `
 })
 export class USwitchComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   /**

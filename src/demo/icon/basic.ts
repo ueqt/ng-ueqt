@@ -1,8 +1,18 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { allIcons, materialIconDefs, primerIconDefs, UIconDefinition } from 'ng-ueqt';
+import { allIconDefs, materialIconDefs, primerIconDefs, UIconDefinition, UIconDirective } from 'ng-ueqt';
+import { provideIconChild } from 'ng-ueqt/components/icon/icon.provider';
 
 @Component({
   selector: 'udemo-icon-basic',
+  standalone: true,
+  imports: [
+    NgFor,
+    UIconDirective
+  ],
+  providers: [
+    provideIconChild(allIconDefs)
+  ],
   template: `
   <h2>Primer Icons</h2>
   <ul>

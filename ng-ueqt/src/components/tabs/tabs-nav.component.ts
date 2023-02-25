@@ -1,34 +1,30 @@
+import { FocusKeyManager } from '@angular/cdk/a11y';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import {
-  Platform,
-  normalizePassiveListenerOptions,
+  normalizePassiveListenerOptions, Platform
 } from '@angular/cdk/platform';
+import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
-  AfterContentInit,
-  ChangeDetectionStrategy,
+  AfterContentInit, AfterViewInit, ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
-  EventEmitter,
-  Input,
+  EventEmitter, HostBinding, Input,
   NgZone,
   OnDestroy,
   QueryList,
   Renderer2,
   ViewChild,
-  ViewEncapsulation,
-  HostBinding,
-  AfterViewInit,
+  ViewEncapsulation
 } from '@angular/core';
-import { ViewportRuler } from '@angular/cdk/scrolling';
-import { merge, Subject, fromEvent, timer } from 'rxjs';
-import { takeUntil, startWith } from 'rxjs/operators';
-import { UTabsInkBarDirective } from './tabs-ink-bar.directive';
+import { fromEvent, merge, Subject, timer } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
+import { UIconDirective } from '../icon';
 import { UTabLabelDirective } from './tab-label.directive';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { FocusKeyManager } from '@angular/cdk/a11y';
-import { ENTER, SPACE, hasModifierKey } from '@angular/cdk/keycodes';
+import { UTabsInkBarDirective } from './tabs-ink-bar.directive';
 
 /** Config used to bind passive event listeners */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({
@@ -66,6 +62,10 @@ const HEADER_SCROLL_INTERVAL = 100;
 @Component({
   selector: 'u-tabs-nav',
   exportAs: 'uTabsNav',
+  standalone: true,
+  imports: [
+    UIconDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   template: `
@@ -113,8 +113,7 @@ export class UTabsNavComponent implements AfterViewInit, AfterContentChecked, Af
   @HostBinding('class.u-tabs-nav') classTabsNav = true;
 
   @ContentChildren(UTabLabelDirective) items: QueryList<UTabLabelDirective>;
-  @ViewChild(UTabsInkBarDirective, { static: true })
-  inkBar: UTabsInkBarDirective;
+  @ViewChild(UTabsInkBarDirective, { static: true }) inkBar: UTabsInkBarDirective;
   @ViewChild('tabListContainer', { static: true }) tabListContainer: ElementRef<
     HTMLDivElement
   >;
@@ -601,9 +600,9 @@ export class UTabsNavComponent implements AfterViewInit, AfterContentChecked, Af
       : null;
 
     if (selectedLabelWrapper) {
-      this.inkBar.alignToElement(selectedLabelWrapper);
+      this.inkBar?.alignToElement(selectedLabelWrapper);
     } else {
-      this.inkBar.hide();
+      this.inkBar?.hide();
     }
   }
 

@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { ULAYOUTS } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-layout-basic',
+  standalone: true,
+  imports: [
+    ULAYOUTS,
+  ],
   template: `
     <u-layout>
       <u-header>Header</u-header>

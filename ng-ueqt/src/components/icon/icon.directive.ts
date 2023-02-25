@@ -14,6 +14,7 @@ import { DOCUMENT } from '@angular/common';
 @Directive({
   selector: '[uIcon]',
   exportAs: 'uIcon',
+  standalone: true,
 })
 export class UIconDirective implements OnInit, OnChanges {
   /**

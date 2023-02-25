@@ -1,16 +1,15 @@
-import { POSITION_MAP, getPlacementName, DEFAULT_TOOLTIP_POSITIONS } from './../core/overlay/overlay-position';
 import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  OnDestroy, Input,
-  ChangeDetectorRef,
-  ViewChild,
-  TemplateRef
+  CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange,
+  ConnectionPositionPair, OverlayModule
+} from '@angular/cdk/overlay';
+import { NgClass, NgStyle } from '@angular/common';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, TemplateRef, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { UTSType, toBoolean, isNotNil, UObject } from '../core/util';
-import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import { Subject } from 'rxjs';
+import { UConnectedOverlayDirective, UStringTemplateOutletDirective } from '../core';
+import { isNotNil, toBoolean, UObject, UTSType } from '../core/util';
+import { DEFAULT_TOOLTIP_POSITIONS, getPlacementName, POSITION_MAP } from './../core/overlay/overlay-position';
 
 export type UTooltipTrigger = 'click' | 'focus' | 'hover' | null;
 
@@ -22,6 +21,14 @@ export const isTooltipEmpty = (
 @Component({
   selector: 'u-tooltip',
   exportAs: 'uTooltip',
+  standalone: true,
+  imports: [
+    UStringTemplateOutletDirective,
+    UConnectedOverlayDirective,
+    OverlayModule,
+    NgClass,
+    NgStyle,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

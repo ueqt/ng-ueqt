@@ -17,6 +17,7 @@ import { InputBoolean } from '../core/util';
 @Component({
   selector: 'u-tab',
   exportAs: 'uTab',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

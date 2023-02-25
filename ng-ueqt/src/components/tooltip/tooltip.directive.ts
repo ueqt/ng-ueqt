@@ -1,26 +1,20 @@
-import { UAny } from './../core/util/types';
 import {
-  Directive,
+  AfterViewInit, Directive,
   ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  Renderer2,
-  ViewContainerRef,
-  OnChanges,
-  OnDestroy,
-  AfterViewInit,
-  SimpleChanges,
-  HostBinding
+  EventEmitter, HostBinding, Input, OnChanges,
+  OnDestroy, Output,
+  Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
-import { UTSType, UObject } from '../core/util';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { UObject, UTSType } from '../core/util';
+import { UAny } from './../core/util/types';
 import { UTooltipComponent, UTooltipTrigger } from './tooltip.component';
 
 @Directive({
   selector: '[uTooltip]',
-  exportAs: 'uTooltip'
+  exportAs: 'uTooltip',
+  standalone: true,
 })
 export class UTooltipDirective implements OnChanges, OnDestroy, AfterViewInit {
 

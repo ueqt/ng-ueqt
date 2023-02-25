@@ -3,6 +3,10 @@ import { UModalArgModel, UModalComponent, UModalService, UButtonComponent } from
 
 @Component({
   selector: 'udemo-modal-basic',
+  standalone: true,
+  imports: [
+    UButtonComponent,
+  ],
   template: `
   <u-button [uClick]="info" uColor="var(--u-text)">Info</u-button>
   <u-button [uClick]="success" uColor="var(--u-primary)">Success</u-button>
@@ -73,6 +77,10 @@ export class UdemoModalBasicComponent {
 
 @Component({
   selector: 'udemo-modal-test',
+  standalone: true,
+  imports: [
+    UButtonComponent,
+  ],
   template: `
 <div class="u-modal-body">Hello {{abc}}</div>
 <div class="u-modal-footer" [style.border-top-color]="modal.styleBorderColor">

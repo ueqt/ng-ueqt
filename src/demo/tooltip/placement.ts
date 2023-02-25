@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'udemo-tooltip-placement',
+  standalone: true,
   template: `
     <div style="margin-left:60px;">
       <button uTooltip="prompt text" uTooltipPlacement="topLeft">TL</button>

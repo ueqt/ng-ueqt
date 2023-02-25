@@ -1,7 +1,24 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { allIcons, UIconDefinition, UIconDirective, UTIMELINES } from 'ng-ueqt';
+import { provideIconChild } from 'ng-ueqt/components/icon/icon.provider';
+
+const icons: UIconDefinition[] = [
+  allIcons.uiconBars,
+];
 
 @Component({
   selector: 'udemo-timeline-basic',
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    UTIMELINES,
+    UIconDirective,
+  ],
+  providers: [
+    provideIconChild(icons),
+  ],
   template: `
   纵向<hr/>
   <u-timeline [uOrientation]="'vertical'">

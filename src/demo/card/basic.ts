@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UButtonComponent, UCARDS } from 'ng-ueqt';
 
 @Component({
   selector: 'udemo-card-basic',
+  standalone: true,
+  imports: [
+    UCARDS,
+    UButtonComponent,
+  ],
   template: `
     <u-card class="example-card">
       <u-card-header>

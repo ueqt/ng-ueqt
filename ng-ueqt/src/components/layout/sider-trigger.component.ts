@@ -9,10 +9,17 @@ import {
   ViewEncapsulation,
   HostBinding,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { UIconDirective } from '../icon';
 
 @Component({
   selector: 'u-sider-trigger',
   exportAs: 'uSiderTrigger',
+  standalone: true,
+  imports: [
+    NgIf,
+    UIconDirective,
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

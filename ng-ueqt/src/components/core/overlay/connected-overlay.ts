@@ -3,7 +3,8 @@ import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[cdkConnectedOverlay][uConnectedOverlay]',
-  exportAs: 'uConnectedOverlay'
+  exportAs: 'uConnectedOverlay',
+  standalone: true,
 })
 export class UConnectedOverlayDirective {
   constructor(private cdkConnectedOverlay: CdkConnectedOverlay) {

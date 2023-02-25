@@ -9,6 +9,7 @@ import {
 @Component({
   selector: 'u-header',
   exportAs: 'uHeader',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   template: '<ng-content></ng-content>',

@@ -8,6 +8,7 @@ import { UFlexComponent, UFlexDirections } from './flex.component';
 @Directive({
   selector: '[uFlex]',
   exportAs: 'uFlex',
+  standalone: true,
 })
 export class UFlexDirective {
   /**
