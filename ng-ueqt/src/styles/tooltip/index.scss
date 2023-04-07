@@ -1,4 +1,4 @@
-@use "sass:math";
+@use "sass:math" as math;
 // Tooltip
 // ---
 // Tooltip max width
@@ -14,10 +14,10 @@ $tooltip-distance: #{$tooltip-arrow-width - 1px + 4px};
 // Tooltip arrow color
 $tooltip-arrow-color: $tooltip-bg;
 $tooltip-arrow-shadow-width: 3px;
-$tooltip-arrow-rotate-width: #{sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px) * 2)) + $tooltip-arrow-shadow-width * 2};
-$tooltip-arrow-translate-plus: #{(sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px) * 2)) + $tooltip-arrow-shadow-width * 2) * 0.5};
-$tooltip-arrow-translate-minus: #{-((sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px) * 2)) + $tooltip-arrow-shadow-width * 2) * 0.5)};
-$tooltip-arrow-distance: #{$tooltip-arrow-width - 1px + 4px - (sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px) * 2)) + $tooltip-arrow-shadow-width * 2)};
+$tooltip-arrow-rotate-width: #{math.sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px * 1px) * 2)) + $tooltip-arrow-shadow-width * 2};
+$tooltip-arrow-translate-plus: #{(math.sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px * 1px) * 2)) + $tooltip-arrow-shadow-width * 2) * 0.5};
+$tooltip-arrow-translate-minus: #{-((math.sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px * 1px) * 2)) + $tooltip-arrow-shadow-width * 2) * 0.5)};
+$tooltip-arrow-distance: #{$tooltip-arrow-width - 1px + 4px - (math.sqrt((math.div($tooltip-arrow-width * $tooltip-arrow-width, 1px * 1px) * 2)) + $tooltip-arrow-shadow-width * 2)};
 $tooltip-arrow-offset-vertical: 5px; // 8 - 3px
 $tooltip-arrow-offset-horizontal: 13px; // 16 - 3px
 // Base class

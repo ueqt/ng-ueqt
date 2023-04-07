@@ -1,4 +1,4 @@
-@import "../../ng-ueqt/src/styles/variable.scss";
+@use "../../ng-ueqt/src/styles/variable.scss" as variable;
 
 .app-header {
   position: sticky;
@@ -23,7 +23,7 @@
   width: calc(100% - 2000px);
 }
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: variable.$screen-xs-max) {
   .u-layout-content {
     max-width: 100%;
     width: 100%;
