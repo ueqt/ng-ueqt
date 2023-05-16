@@ -1,4 +1,4 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { NgZone, enableProdMode, importProvidersFrom, provideZoneChangeDetection, ɵNoopNgZone } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withDebugTracing, withInMemoryScrolling } from '@angular/router';
 import { primerIcons, UIconDefinition } from 'ng-ueqt';
@@ -19,6 +19,8 @@ const icons: UIconDefinition[] = [primerIcons.uiconLeft, primerIcons.uiconRight,
 
 bootstrapApplication(AppComponent, {
   providers: [
+    // provideZoneChangeDetection({ eventCoalescing: false }),
+    // { provide: NgZone, useClass: ɵNoopNgZone }, // remove zone.js https://github.com/angular/angular/issues/47538
     provideIconRoot(icons),
     provideHttpClient(),
     provideRouter(routes,

@@ -2,7 +2,7 @@
 // }
 // https://material.angular.io/cdk/overlay/overview
 @use "sass:math";
-@import '~@angular/cdk/overlay-prebuilt.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 // Media queries breakpoints
 // Extra small screen / phone
 $screen-xs: 480px;
